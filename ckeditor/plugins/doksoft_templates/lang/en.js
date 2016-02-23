@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang(	'doksoft_templates',	'en',	{			doksoft_templates:		{			title: 'Insert template'		}	});

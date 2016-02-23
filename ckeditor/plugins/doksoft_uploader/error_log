@@ -1,0 +1,4 @@
+[12-Apr-2015 11:41:55 Asia/Bangkok] html#inner-article
+[12-Apr-2015 11:42:38 Asia/Bangkok] jpg
+[12-Apr-2015 11:42:38 Asia/Bangkok] PHP Warning:  rename(/tmp/images1072791_1900__4_.jpg,/home/bido/public_html/estore//upload/images1072791_1900__4_.jpg) [<a href='function.rename'>function.rename</a>]: No such file or directory in /home/hun6fd6d/public_html/ckeditor/plugins/doksoft_uploader/uploader.php on line 117
+[07-May-2015 13:07:18 Asia/Bangkok] jpg

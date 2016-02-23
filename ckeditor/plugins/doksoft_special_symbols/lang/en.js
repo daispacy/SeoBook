@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang(	'doksoft_special_symbols',	'en',	{			doksoft_special_symbols:		{			title: 'Insert special symbol'		}	});
