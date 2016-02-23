@@ -20,7 +20,7 @@ define('DEBUG_FILE_APPEND', 0);				# Debug file write mode - 8 for append, 0 for
 
 #Database settings
 define('DB_PREFIX', 'dc_');					# Table prefix
-define('QUERY_ERROR', '0');					# Show query if failed - Only for debug
+define('QUERY_ERROR', '1');					# Show query if failed - Only for debug
 define('QUERY_DEBUG', '1');					# Database debug - Show query if failed - Only for debug
 define('SHOW_QUERY', '0');					# Show queries
 define('TIME_ZONE', 'Asia/Saigon');			# Default timezone
