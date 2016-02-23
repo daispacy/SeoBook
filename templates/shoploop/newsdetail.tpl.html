@@ -1,0 +1,38 @@
+{include file='header.tpl.html' title='site-header'}
+{include file='navigation.tpl.html' title='site-header'}
+<div class="container">
+
+    <div class="eleven columns">
+    	<h2>{$objectItem->getTitle()}</h2>
+        <div class="newsdetail">{$objectItem->getDetail()}</div>
+		</div><!--end eleven-->
+   
+
+<aside class="five columns">
+            {if $otherArticleItems}											
+		      <div class="met_sidebar_block" style="">
+		          <h2 class="met_sidebar_header"><a href="#">Các tin khác</a></h2>
+				    <ul class="met_clean_list met_popular_posts clearfix">
+                    {foreach from=$otherArticleItems item=item key=i}
+                    {if $i<10}
+                    {assign var=avatar value=$item->getProperty('avatar')}
+		              <li>
+                      {if $avatar}
+		                  <a href="{$item->getUrl()}" class="met_popular_post_image">
+							<img src="/uploads/{$storeId}/articles/a_{$avatar}" alt="{$item->getTitle()}"/>
+						</a>
+                        {/if}
+						<a href="{$item->getUrl()}" class="met_popular_post_title met_color_transition">{$item->getTitle()}</a>
+					</li>
+                    {/if}
+					{/foreach}				
+					</ul>
+				 
+			
+			</div><!-- Popular Posts ENDS -->
+            {/if}
+
+</aside>
+
+</div>	
+{include file='footer.tpl.html' title='site-footer'}

@@ -1,0 +1,8 @@
+{foreach key=no from=$productItems item=item}
+<li class="col3">
+		{if $item->getAvatar()}{if $item->getHome() || $item->getSeller()}<div class="{if $item->getHome()}offer{elseif $item->getSeller()}seller{/if}_icon"></div>{/if}<a href="{$item->getUrl()}"><img src="/upload/{$storeId}/products/l_{$item->getAvatar()}" alt="{$item->getName()}" class="full-image product-image" data-tooltip="tooltip-{$item->getId()}"/></a>{/if}
+		<p class="product-title"><a href="{$item->getUrl()}">{$item->getName()}</a></p>
+        <!--<p class="product-price">{$item->getCatName()}</p>-->
+		{if $item->getMarketPrice()}<p class="product-price">{$item->getMarketPrice()}</p>{/if}
+</li>
+{/foreach}

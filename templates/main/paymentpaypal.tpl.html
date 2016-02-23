@@ -1,0 +1,26 @@
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" id="formOrder" name="formOrder">
+<fieldset>
+<p><strong>Thông tin đơn hàng của bạn:</strong></p>
+<p><label>Mã số đơn hàng:</label><span style="font-size:1.5em; font-weight:bold">{$order->getId()}</span></p>
+<p><label>Số tiền:</label>{$order->getOrderTotal()|number_format:0} VND</p>
+<p><label>Tỉ giá:</label>{$payment_rate|number_format:0}</p>
+<p><label>Thành tiền:</label>{$orderTotalUsd|number_format:2} USD</p>
+<p><label>Phí thanh toán:</label>{$paymentFeeUsd|number_format:2} USD ({$payment_fee|number_format:2}%)</p>
+<p><label>Số tiền phải thanh toán:</label><span style="font-size:1.5em; font-weight:bold">{$orderTotalUsd+$paymentFeeUsd|number_format:2} USD</span></p>
+<p>&nbsp;</p>
+{$paymentMethod.options.information}
+<p>&nbsp;</p>
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="{$payment_account}">
+<input type="hidden" name="item_name" value="Order {$order->getId()} at {$estore->getDomain()}">
+<input type="hidden" name="item_number" value="{$order->getId()}">
+<input type="hidden" name="amount" value="{$orderTotalUsd}"> 
+<input type="hidden" name="tax" value="{$paymentFeeUsd}">
+<input type="hidden" name="return" value="http://{$estore->getDomain()}/?act=payment&pm={$pm}&oId={$order->getId()}&plus=paid" />
+<div class="submitForm">
+							<label class="hidden-mobile"></label>
+                            <input class="red_btn button" type="submit" name="submit" value="Hoàn tất">
+							<div class="clear"></div>
+						</div>
+</fieldset>
+</form>

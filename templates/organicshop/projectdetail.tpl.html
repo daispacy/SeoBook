@@ -1,0 +1,101 @@
+{include file='header.tpl.html' title='site-header'}
+
+		
+		<!-- 
+		<div class="section section-mini">
+			<h2 class="site-intro">{if $estore->getDescription()}{$estore->getDescription()}{/if}</h2>
+		 
+		</div>-->
+		
+		<div class="section" style="padding: 0 30px">
+            {include file='navigation.tpl.html' title='site-header'}
+        </div>
+        
+       <!-- BEGIN .section -->
+		<div class="section">
+			{if $projectItem}
+			<ul class="columns-content page-content clearfix">
+				
+				<!-- BEGIN .col-main -->
+				<li class="col-main">
+					
+					<h2 class="page-title">{$projectItem->getTitle()}</h2>
+                        {assign var=photos value=$projectItem->getProperty('photos')}
+                        {if $photos}
+						<ul class="columns-3 clearfix product-list">
+                            {foreach from=$photos item=photo}
+							<li class="col3">
+								<a rel="lightbox-cats" href="/upload/{$storeId}/projects/l_{$photo}"><img src="/upload/{$storeId}/projects/l_{$photo}" alt="{$projectItem->getTitle()}" class="full-image product-image" /></a>							
+							</li>
+							{/foreach}
+						</ul>
+                        {else}
+                        Thư viện dự án đang được cập nhật.
+				        {/if}
+				<!-- END .col-main -->
+				</li>
+				
+				<!-- BEGIN .col-sidebar -->
+				<li class="col-sidebar">
+				    <!--
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Chuyên mục Sản phẩm</h4></div>
+						<ul>
+							<li><a href="#">Skin Care</a></li>
+							<li><a href="#">Bath &amp; Body Care</a></li>
+							<li><a href="#">Fragrance</a></li>
+							<li><a href="#">Make-Up</a></li>
+							<li><a href="#">Hair</a></li>
+							<li><a href="#">Moisturisers</a></li>
+						</ul>
+					</div>-->
+					<!--
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Tags</h4></div>
+						<ul class="wp-tag-cloud clearfix">
+							<li><a href="#">Tag #1</a></li>
+							<li><a href="#">Tag #2</a></li>
+							<li><a href="#">Tag #3</a></li>
+							<li><a href="#">Tag #4</a></li>
+							<li><a href="#">Tag #5</a></li>
+							<li><a href="#">Tag #6</a></li>
+						</ul>
+					</div>
+					-->
+                    {if $projectotherItems}
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Dự án khác</h4></div>
+						
+						<ul class="latest-posts-list clearfix">
+							{foreach key=no from=$projectotherItems item=item}
+							<li class="clearfix">
+                                {if $item->getAvatar()}
+								<div class="lpl-img">                                
+									<a href="{$item->getUrl()}" rel="bookmark">
+										<img width="66" height="66" src="/upload/{$storeId}/projects/l_{$item->getAvatar()}" alt="{$item->getTitle()}" />
+									</a>
+								</div>
+                                {/if}
+								<div class="lpl-content">
+									<h6>
+                                        <a href="{$item->getUrl()}" rel="bookmark">{$item->getTitle()}</a>                                         
+                                    </h6>
+								</div>
+							</li>
+                            {/foreach}																					
+						</ul>
+					
+					</div>
+					{/if}
+				<!-- END .col-sidebar -->
+				</li>
+				
+			</ul>
+			
+		<!-- END .section -->
+        {else}
+        Dự án này không tồn tại.
+        {/if}
+		</div>
+        
+{include file='footer.tpl.html' title='site-header'}

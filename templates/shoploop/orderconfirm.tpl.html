@@ -1,0 +1,105 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+{include file='right.tpl.html' title='site-header'}
+    <div class="twelve columns">
+
+                    <div class="formContent">
+<form id="formOrder" name="formOrder" id="formOrder" method="post" action="/">
+<fieldset>
+<div class="infoType3">
+<div>
+<p><strong>Quý khách vui lòng kiểm tra lại thông tin đơn hàng trước khi hoàn tất.</strong></p>
+<h2>Thông tin khách hàng</h2>
+<p><label>Họ tên: </label>{$order.name}</p>
+<p><label>Email: </label>{$order.email}</p>
+<p><label>Địa chỉ: </label>{$order.address}</p>
+<p><label>Tỉnh: </label>{$province}</p>
+<p><label>Điện thoại: </label>{$order.tel}</p>
+<p><label>ĐTDĐ: </label>{$order.cell}</p>
+</div>
+<div class="last">
+<h2>Thông tin người nhận</h2>
+<p><label>Họ tên: </label>{$order.rname}</p>
+<p><label>Địa chỉ: </label>{$order.raddress}</p>
+<p><label>Tỉnh: </label>{$rprovince}</p>
+<p><label>Điện thoại: </label>{$order.rtel}</p>
+<p><label>ĐTDĐ: </label>{$order.rcell}</p>
+<p><label>Ghi chú: </label>{$order.rnote}</p>
+</div>
+</div>
+<h2>Thông tin hàng hóa</h2>
+{if $cartItems}
+<div class="shoppingBag">
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr>
+<th>STT</th>
+<th>Thông tin sản phẩm</th>
+<th>Hình ảnh</th>
+<th>Số lượng</th>
+<th>Giá</th>
+<th>Thành tiền</th>
+</tr>
+{assign var=i value=0}
+{assign var=grandTotal value=0}
+{assign var=shippingFee value=0}
+{foreach from=$cartItems item=cartItem}
+{assign var=product value=$cartItem->getProduct()}
+{if $product}
+{assign var=i value=$i+1}
+{assign var=subTotal value=$product->getPrice()*$cartItem->getQuantity()}
+{assign var=grandTotal value=$grandTotal+$subTotal}
+<tr{if $i % 2 eq 0} class="bgType"{/if}>
+<td>{$i}</td>
+<td><a target="_blank" href="{$product->getUrl()}" title="{$product->getName()}">ID: {$product->getId()}<br />
+{if $product->getSku()}SKU: {$product->getSku()|upper}<br />{/if}
+{$product->getName()}</a></td>
+<td><a target="_blank" href="{$product->getUrl()}" title="{$product->getName()}"><img src="/uploads/{$storeId}/products/a_{$product->getAvatar()}" alt="Avatar" /></a></td>
+<td>{$cartItem->getQuantity()}</td>
+<td>{$product->getPrice()|number_format:0}</td>
+<td>{$subTotal|number_format:0}</td>
+</tr>
+{/if}
+{/foreach}
+</table>
+<div class="total">
+<p>Giá trị hàng hóa: {$grandTotal|number_format:0} VND</p>
+<p>Thuế VAT: {$vatFee|number_format:0} VND</p>
+<p>Phí vận chuyển: {$shippingFee|number_format:0} VND</p>
+<p><strong>Tổng cộng: {$grandTotal|number_format:0} VND</strong></p>
+</div>
+{/if}
+</div>
+
+<div class="submitForm" style="float: right;">
+						<input type="hidden" name="act" id="act" value="order" />
+<input type="hidden" name="plus" id="plus" value="submitOrder" />
+<input type="hidden" id="name" name="name" value="{$order.name}" />
+<input type="hidden" id="email" name="email" value="{$order.email}" />
+<input type="hidden" id="address" name="address" value="{$order.address}" />
+<input type="hidden" id="province" name="province" value="{$order.province}" />
+<input type="hidden" id="tel" name="tel" value="{$order.tel}" />
+<input type="hidden" id="cell" name="cell" value="{$order.cell}" />
+<input type="hidden" id="rname" name="rname" value="{$order.rname}" />
+<input type="hidden" id="raddress" name="raddress" value="{$order.raddress}" />
+<input type="hidden" id="rprovince" name="rprovince" value="{$order.rprovince}" />
+<input type="hidden" id="rtel" name="rtel" value="{$order.rtel}" />
+<input type="hidden" id="rcell" name="rcell" value="{$order.rcell}" />
+<input type="hidden" id="rnote" name="rnote" value="{$order.rnote}" />
+							<label></label>
+                            <input class="red_btn button" type="submit" name="submit" value="Xác nhận">
+                            <input class="gray_btn button" type="reset" name="Nhập lại" value="Nhập lại" onclick="javascript:document.formOrder.plus.value='editOrder'; document.formOrder.submit();">
+							<div class="clear"></div>
+						</div>
+</p>
+
+</fieldset>
+</form>
+</div>
+		</div><!--end sixteen-->
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

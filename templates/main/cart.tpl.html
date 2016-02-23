@@ -1,0 +1,128 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+
+
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+			</div> 
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+             <div class="header">
+				<a href="#menu">Danh mục sản phẩm</a>
+			</div>
+            
+		{include file='navigation.tpl.html' title='footer'}
+        
+		</div> <!-- right-->
+		</div>
+	</div><!-- container -->
+
+<div class="container">
+
+
+<div class="content-full">
+                 <div class="path">
+            <ul>
+              <li class="current"> <span>1</span>
+                <p>{$messages.cart}</p>
+                <img src="/{$templatePath}/{$userTemplate}/images/arrow-current.png">
+              </li>
+              <li><span>2</span>
+                <p>{$messages.register_login}</p>
+              </li>
+              <li><span>3</span>
+                <p>{$messages.infor_paid}</p>
+              </li>
+              <li><span>4</span>
+                <p>{$messages.confirm_order}</p>
+              </li>
+              <li class="last"><span>5</span>
+                <p>{$messages.orderstep5}</p>
+              </li>
+            </ul>
+          </div>   
+          {if $cartItems}
+                   <form name="frmBooking" id="frmBooking" action="/" method="post">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tblContent">
+            <tbody><tr>
+              <th style="text-align:left; width:540px">{$messages.products}</th>
+              <th>{$messages.number}</th>
+              <th>{$messages.price} (VND) </th>
+              <th>{$messages.totalmoney} (VND)</th>
+              <th style="border-right:1px solid #eae5e1">{$messages.delete}</th>
+            </tr>
+            {assign var=i value=0}
+                {assign var=grandTotal value=0}
+                {foreach from=$cartItems item=cartItem}
+                {assign var=product value=$cartItem->getProduct()}
+                {if $product}
+                {assign var=i value=$i+1}
+                {assign var=subTotal value=$product->getFinalPrice()*$cartItem->getQuantity()}
+                {assign var=grandTotal value=$grandTotal+$subTotal}
+            <tr>
+              <td style="text-align:left">  
+                    <div class="thumb">
+                    	<img src="/upload/{$storeId}/products/a_{$product->getAvatar()}"/>
+                    </div>
+                    	<p>{$product->getName($lang)}
+                    	</p>
+                    	<span>{$product->getSku()} <br> {$messages.size}: {$product->getSize($cartItem->getProperty('size'))}</span></td>
+              <td>
+           	        <select id="quantity" name="quantity" form="sort">
+                      {for $i=1 to $product->getQuantity()}
+                        <option value="{$i}" {if $cartItem->getQuantity() eq $i}selected{/if}>{$i}</option>
+                      {/for}
+                    </select>
+                      
+             </td>
+              <td style="text-align:center; color:#5d1e14">{$product->getFinalPrice()|number_format:0:",":"."} VND</td>
+              <td style="text-align:center; color:#5d1e14">
+              	                                                                {$subTotal|number_format:0:",":"."} VND
+              </td>
+               <td style="border-right:1px solid #eae5e1">
+               <a class="delete_item" href="javascript:delete_order({$cartItem->getId()})"><img src="/{$templatePath}/{$userTemplate}/images/delete-cart.png" alt="Remove"></a>
+               </td>
+            </tr>
+           {/if}
+                        
+                {/foreach}
+            
+            
+                        <tr style="background:#ecedf1">
+                        <td colspan="3">
+              	<span class="total_txt">{$messages.total}:</span>
+    		  </td>
+              <td colspan="2">
+              	<span class="total">{$grandTotal|number_format:0:",":"."} VND</span>
+    		  </td>
+            </tr>
+          </tbody></table>
+          <div class="button-submit">
+          <input class="next" type="button" onclick="javascript:orderstep2();" id="txtContinue" name="txtContinue" value="{$messages.orderstep4}"/>
+          <input class="cont" type="submit" id="txtContinue" name="txtContinue" value="{$messages.continue}"/>
+          </div>
+          </form>  
+          {else}
+{$messages.cart_empty_info}
+{/if}   
+
+</div>
+
+
+                </div>
+
+
+</div>
+
+
+	
+{include file='footer.tpl.html' title='footer'}

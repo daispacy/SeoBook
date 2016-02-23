@@ -1,0 +1,103 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+<div style="height:40px;"></div>
+<div class="container">
+
+<!--
+    <div class="sixteen columns">
+
+			<div class="eleven columns alpha">
+				<div id="googleMap">
+					<iframe width="100%" height="372px" border="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.eg/maps?f=q&amp;source=s_q&amp;hl=ar&amp;geocode=&amp;q=Tahrir,+%D9%82%D8%B5%D8%B1+%D8%A7%D9%84%D8%AF%D9%88%D8%A8%D8%A7%D8%B1%D8%A9,+%D9%82%D8%B5%D8%B1+%D8%A7%D9%84%D9%86%D9%8A%D9%84,+Al-Qahira&amp;aq=0&amp;oq=tahr&amp;sll=30.044133,31.235161&amp;sspn=0.200606,0.363579&amp;ie=UTF8&amp;hq=&amp;hnear=%D9%85%D9%8A%D8%AF%D8%A7%D9%86+%D8%A7%D9%84%D8%AA%D8%AD%D8%B1%D9%8A%D8%B1&amp;t=m&amp;z=14&amp;ll=30.0451,31.235428&amp;output=embed"></iframe>
+				</div>
+			</div>
+
+			<div class="five columns omega">
+				<div class="blocked_info">
+					<div>
+						<h4>Block Info One</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu risus lorem, ut placerat nisl.
+						</p>
+					</div>
+
+					<div>
+						<h4>Block Info Two</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu risus lorem, ut placerat nisl.
+						</p>
+					</div>
+
+					<div>
+						<h4>Block Info Three</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu risus lorem, ut placerat nisl.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div><!--end sixteen-->
+
+		<div class="sixteen columns">
+        
+			<div class="box_head">
+						<h3>Đăng ký tài khoản</h3>
+					</div>
+                    <div class="formContent">
+			<form action="/" method="post" name="formRegister" id="formRegister">
+<fieldset>
+{if isset($success)}
+<p class="info">{$note}</p>
+{else}
+<h3>Vui lòng nhập vào thông tin trong mẫu bên dưới để đăng ký tài khoản.</h3>
+<br />
+{if isset($error)}
+{if $error.invalid || $error.message}
+{assign var=input value=$error.INPUT}
+<p class="error">{$messages.error}:
+<ul class="error">
+{foreach from=$input item=field}
+{if $field.error}<li>{$field.message}</li>{/if}
+{/foreach}
+</ul>
+</p>
+{/if}
+{/if}
+<p><label for="username">Tên đăng nhập (<span>*</span>)</label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.username.value}{/if}" name="username" id="username" autofocus="autofocus" /></p>
+<p><label for="password">Mật khẩu (<span>*</span>)</label>
+<input type="password" value="" name="password" id="password" /></p>
+<p><label for="cpassword">Xác nhận mật khẩu (<span>*</span>)</label>
+<input type="password" value="" name="cpassword" id="cpassword" /></p>
+<p><label for="email">Email (<span>*</span>)</label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" name="email" id="email" /></p>
+<p><label for="fullname">Họ tên (<span>*</span>)</label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.fullname.value}{/if}" name="fullname" id="fullname" /></p>
+<p><label for="tel">Điện thoại (<span>*</span>)</label>
+<input type="text" value="{if isset($error.INPUT)}{$error.INPUT.tel.value}{/if}" name="tel" id="tel" /></p>
+<p><label for="fullname">Mã xác nhận (<span>*</span>)</label>
+<input type="text" value="" name="code" id="code" /></p>
+<p><img height="30" id="codeSecurity" alt="AuthImg" src="{if isset($FOLDER)}/{$FOLDER}{/if}/authimg.php"/></p>
+<div class="submitForm">
+							<p>Nội dung có ( * ) là bắt buộc.</p>
+                            <input type="hidden" value="register" name="act" />
+							<input class="red_btn" type="submit" name="submit" value="Đăng ký">
+                            <input class="gray_btn" type="reset" name="reset" value="Nhập lại">
+							<div class="clear"></div>
+						</div>
+
+{/if}
+</fieldset>
+</form>
+</div>
+		</div><!--end sixteen-->
+
+		
+   
+
+
+
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

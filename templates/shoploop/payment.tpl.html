@@ -1,0 +1,21 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+
+{include file='right.tpl.html' title='site-header'}
+    <div class="twelve columns">
+
+                    <div class="formContent">
+{if $plus eq "paid"}
+<p>Đơn hàng {$orderId} đã được thanh toán thành công.</p>
+{else}
+{include file="payment{$paymentCode}.tpl.html" title='right-panel'}
+{/if}
+</div>
+		</div><!--end sixteen-->
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

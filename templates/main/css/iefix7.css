@@ -1,0 +1,14 @@
+/*Fix for IE 7*/  
+.visible-mobile {
+	display: none!important;
+}
+.main {
+	width: 100%;
+}
+.theme-default .nivo-controlNav a {background: #000;}
+.topnav {display:block; float:right; }
+.topnav li {display:block; float:left;}
+
+.submenu {z-index: 1000;}
+.nav-main ul li {z-index: 1000;}
+.nav-footer li {float:left; display: block;}

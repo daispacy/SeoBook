@@ -1,0 +1,191 @@
+<aside class="four columns productslist">
+            <!--
+			<div class="blogSearch clearfix">
+				<form method="get" action="#">
+					<label>
+						<input class="input_tool_tip" type="text" name="search" placeholder="Search In Blog">
+					</label>
+					<div class="submit">
+						<input type="submit" name="submit">
+					</div>
+				</form>
+			</div><!--end blogSearch-->
+            {if $act=="news" || $act=="newsdetail"}
+            {if isset($articleCategoryItems) && $articleCategoryItems}
+            <div class="blog_category clearfix">
+				<div class="box_head">
+					<h3>Chuyên mục tin tức</h3>
+				</div><!--end box_head -->
+                {foreach from=$articleCategoryItems.0 item=itemRoot key=i}
+                {assign var=itemRootId value=$itemRoot.id}
+                {assign var=children value=''}
+                {if isset($articleCategoryItems.$itemRootId)}
+                {assign var=children value=$articleCategoryItems.$itemRootId}
+                {/if}
+                {assign var=active value=0}
+                {if (isset($acParentId) && $acParentId eq $itemRootId) || (isset($acId) && $acId eq $itemRootId)}{assign var=active value=1}{/if}
+				    {if $i ==0}
+                    <ul>
+                    {/if}
+                    <li><a href="{$itemRoot.url}">{$itemRoot.name}</a></li>
+                    
+                     {if ($i+1) %5 ==0 && $i > 0}
+                    </ul>
+					<ul>
+                    {elseif $i==count($articleCategoryItems.0)-1}
+                    </ul>
+                    {/if}
+                    
+                
+                
+                {/foreach}                                
+			</div><!--end blogArchive-->
+            {/if}
+            {/if}
+            
+            {if isset($productCategoryItems) && $productCategoryItems}
+			<div class="blog_category clearfix">
+				<div class="box_head">
+					<h3>Chuyên mục Sản phẩm</h3>
+				</div><!--end box_head -->
+                 <ul>
+				{foreach from=$productCategoryItems.0 item=itemRoot key=ii}
+            {assign var=itemRootId value=$itemRoot.id}
+            {assign var=children value=''}
+            {if isset($productCategoryItems.$itemRootId)}
+            {assign var=children value=$productCategoryItems.$itemRootId}
+            {/if}
+            {assign var=active value=0}
+            {if (isset($cParentId) && $cParentId eq $itemRootId) || (isset($cId) && $cId eq $itemRootId)}{assign var=active value=1}{/if}
+             <li><a href="{$itemRoot.url}">{$itemRoot.name}</a></li>
+                 {/foreach}
+                 </ul>
+			</div><!--end blogArchive-->
+            {/if}
+<!--
+			<div class="blogTab">
+				<div id="tabs">
+
+					<ul class="tabNav">
+						<li><a class="currentTab" href="#recent">Recent</a></li>
+						<li><a href="#puplar">Puplar</a></li>
+						<li><a href="#comment">Comments</a></li>
+						<div class="clear"></div>
+					</ul>
+
+					<div id="tabContentOuter">
+
+						<div id="recent" class="tabContent">
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>16 October, 2012</span>
+								</div>
+							</div>
+
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>16 October, 2012</span>
+								</div>
+							</div>
+
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>16 October, 2012</span>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div><!--end recent-->
+
+<!--
+						<div id="puplar" class="tabContent">
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>8 September, 2012</span>
+								</div>
+							</div>
+
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>18 September, 2012</span>
+								</div>
+							</div>
+
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>16 September, 2012</span>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div><!--end puplar-->
+
+<!--
+						<div id="comment" class="tabContent">
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>15 May, 2012</span>
+								</div>
+							</div>
+
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>9 Januury, 2012</span>
+								</div>
+							</div>
+
+							<div>
+								<img src="images/photos/thumbnail.jpg" alt="">
+								<div>
+									<a href="#">
+									<p>consectetur adipiscing elit. Curabitur eu risus lorem</p>
+									</a>
+									<span>11 June, 2012</span>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div><!--end comment-->
+<!--
+					</div><!--end tabContentOuter-->
+
+	<!--			</div><!--end tabs-->
+	<!--		</div><!--end blogTab-->
+
+			
+
+
+			<!--<div class="ads">
+				<h6>Addvertise Here</h6>
+			</div>--><!--end ads-->
+
+</aside><!--end aside five-->

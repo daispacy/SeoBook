@@ -1,0 +1,311 @@
+{include file='headerindex.tpl.html' title='site-header'}
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+			</div> 
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num})</span>{/if}
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">Danh mục sản phẩm</a>
+			</div>
+            
+		{include file='navigation.tpl.html' title='footer'}
+        
+		</div> <!-- right-->
+		</div>
+	</div><!-- container -->
+
+<div class="container">
+
+
+<div class="content-full">
+                 <div class="path">
+            <ul>
+              <li class="current"> <span>1</span>
+                <p>{$messages.cart}</p>                
+              </li>
+              <li class="current"><span>2</span>
+                <p>{$messages.register_login}</p>
+                
+              </li>
+              <li class="current"><span>3</span>
+                <p>{$messages.infor_paid}</p>
+                <img src="/{$templatePath}/{$userTemplate}/images/arrow-current.png">
+              </li>
+              <li><span>4</span>
+                <p>{$messages.confirm_order}</p>
+              </li>
+              <li class="last"><span>5</span>
+                <p>{$messages.orderstep5}</p>
+              </li>
+            </ul>
+          </div>   
+          <div class="col1 columns">
+                    <div class="col1 columns">
+                    <div class="top">
+        <h3>Thông tin khách hàng</h3>
+        
+        </div>
+        <div class="login-cart">
+        <table style="width:100%; height:auto; line-height:36px; font-size:14px; color:#434343;">
+ 												 <tr>
+    												<td width="110px">Email:</td>
+    												<td>{$authCustomer->getEmail()}</td>
+  												</tr>
+  												<tr>
+    												<td>{$messages.name}:</td>
+    												<td>{$authCustomer->getFullname()}</td>
+  												</tr>
+                                                <tr>
+    												<td>{$messages.tel}:</td>
+    												<td>{$authCustomer->getTel()}</td>
+  												</tr>
+                                                <tr>
+    												<td>{$messages.province}:</td>
+    												<td>{$authCustomer->getNameProvince()}</td>
+  												</tr>                                                
+                                                 <tr>
+    												<td>{$messages.address}:</td>
+    												<td>{$authCustomer->getAddress()}</td>
+  												</tr>
+		</table>
+        </div>
+                    </div> 
+                    <div class="col1 columns">
+                    <div class="top">
+        <h3>{$messages.info_revice}</h3>
+        
+        </div>
+        <div class="login-cart">
+        <form class="frmSend" method="post" name="form-step-3" id="form-step-3" onsubmit="return validateForm();>
+				<fieldset>
+               
+					<p class="form-row">
+                    <span>{$messages.fullname}*</span>
+						<input class="inputbox" type="text" value="{$authCustomer->getFullname()}" name="rname" id="txtFullName3" autocomplete="off" placeholder="Họ và tên" disabled="disabled">
+					</p>
+					<p class="form-row">
+                    <span>{$messages.tel}*</span>
+						<input class="inputbox" type="" value="{$authCustomer->getTel()}" name="rtel" id="txtTelephone" autocomplete="off" placeholder="Số điện thoại" disabled="disabled">
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.province}*</span>
+						<select class="form-select" id="rprovince" name="rprovince" style="float:left; width:297px;">
+                    	<option value="">{$messages.province}  </option>
+                        {$provincesList}
+					</select>                    
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.address}*</span>
+						<input class="inputbox"  value="{$authCustomer->getAddress()}" name="raddress" id="txtAddress" autocomplete="off" placeholder="{$messages.address}">
+					</p>
+                    <p class="form-row" style="border-top:1px solid #ccc;color:#5f2117; font-weight:bold;">
+                   {$messages.rdate}
+					</p>
+                     <p class="form-row">
+                    <span>Ngày nhận*</span>
+						 <input class="inputbox" type="text" id="datepicker" name="rdate">
+					</p>
+                     <p class="form-row">
+                   	 <span>{$messages.rtime}*</span>
+                    	<select name="rday" id="rday" class="form-select" style="float:left; width:297px;">
+                    <option value="">------------------</option>
+                    <option value="8:00 - 8:30 AM">8:00 - 8:30 AM</option>
+	<option value="8:30 - 9:00 AM">8:30 - 9:00 AM</option>
+	<option value="9:00 - 9:30 AM">9:00 - 9:30 AM</option>
+	<option value="9:30 - 10:00 AM">9:30 - 10:00 AM</option>
+	<option value="10:00 - 10:30 AM">10:00 - 10:30 AM</option>
+	<option value="10:30 - 11:00 AM">10:30 - 11:00 AM</option>
+	<option value="11:00 - 11:30 AM">11:00 - 11:30 AM</option>
+	<option value="11:30 - 12:00 AM">11:30 - 12:00 AM</option>
+	<option value="12:00 - 12:30 PM">12:00 - 12:30 PM</option>
+	<option value="12:30 - 13:00 PM">12:30 - 13:00 PM</option>
+	<option value="13:00 - 13:30 PM">13:00 - 13:30 PM</option>
+	<option value="13:30 - 14:00 PM">13:30 - 14:00 PM</option>
+	<option value="14:00 - 14:30 PM">14:00 - 14:30 PM</option>
+	<option value="14:30 - 15:00 PM">14:30 - 15:00 PM</option>
+	<option value="15:00 - 15:30 PM">15:00 - 15:30 PM</option>
+	<option value="15:30 - 16:00 PM">15:30 - 16:00 PM</option>
+	<option value="16:00 - 16:30 PM">16:00 - 16:30 PM</option>
+	<option value="16:30 - 17:00 PM">16:30 - 17:00 PM</option>
+	<option value="17:00 - 17:30 PM">17:00 - 17:30 PM</option>
+	<option value="17:30 - 18:00 PM">17:30 - 18:00 PM</option>
+	<option value="18:00 - 18:30 PM">18:00 - 18:30 PM</option>
+	<option value="18:30 - 19:00 PM">18:30 - 19:00 PM</option>
+	<option value="19:00 - 19:30 PM">19:00 - 19:30 PM</option>
+	<option value="19:30 - 20:00 PM">19:30 - 20:00 PM</option>
+	<option value="20:00 - 20:30 PM">20:00 - 20:30 PM</option>
+	<option value="20:30 - 21:00 PM">20:30 - 21:00 PM</option>
+	<option value="21:00 - 21:30 PM">21:00 - 21:30 PM</option>
+	<option value="21:30 - 22:00 PM">21:30 - 22:00 PM</option>
+                  </select>
+					</select>   
+					</p>
+                     <p class="form-row">
+                    <span>{$messages.message_send}*</span>
+						 <textarea class="textarea" cols="50" rows="7" id="rnote" name="rnote"></textarea>
+					</p>
+				</fieldset>
+                 <input type="hidden" name="act" value="orderstep4"/>
+                 <input type="hidden" name="plus" value="submitOrder"/>
+         		 <input type="hidden" name="payment" id="payment" value="1">
+                 <div class="button-submit">
+             <input class="next" type="submit" id="txtContinue" name="txtContinue" value="Tiếp tục">
+          	<input class="cont" type="button" id="txtContinue" name="txtContinue" value="Quay lại">
+        
+          </div>
+                 
+         
+			</form>
+            <p></p>
+        </div>
+                    </div>    
+
+</div>
+<div class="col2 columns">
+<div class="col2 columns">
+                    <div class="top">
+        <h3>Hình thức thanh toán</h3>
+        </div>
+        <div class="login-cart">
+         <form class="frmSend" name="form-payment-method" id="form-payment-method">
+        <table style="width:100%; height:auto; line-height:56px; font-size:14px; color:#434343; border-collapse:collapse">
+ 												 <tr style="border-bottom:1px solid #e8e8e8; padding:8px 0;">
+                                                 	<td><input type="radio" value="1" class="box" name="paymentrad" id="rad" checked></td>
+    												<td>Bằng tiền mặt khi nhận hàng</td>
+  												</tr>
+                                                 <tr style="border-bottom:1px solid #e8e8e8; padding:8px 0;">
+                                                 	<td><input type="radio" value="2" class="box" name="paymentrad" id="rad1"></td>
+    												<td>Thanh toán bằng Paypal</td>
+  												</tr>
+                                                 <tr style="border-bottom:1px solid #e8e8e8; padding:8px 0;">
+                                                 	<td><input type="radio" value="3" class="box" name="paymentrad" id="rad2"></td>
+    												<td>Thanh toán bằng chuyển khoản</td>
+  												</tr>
+                                                 <tr style="border-bottom:1px solid #e8e8e8; padding:8px 0;">
+                                                 	<td><input type="radio" value="4" class="box" name="paymentrad" id="rad3"></td>
+                                                    <td>Bằng tiền mặt khi nhận hàng</td>
+  												</tr>
+  												
+		</table>
+        </form>
+        </div>
+                    </div>
+                    
+     </div>
+                    <div class="col3 columns">
+                    <div class="top">
+        <h3>Đơn hàng</h3>
+        </div>
+        {if $cartItems}
+        <div class="login-cart">        
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tblContent">
+            <tbody>
+            {assign var=i value=0}
+                {assign var=grandTotal value=0}
+                {foreach from=$cartItems item=cartItem}
+                {assign var=product value=$cartItem->getProduct()}
+                {if $product}
+                {assign var=i value=$i+1}
+                {assign var=subTotal value=$product->getFinalPrice()*$cartItem->getQuantity()}
+                {assign var=grandTotal value=$grandTotal+$subTotal}
+                        <tr>
+              <td style="text-align:left">  <div class="thumb">
+                    	<img src="/upload/{$storeId}/products/a_{$product->getAvatar()}"/>
+                    </div>
+                    	<p>{$product->getName()}
+                    	</p>
+                    	<span>{$product->getSku()} <br> {$messages.size}: {$product->getSize($cartItem->getProperty('size'))}</span>
+               </td>
+              <td style="text-align:center; color:#5d1e14">
+              	   {$product->getFinalPrice()|number_format:0:",":"."} VND
+              </td>
+               
+            </tr>
+            {/if}
+                        
+                {/foreach}
+            
+                        <tr style="background:#ecedf1">
+                        <td colspan="1">
+              	<span class="total_txt">{$messages.total}:</span>
+    		  </td>
+              <td colspan="1">
+              	<span class="total">{$grandTotal|number_format:0:",":"."} VND</span>
+    		  </td>
+            </tr>
+          </tbody></table>
+        </div>
+        {/if}
+                    </div>
+
+
+
+                </div>
+
+
+</div>
+ <script type="text/javascript">
+// to remove from global namespace
+(function() {
+    
+    
+    var payments = document.forms['form-payment-method'].elements['paymentrad'];
+
+    for (var i=0, len=payments.length; i<len; i++) {
+        payments[i].onclick = function() {
+            document.getElementById('payment').value = this.value;
+        };
+            
+        payments[i].onchange = function() {
+           document.getElementById('payment').value = this.value;
+        };
+    }
+    
+    
+}());
+</script>
+<script>
+(function validateForm() {
+    
+    
+    var rname = document.forms["form-step-3"]["rname"].value;
+	var rtel = document.forms["form-step-3"]["rtel"].value;
+	var raddress = document.forms["form-step-3"]["raddress"].value;
+	var rdate = document.forms["form-step-3"]["rdate"].value;
+	var rprovince = document.forms["form-step-3"]["rprovince"].value;
+    if (rname==null || rname=="") {
+        alert("Bạn chưa điền tên người nhận");
+        return false;
+    }
+	if (rtel==null || rtel=="") {
+        alert("Bạn chưa điền điện thoại người nhận");
+        return false;
+    }
+	if (raddress==null || raddress=="") {
+        alert("Bạn chưa điền địa chỉ người nhận");
+        return false;
+    }
+	if (rdatee==null || rdate=="") {
+        alert("Bạn chưa chọn ngày nhận");
+        return false;
+    }
+	if (rprovince==null || rprovince=="") {
+        alert("Bạn chưa chọn khu vực");
+        return false;
+    }
+    
+    
+}());
+
+</script>
+	
+{include file='footer.tpl.html' title='footer'}

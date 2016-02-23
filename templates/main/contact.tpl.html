@@ -1,0 +1,95 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+             {include file='left-category.tpl.html' title='left-category'}
+           <img src="/{$templatePath}/{$userTemplate}/images/bn-lh.jpg" alt="Contact"/>
+           
+            
+</div> <!--End Left Columns-->
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">{$messages.categories}</a>
+				
+			</div>
+		{include file='navigation.tpl.html' title='footer'}
+       	<article class="content-contact">
+                    <section class="main-content">
+					
+						  
+						<div class="contact-page">
+							<div class="contact-info">
+								<div class="address-info">
+									<h2>{$messages.info_contact}</h2>
+									<p>{$messages.address}: {$estore->getAddress()}</p>
+									  <p> {$messages.tel}: {$estore->getTel()} </p>
+									   <p> Email: <a href="mailto:{$estore->getEmail()}">{$estore->getEmail()}</a></p>
+								</div>
+								<h2>{$messages.map}</h2>
+								<div id="map" class="map">
+									
+									<!--
+									<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1959.774315994126!2d106.66419323606667!3d10.769227728357073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1417223753535" width="500" height="370" frameborder="0" style="border:0"></iframe>-->
+								</div>
+								</div>
+							</div>
+							<div class="contact-form">
+								
+								<h2>{$messages.send_email}</h2>
+								{if $note}<p style="color:red;">{$note}</p>{/if}
+								<form action="" method="post" name="formChangePW">
+									<fieldset>
+										<div class="login-formInfo">
+												<label>{$messages.name}*</label>
+												<p><input type="text" id="txtKeyword" required="required" name="fullname" value="{if isset($error.INPUT)}{$error.INPUT.fullname.value}{/if}" class="inputbox"></p>
+										 </div>
+										 <div class="login-formInfo">
+												<label>{$messages.address}</label>
+												<p><input type="text" name="address" value="{if isset($error.INPUT)}{$error.INPUT.address.value}{/if}"  class="inputbox"></p>
+										 </div>
+											 <div class="login-formInfo">
+												<label>{$messages.tel}</label>
+												<p><input type="text" name="tel" value="{if isset($error.INPUT)}{$error.INPUT.tel.value}{/if}"  class="inputbox"></p>
+										 </div>
+											 <div class="login-formInfo">
+												<label>Email*</label>
+												<p><input type="email" name="email" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" required="required" class="inputbox"></p>
+										 </div>
+										 <div class="login-formInfo">
+												<label>{$messages.contact_content}*</label>
+												<p><textarea cols="5" rows="10" name="comment" required="required" id="comment">{if isset($error.INPUT)}{$error.INPUT.comment.value}{/if}</textarea></p>
+										 </div>
+										 <div class="login-formInfo">
+												<label>{$messages.security}*</label>
+												<p>
+												<input type="text" name="code" required="required" class="inputbox-security">
+												<img src="/authimg.php"/>
+												</p>
+										 </div>
+										 <div class="btn">
+										 <input type="hidden" value="estore" name="op" />
+										 <input type="hidden" value="contactform" name="act" />
+										 <input class="button" type="submit" value="{$messages.send}">
+										 <input class="button" type="reset" value="{$messages.reset}">
+										 </div>
+									 </fieldset>
+								</form>
+						</div>
+                    </div>  
+					</section>
+			</article>
+		</div> <!-- right-->
+		</div>
+	</div>
+
+
+{include file='footer.tpl.html' title='site-header'}

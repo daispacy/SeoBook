@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"><![endif]-->
+<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="{if $pageKeywords}{$pageKeywords|strip_tags}{else}{$estore->getKeywords()}{/if}" />
+	<meta name="description" content="{if $pageDescription}{$pageDescription|strip_tags}{else}{$estore->getDescription()}{/if}" />
+	<title>{if $pageTitle}{$pageTitle|strip_tags} - {/if}{$estore->getName()}</title>
+	<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+	<link type="image/x-icon" href="{$estore->getProperty('store_logo')}" rel="icon" />
+    <meta name="author" content="">
+	<meta property="og:title" content="{if $act eq 'product'}{if $pageTitle}{$pageTitle|strip_tags} - {$estore->getName()}{/if}{else}MaraMara.Vn{/if}" />
+	<meta property="og:type" content="website" />    
+	<meta property="og:url" content="{if $act eq 'product'}{$url_link}{else}http://www.maramara.vn{/if}" />
+	<meta property="og:site_name" content="www.Maramara.Vn" />
+	<meta property="og:description" content="{if $pageDescription}{$pageDescription|strip_tags}{else}{$estore->getDescription()}{/if}" />
+	<meta property="og:image:width" content="230"/>
+	<meta property="og:image:height" content="230"/>
+	<meta property="og:image" content="{$domain}{if $act eq 'product'}{if $item}/upload/{$storeId}/products/l_{$item->getProperty('avatar')|regex_replace:'/( )/':'%20'}{else}{$estore->getProperty('store_logo')}{/if}{else}{$estore->getProperty('store_logo')}{/if}" /> 
+	
+
+<link type="image/x-icon" href="/{$templatePath}/{$userTemplate}/images/favicon.ico" rel="icon" />
+
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/main.css">
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/home.css">
+	<link href="/{$templatePath}/{$userTemplate}/css/dcverticalmegamenu.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/nivo-slider.css">
+    <link type="text/css" rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/jquery.mmenu.all.css" />
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/js/dropKick/dropkick.css">
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/responsive.css">
+   
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+		<link rel="stylesheet" type="text/css" href="/{$templatePath}/{$userTemplate}/ie8-and-down.css" />
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	
+{if $act eq "contactform"}
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAQC6PZLv3pLxDYAvOIgvcWRSnMkQluFO-KBKX-no3iuhHHo3ghRT5wlOyJwaZJv-jxslOFu_EugsWoQ" type="text/javascript"></script>
+
+{literal}
+<script type="text/javascript">
+    var map;
+	var icon;
+     function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(10.769029, 106.662931),16);
+		
+		// Hien khung thong tin nha hang
+		map.openInfoWindowHtml(map.getCenter(), "<div><img style='padding-right: 5px'  src='/upload/images/logo.jpg' alt='' /><p style='text-align: left; margin-left: 10px'><strong>ShopDongHoDep.Vn</strong><br /><b>Address: </b>7/101 Thành Thái, P14, Q 10, TP Hồ Chí Minh<br /><b>Hotline</b>: 0907.55.35.45 - 0907.788.588 (Mr. Trung)<br /><b>Email:</b>  <a href='mailto:lienhe@shopdonghodep.vn'>lienhe@shopdonghodep.vn</a></p></div>");
+        map.setUIToDefault();
+		
+		// Hien icon mau do
+		icon = new GIcon();
+		icon.image = "http://quatangonline.com/templates/quatang/images/star.png";
+		icon.iconSize = new GSize(27, 26);
+		icon.iconAnchor = new GPoint(20, 20);
+		icon.infoWindowAnchor = new GPoint(20, 1);
+		map.addOverlay(new GMarker(new GLatLng(10.769029, 106.662931),icon));		
+      } 
+    } 
+</script>
+{/literal}
+{/if}
+</head>
+
+<div id="fb-root"></div>
+{literal}
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=357713597593501";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57165391-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+{/literal}
+
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <!--[if lt IE 9]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+<body{if $act eq "contactform"} onload="load()" onunload="GUnload()" {/if}>
+
+	<!--start header-->
+	<header>
+
+		<div id="topHeader">
+         <a href="#"><img id="banner" src="images/banner/bannertop.jpg" alt=""></a>
+			<div class="container">
+           	<div class="sixteen columns">
+					<ul id="lang">
+						<li class="active"><a href="#"><img src="images/icons/vietnamese.jpg" alt="">  VN</a></li>
+						<li><a href="#"><img src="images/icons/english.jpg" alt="">  EN</a></li>
+					</ul>
+					
+					<ul id="topNav">
+						<li class="btn-sign-in"><a href="#">Đăng nhập & Đăng ký <img src="images/icons/drop-down.png" style="padding-bottom:2px"></a>
+                        <div class="sign-in" style="display:none">
+                        <b class="arrow"></b>
+                        <form class="frmGeneral" action="#" method="post" name="form-signin" id="form-signin">
+				<fieldset>
+					<p class="form-row">
+						<input class="inputbox" type="text" value="" name="username-signin" id="username-signin" autocomplete="off" placeholder="Tên đăng nhập"> 
+					</p>
+					<p class="form-row">
+						<input class="inputbox" type="password" value="" name="password-signin-1" id="password-signin-1" autocomplete="off"  placeholder="Mật khẩu">
+					</p>
+                     <div class="btn-row">
+					<p class="btn-wrap">
+						<input type="submit" value="Đăng nhập" title="Đăng nhập" name="btn-signin" class="button">
+						</p>
+                    <p class="btn-wrap">
+						<a href="#" class="btn-forgot-pass">Đăng ký </a>
+                        <a href="#" class="btn-forgot-pass">Quên mật khẩu? </a>
+                     </p>
+                    </div>
+                       <p class="form-row">
+						<p>Bạn có thể đăng nhập qua</p>
+                        <a href="#"><img src="images/icons/fb-login.png" width="230px"></a>
+					</p>
+				</fieldset>
+			</form></div></li>
+						<li class="btn-order-check hidden-mobile"><a href="#">Tra cứu đơn hàng <img src="images/icons/drop-down.png" style="padding-bottom:2px"></a>
+                        <div class="order-check" style="display:none">
+                        <b class="arrow"></b>
+                        <form class="frmGeneral" action="#" method="post" name="form-signin" id="form-signin">
+				<fieldset>
+					<p class="form-row">
+						<input class="inputbox" type="text" value="" name="username-signin" id="username-signin" autocomplete="off" placeholder="Mã đơn hàng"> 
+					</p>
+					<p class="form-row">
+						<input class="inputbox" type="password" value="" name="password-signin-1" id="password-signin-1" autocomplete="off"  placeholder="Mật khẩu">
+					</p>
+                     <div class="btn-row">
+					<p class="btn-wrap">
+						<input type="submit" value="Xem đơn hàng" title="Xem đơn hàng" name="btn-signin" class="button">
+					</p>
+                    <p class="btn-wrap">
+						<a href="#" class="btn-forgot-pass">Hướng dẫn</a>
+					</p>
+                    </div>
+				</fieldset>
+			</form></div></li>
+						<li class="hidden-mobile"><a href="#">Hỗ trợ khách hàng</a></li>
+						
+					</ul>
+				</div><!--end sixteen-->
+			</div><!--end container-->
+		</div><!--end topHeader-->
+
+
+		<div id="middleHeader">
+			<div class="container">
+				<div class="sixteen columns">
+                
+					<div id="logo" class="hidden-mobile">
+						<h1><a href="index.html">logo</a></h1>
+					</div><!--end logo-->
+				<div class="feature">
+					<ul class="top-feature hidden-mobile">
+						<li><img class="icon" src="images/icons/top-icon-1.png" alt=""><a href="#"><strong>Giao miễn phí</strong> trên 400,000 VND</a></li>
+						<li><img class="icon" src="images/icons/top-icon-2.png" alt=""><a href="#"><strong>30 ngày</strong> miễn phí trả hàng</a></li>
+                        <li><img class="icon" src="images/icons/top-icon-3.png" alt=""><a href="#"><strong>Thành viên</strong> dễ dàng mua hàng</a></li>
+                        <li class="last"><img class="icon" src="images/icons/top-icon-4.png" alt=""><a href="#"><strong>Hotline:</strong> 08. 3456 8969</a></li>
+					</ul>
+					<form class="hidden-mobile" action="#" method="post" accept-charset="utf-8">
+						<label>
+                        <div class="select-style">
+							<select name="search_category" class="default" tabindex="1">
+								<option value="">Toàn bộ danh mục</option>
+							  	<option value="Jean">Jean</option>
+							  	<option value="bored">Nón</option>
+							  	<option value="surprised">Lụa</option>
+							</select>
+                            </div>
+                            <input type="text" name="search" placeholder="Search in Product" value="">
+						</label>
+                       <div class="submit">
+							<input type="submit" name="submit" value="Tìm kiếm" >
+						</div>
+					</form><!--end form-->
+                    <div class="logo-m show-mobile">
+						<h1><a href="index.html">logo</a></h1>
+					</div>
+                   <div class="cart">
+                   		<a class="cart_dropdown" href="javascript:void(0);"><img src="images/cart-icon.png" alt=""><b>4</b></a>
+                        <p class="cart-left"><span style="font-weight:bold">Giỏ hàng</span>
+                        <br>
+                        1,800,000 VND</p>
+						<div class="cart_content">
+							<b class="cart_content_arrow"></b>
+							<ul>
+								<li class="clearfix">
+									<div class="cart_product_name">
+										<img src="images/products/product-1.jpg" alt="product image">
+										<div>
+											<strong><a href="#">Áo in thun kẻ sọc ngang</a></strong><br>
+											<table style="width:100%; line-height:16px; font-size:11px">
+ 												 <tr>
+    												<td>Kích cỡ:</td>
+    												<td>M</td>
+  												</tr>
+  												<tr>
+    												<td>Số lượng:</td>
+    												<td>2</td>
+  												</tr>
+                                                <tr>
+    												<td>Giá:</td>
+    												<td>1,000,000 VND</td>
+  												</tr>
+											</table>		
+										</div>
+									</div>
+									<div class="cart_product_price">
+										<span>
+											<a class="remove_item" href="#"><img src="images/icons/cart-remove.png" alt="Remove"></a>
+										</span>
+									</div>
+									<div class="clear"></div>
+								</li>
+								<li class="clearfix">
+									<div class="cart_product_name">
+										<img src="images/products/product-2.jpg" alt="product image">
+										<div>
+											<strong><a href="#">Áo in thun kẻ sọc ngang</a></strong><br>
+											<table style="width:100%; line-height:16px; font-size:11px">
+ 												 <tr>
+    												<td>Kích cỡ:</td>
+    												<td>M</td>
+  												</tr>
+  												<tr>
+    												<td>Số lượng:</td>
+    												<td>2</td>
+  												</tr>
+                                                <tr>
+    												<td>Giá:</td>
+    												<td>1,000,000 VND</td>
+  												</tr>
+											</table>	
+										</div>
+									</div>
+									<div class="cart_product_price">
+										<span>
+											<a class="remove_item" href="#"><img src="images/icons/cart-remove.png" alt="Remove"></a>
+										</span>
+									</div>
+								</li>
+							</ul><!--end ul-->
+
+							<div class="dropdown_cart_info clearfix">
+                            <div class="cart_total_price">
+									<div>
+                                    <table style="width:100%; font-size:15px;">
+ 												 <tr>
+    												<td>Tổng:</td>
+    												<td style="text-align:right; color:#5d1e14 !important; font-weight:bold; font-size:14px;">1,800,000 VND</td>
+  												</tr>
+  												</table>
+									</div>
+								</div>
+								<div class="cart_buttons">
+									<a class="left_btn" href="#">Xem giỏ hàng</a>
+									<a class="right_btn" href="#">Thanh toán</a>
+								</div><!--end cart buttons-->
+
+								<!--end cart buttons-->
+							</div><!--end dropdown_cart_info-->
+
+						</div><!--end cart_content-->
+					</div>
+                    <form style="margin-top:5px;" class="show-mobile" action="#" method="post" accept-charset="utf-8">
+						<label style="width: 65%;">
+                        	<input style="width: 215px; border-radius: 3px 0px 0px 3px;" type="text" name="search" placeholder="Tìm kiếm sản phẩm trong danh mục" value="">
+						</label>
+                       <div class="submit" style="width: 30%;">
+							
+                            <input type="submit" name="submit" value="Tìm kiếm" >
+						</div>
+					</form>
+                    
+                    
+                    <div class="search-abc hidden-mobile">
+	<b>Tìm kiếm theo:</b>&nbsp;
+	
+    
+    <a href="A">A</a>
+    
+    <a href="B">B</a>
+    
+    <a href="C">C</a>
+    
+    <a href="D">D</a>
+    
+    <a href="E">E</a>
+    
+    <a href="F">F</a>
+    
+    <a href="G">G</a>
+    
+    <a href="H">H</a>
+    
+    <a href="J">J</a>
+    
+    <a href="K">K</a>
+    
+    <a href="L">L</a>
+    
+    <a href="M">M</a>
+    
+    <a href="N">N</a>
+    
+    <a href="O">O</a>
+    
+    <a href="P">P</a>
+    
+    <a href="R">R</a>
+    
+    <a href="S">S</a>
+    
+    <a href="T">T</a>
+    
+    <a href="V">V</a>
+    
+    <a href="W">W</a>
+    
+    <a href="Y">Y</a>
+    
+    <a href="0-9">0-9</a>
+	</div>
+</div>
+				</div><!--end sixteen-->
+			<div class="bottom hidden-mobile"></div>
+            </div>
+            <!--end container-->
+		</div><!--end middleHeader-->
+
+	</header>

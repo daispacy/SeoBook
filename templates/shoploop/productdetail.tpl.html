@@ -1,0 +1,118 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+<div class="container">
+<div class="sixteen columns">
+			<div class="ten columns alpha">
+				{assign var=photos value=$objectItem->getProperty('photos')}
+                            {if $photos}
+                            <div class="product_img">
+								<ul id="etalage">
+                            {foreach from=$photos item=photo key=i}
+                            	<li>
+						<a href="/uploads/{$storeId}/products/m_{$photo}">
+						<img class="etalage_thumb_image" src="/uploads/{$storeId}/products/m_{$photo}" alt="">
+						<img class="etalage_source_image" src="/uploads/{$storeId}/products/l_{$photo}" alt="">
+						</a>
+					</li>
+                            {/foreach}
+                            </ul>
+                            </div>
+                            {/if}
+				<!--end product_img-->
+			</div><!--end ten-->
+
+
+			<div class="six columns omega">
+				<div class="product_desc">
+
+					<div class="pro_desc_conent">
+						<h6>{$objectItem->getName()}</h6>
+					</div>
+                    <div class="pro_desc_conent">
+						<p>{$objectItem->getDescription()}</p>
+					</div>
+					<div class="pro_desc_conent">
+						<h5>{$objectItem->getPrice()|number_format:0:",":"."} VND</h5>
+					</div>
+                    <div class="pro_desc_conent">
+
+						<div class="inputs clearfix">
+							<form  id="formAddCart" name="formAddCart" method="post" action="/">
+								<label style="height:100%; width:120px; margin-right:20px;">
+								<input style="height:36px; width:120px" name="quantity" type="text" value="1" />
+								</label>
+                              
+                                <ul class="pro_buttons">
+								<li><a class="red_btn" href="javascript:document.formAddCart.submit();">Thêm vào giỏ hàng</a></li>
+								
+							</ul>
+								 <input type="hidden" name="act" value="cart" />
+                                    <input type="hidden" name="plus" value="addItem" />
+                                    <input type="hidden" name="pId" value="{$objectItem->getId()}" />
+							</form><!--end form-->
+
+							
+
+						</div><!--end inputs-->
+					</div>
+
+				</div><!--end product_desc-->
+			</div><!--end six-->
+
+
+			<div class="sixteen columns alpha">
+            <div class="product_pro" style="margin-top:20px;">
+
+				<div class="box_head">
+					<h3>Chi tiết sản phẩm</h3>
+					
+				</div><!--end box_head -->
+				<div class="productdetail">{$objectItem->getDetail()}</div>
+				<!--end pro_relates_content-->
+			</div>
+				
+			</div><!--end ten-->
+
+
+			<!--end six-->
+
+
+			<div class="related_pro">
+
+				<div class="box_head">
+					<h3>Sản phẩm khác</h3>
+					<div class="pagers center">
+						<a class="prev related_prev" href="#prev">Prev</a>
+						<a class="nxt related_nxt" href="#nxt">Next</a>
+					</div>
+				</div><!--end box_head -->
+
+				<div class="pro_relates_content">
+                 <ul class="product_show">
+                {if $otherProductItems}
+               
+                {foreach from=$otherProductItems item=otherProduct key=i}
+                <li>
+						<div class="img">
+							<div class="hover_over">
+								<a class="link" href="{$otherProduct->getUrl()}">link</a>
+								<a class="cart" href="javascript:window.location.href='/?act=cart&amp;plus=quickAdd&amp;pId={$otherProduct->getId()}'">cart</a>
+							</div>
+							<a href="{$otherProduct->getUrl()}">
+								{if $otherProduct->getAvatar()}<img src="/uploads/{$storeId}/products/l_{$otherProduct->getAvatar()}" alt="{$otherProduct->getName()}" />{/if}
+							</a>
+						</div>
+						<h6><a href="{$otherProduct->getUrl()}">{$otherProduct->getName()}</a></h6>
+						<h5>{$otherProduct->getPrice()|number_format:0:",":"."} VND</h5>
+					</li>
+                {/foreach}
+               {/if}
+                </ul>
+				
+				</div><!--end pro_relates_content-->
+			</div><!--end related_pro-->
+
+		</div>
+</div>
+{include file='footer.tpl.html' title='site-header'}

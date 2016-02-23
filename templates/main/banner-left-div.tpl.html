@@ -1,0 +1,16 @@
+<div class="banner-left-div">
+          <h1>{$messages.maybe_interest}</h1>
+          <div class="banner-left-col">
+          {foreach from=$adItems.3 item=ad key=i}
+        {assign var=url_logo value=$ad.url_logo}
+                        {assign var=url_logo_type value=$ad.url_logo_type}
+                        {assign var=logo value=$ad.logo}
+                        {assign var=logo_type value=$ad.logo_type}
+                        {assign var=width value=$ad.width}
+                        {assign var=height value=$ad.height}
+                        {assign var=url value=$ad.url}
+         <a href="{if $url}$url{else}#{/if}"><img src="{if isset($url_logo) && $url_logo}{$url_logo}{else}/upload/{$storeId}/resources/l_{$ad.logo}{/if}" alt=""></a>
+         {/foreach}
+         
+          </div> 
+          </div>

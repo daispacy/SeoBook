@@ -1,0 +1,174 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+<div class="menu-left">
+<input type="hidden" id="cid" value="{if $cCategory}{$cCategory->getid()}{else}0{/if}" />
+<input type="hidden" id="lang" value="{if $lang}{$lang}{else}vn{/if}" />
+<input type="hidden" id="slug" value="{if $slug}{$slug}{/if}" />
+{if $cCategory}
+{assign var=parentId value=$cCategory->getParentId()}
+{assign var=cId value=$cCategory->getId()}
+{assign var=rootParentId value=$cCategory->getRootParentId()}
+{assign var=rootParentId value=$cCategory->getRootParentId()}
+{if $productCategoryItems.$rootParentId}
+<div class="category ">
+<h3 class="category-title"><a href="#" title="{$cCategory->getRootParentName($lang)}">{$cCategory->getRootParentName($lang)}</a></h3>
+                    <div class="category-inner hidden-mobile">
+                        <ul class="cat-lev-1">
+						{foreach from=$productCategoryItems.$rootParentId item=itemRoot}
+                        {assign var=itemRootId value=$itemRoot.id}						
+						{assign var=active value=0}
+						{if isset($cId) && $cId eq $itemRootId || $parentId eq $itemRootId}{assign var=active value=1}{/if}
+                            <li {if $active} class="active" {/if}>
+                                <a href="{$itemRoot.url}" title="{$itemRoot.name}">{$itemRoot.name}</a>
+								{if $productCategoryItems.$itemRootId}
+                                <ul class="cat-lev-2">
+									{foreach from=$productCategoryItems.$itemRootId item=itemRoot1}
+                                     <li><a href="{$itemRoot1.url}" title="{$itemRoot1.name}">{$itemRoot1.name}</a></li>
+                                     {/foreach}
+                                 </ul>
+								 {/if}
+                            </li>
+
+						{/foreach}							
+                         </ul>
+                    </div>
+                </div>
+{/if}
+{/if}
+</div>
+
+
+
+
+
+{include file='banner-left-div.tpl.html' title='banner-left-div'}
+          	{include file='tag-left-div.tpl.html' title='tag-left-div'}
+           <!--End Tags-->
+          	{include file='banner-left.tpl.html' title='banner-left'}
+</div> <!--End Left Columns-->
+
+
+     <div class="rightcol">
+		 <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu"></a>
+				{$messages.categories}
+			</div>
+		{include file='navigation.tpl.html' title='footer'}
+        
+<div class="menu-left">
+<input type="hidden" id="cid" value="{if $cCategory}{$cCategory->getid()}{else}0{/if}" />
+<input type="hidden" id="lang" value="{if $lang}{$lang}{else}vn{/if}" />
+<input type="hidden" id="slug" value="{if $slug}{$slug}{/if}" />
+{if $cCategory}
+{assign var=parentId value=$cCategory->getParentId()}
+{assign var=cId value=$cCategory->getId()}
+{assign var=rootParentId value=$cCategory->getRootParentId()}
+{assign var=rootParentId value=$cCategory->getRootParentId()}
+{if $productCategoryItems.$rootParentId}
+<div class="category show-mobile">
+<h3 class="category-title show-mobile"><a href="#" title="{$cCategory->getRootParentName($lang)}">{$cCategory->getRootParentName($lang)}</a></h3>
+                    <div class="category-inner show-mobile">
+                        <ul class="cat-lev-1">
+						{foreach from=$productCategoryItems.$rootParentId item=itemRoot}
+                        {assign var=itemRootId value=$itemRoot.id}						
+						{assign var=active value=0}
+						{if isset($cId) && $cId eq $itemRootId || $parentId eq $itemRootId}{assign var=active value=1}{/if}
+                            <li {if $active} class="active" {/if}>
+                                <a href="{$itemRoot.url}" title="{$itemRoot.name}">{$itemRoot.name}</a>
+								{if $productCategoryItems.$itemRootId}
+                                <ul class="cat-lev-2">
+									{foreach from=$productCategoryItems.$itemRootId item=itemRoot1}
+                                     <li><a href="{$itemRoot1.url}" title="{$itemRoot1.name}">{$itemRoot1.name}</a></li>
+                                     {/foreach}
+                                 </ul>
+								 {/if}
+                            </li>
+
+						{/foreach}							
+                         </ul>
+                    </div>
+                </div>
+{/if}
+{/if}
+</div>
+
+        <div class="new-products">
+        <div class="top-header">
+        <p class="info"><span>{if $cCategory}{$cCategory->getName($lang)}{else}{$messages.list_product}{/if}</span>  <b class="hidden-mobile" id="totalproducts">({$rowsPages.rows} {$messages.number_product_find})</b></p>
+        <div class="sort">
+		{if $messages.sorts}
+        <p>{$messages.sort}</p>
+        	<select id="sort">
+				{foreach from=$messages.sorts item=item key=i}
+				 <option value="{$i}">{$item}</option>
+				{/foreach}
+			</select>
+		{/if}
+          </div>
+		
+        </div>
+        {if $productItems}
+					 <ul class="new-products-list" id="list_products">
+						{foreach from=$productItems item=item key=i}
+						{assign var=photos value=$item->getProperty('photos')}
+						<li {if $i%5==4}class="last"{/if}>
+							{if $photos}
+							<div class="img">
+								{if $item->getMarketPrice() > 1000}<div class="offer_icon"><p class="price">-{($item->getPrice()-$item->getMarketPrice())/($item->getPrice())*100|number_format:0:",":"."}%</p></div>{/if}
+								<a href="{$item->getUrl($lang)}">
+									<img src="/upload/{$storeId}/products/m_{$photos.0}" alt="{$item->getName($lang)}" width="175" height="215">
+								</a>
+								{if count($photos)>1}
+                                <div class="product-slider" style="display: none;">	
+										{foreach from=$photos item=photo}
+                                		<img src="/upload/{$storeId}/products/l_{$photo}"  alt="{$item->getName($lang)}" width="175" height="215" />
+										{/foreach}                						
+            					</div>
+								
+                                <div id="htmlcaption" class="nivo-html-caption"></div>
+								{/if}
+							</div>
+							{/if}
+							<p class="product-title"><a href="{$item->getUrl($lang)}">{$item->getName($lang)}</a></p>
+                            <p class="product-price">
+                            
+							{if $item->getMarketPrice() > 1000}
+							<span class="current">{$item->getMarketPrice()|number_format:0:",":"."} VND</span>
+							<br>
+                            <span class="old">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                            </p>
+							{else}
+							<span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+							{/if}
+						</li>
+						{/foreach}
+					</ul>
+                    {else}
+                    {$messages.no_items}
+		            {/if}
+        </div>
+		
+
+		{include file='pager.tpl.html' title='pager'}
+		</div> <!-- right-->
+		</div> <!--six columns-->
+	</div><!-- container -->
+
+
+{include file='footer.tpl.html' title='footer'}
+
+
+
+	

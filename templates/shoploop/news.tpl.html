@@ -1,0 +1,47 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+    <div class="eleven columns">
+    
+    {if isset($articleItems) && $articleItems}
+            {foreach from=$articleItems item=item key=i}
+            {assign var=avatar value=$item->getProperty('avatar')}
+			<article>
+            
+               
+				<div class="blogDesc clearfix">
+                    {if $avatar}
+					<div class="blogLeft clearfix">
+                        <a href="{$item->getUrl()}"><img style="width: 100%;" src="/uploads/{$storeId}/articles/a_{$avatar}" title="{$item->getTitle()}" alt="{$item->getTitle()}" /></a>						
+					</div><!--end blog left-->
+                    {/if}
+					<div class="blogRight">
+						<h5>
+							<a href="{$item->getUrl()}">{$item->getTitle()}</a>
+						</h5>
+						<p>
+							{$item->getDescription()} <br /><a href="{{$item->getUrl()}}">Chi tiết</a>
+						</p>
+					</div><!--end blogText-->
+				</div><!--end blogDesc-->
+
+			</article><!--end article-->
+            {/foreach}
+			
+            {include file='pager.tpl.html' title='site-header'}
+		
+         
+    {else}
+        Tin tức đang được cập nhật.
+    {/if}	
+		</div><!--end eleven-->
+   
+
+{include file='rightnews.tpl.html' title='site-header'}
+
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

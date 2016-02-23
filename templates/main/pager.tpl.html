@@ -1,0 +1,14 @@
+
+{if $rowsPages.pages > 1} 
+<div class="paging clearfix" id="paginate">
+                                <div class="paging-inner">
+                                    <ul>
+										{foreach from=$pager key=i item=pageItem}
+											<li><a {if $pageItem.current eq 1}class="current" {elseif $i eq 0}class="paging_prev"{elseif $i eq $pager|@count-1}class="paging_next"{/if} href="{$pageItem.url}" title="{$pageItem.name}">{$pageItem.name}</a></li>
+										{/foreach}
+										
+                                    </ul>
+                                </div>
+                            </div>
+
+{/if}

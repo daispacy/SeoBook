@@ -1,0 +1,10 @@
+{foreach from=$productItems item=item key=ii}	  
+	  {assign var=avatar value=$item->getAvatar()}
+        <div id="tooltip-{$item->getId()}" class="atip">
+        	<img src="/upload/{$storeId}/products/l_{$avatar}"/>
+            <!--<span>{$item->getCatName()}</span>-->
+          	<span class="title">{$item->getName()}</span>
+            {if $item->getMarketPrice()}<span class="price"> Giá: {$item->getMarketPrice()} VND</span>{/if}
+            <span>{$item->getDescription()}</span>
+        </div>
+		{/foreach}

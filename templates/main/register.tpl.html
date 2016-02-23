@@ -1,0 +1,189 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+
+
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+			</div> 
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">Danh mục sản phẩm</a>
+			</div>
+            
+		{include file='navigation.tpl.html' title='footer'}
+        
+		</div> <!-- right-->
+		</div>
+	</div><!-- container -->
+
+<div class="container">
+
+
+<div class="content-full">
+          {if isset($isOrder) && $isOrder == 1}
+          <div class="path">
+            <ul>
+              <li class="current"> <span>1</span>
+                <p>{$messages.cart}</p>                
+              </li>
+              <li class="current"><span>2</span>
+                <p>{$messages.register_login}</p>
+                <img src="/{$templatePath}/{$userTemplate}/images/arrow-current.png">
+              </li>
+              <li><span>3</span>
+                <p>{$messages.infor_paid}</p>
+              </li>
+              <li><span>4</span>
+                <p>{$messages.confirm_order}</p>
+              </li>
+              <li class="last"><span>5</span>
+                <p>{$messages.orderstep5}</p>
+              </li>
+            </ul>
+          </div> 
+          {/if} 
+          <div class="ten columns">
+                    <div class="top">
+        <h3>{$messages.login}</h3>
+        </div>
+        <div class="login-cart">
+        <p>{$messages.account_exist_note}</p>
+                    
+        <form class="frmLogin" action="/" method="post" name="form-signin" id="form-signin">
+				<fieldset>
+                {if isset($error) && $error}
+                        {if $error.invalid || $error.message}
+                        {assign var=input value=$error.INPUT}
+                        <p class="form-row">
+                        <strong style="color: #BE484D;">
+                        {foreach from=$input item=field}
+                        {if $field.error}{$field.message}<br/>{/if}
+                        {/foreach}
+                        </strong>
+                        </p>
+                        {/if}
+                        {elseif isset($note) && $note}
+                        <strong style="color:green;">{$note}</strong>
+                        {/if}
+					<p class="form-row">
+                    <span>{$messages.username}*</span>
+						<input class="inputbox" type="text" value="" name="username" id="username-signin" autocomplete="off" placeholder="{$messages.username}">
+					</p>
+					<p class="form-row">
+                    <span>{$messages.password}*</span>
+						<input class="inputbox" type="password" value="" name="password" id="password-signin-1" autocomplete="off" placeholder="{$messages.password}">
+					</p>
+                    <div class="btn-row">
+                    <!--
+					<p class="btn-wrap">
+                    	<input type="checkbox" value="1" class="box" name="checkGiftBox" checked="checked">
+                        Giữ trạng thái đăng nhập
+                     </p>-->
+                    </div>
+                     <div class="btn-row">
+					<p class="btn-wrap">
+                    	<input type="submit" value="{$messages.login}" title="{$messages.login}" name="btn-signin" class="button">
+                        <a href="#" class="btn-forgot-pass">{$messages.forgotpass}? </a>
+                     </p>
+                    </div>
+                       <p class="form-row">
+						</p><p>{$messages.login_facebook}</p>
+                        <a href="javascript:void(0);" id="login_Facebook"><img src="/{$templatePath}/{$userTemplate}/images/icons/fb-login.png" width="230px"></a>
+					<p></p>
+				</fieldset>
+                <input type="hidden" name="act" value="login"/>     
+                {if isset($isOrder) && $isOrder == 1}<input type="hidden" name="plus" value="loginOrder" />{/if}           
+			</form>
+        </div>
+                    </div>    
+					<div class="ten columns" style="float:right">
+                    <div class="top">
+        <h3>{$messages.register}</h3>
+        </div>
+        <div class="login-cart">
+        <p>{$messages.register_title}</p>
+        {if isset($error) && $error}
+                        {if $error.invalid || $error.message}
+                        {assign var=input value=$error.INPUT}
+                        <strong style="color: #BE484D;">
+                        {foreach from=$input item=field}
+                        {if $field.error}{$field.message}<br/>{/if}
+                        {/foreach}
+                        </strong>
+                        {/if}
+                        {elseif isset($note) && $note}
+                        <strong style="color:green;">{$note}</strong>
+                        {/if}
+        <form class="frmLogin" method="post" name="form-signin" id="form-signin">
+				<fieldset>
+					<p class="form-row">
+                    <span>Email*</span>
+						<input class="inputbox" type="text" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" name="email" id="username-signin" autocomplete="off" placeholder="Email">
+					</p>
+					<p class="form-row">
+                    <span>{$messages.password}*</span>
+						<input class="inputbox" type="password" value="" name="password" id="password-signin-1" autocomplete="off" placeholder="{$messages.password}">
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.confirm_password}*</span>
+						<input class="inputbox" type="password" value="" name="cpassword" id="password-signin-1" autocomplete="off" placeholder="{$messages.confirm_password}">
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.fullname}*</span>
+						<input class="inputbox" type="text" value="{if isset($error.INPUT)}{$error.INPUT.fullname.value}{/if}" name="fullname" id="password-signin-1" autocomplete="off" placeholder="{$messages.fullname}">
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.tel}*</span>
+						<input class="inputbox" type="text" value="{if isset($error.INPUT)}{$error.INPUT.cell.value}{/if}" name="cell" id="password-signin-1" autocomplete="off" placeholder="{$messages.tel}">
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.province} *</span>
+						<select class="form-select" id="province" name="province" style="float:left;">
+                    	<option value="">{$messages.province}  </option>
+                        {$provincesList}
+					   </select>                    
+					</p>
+                    <p class="form-row">
+                    <span>{$messages.address}*</span>
+						<input class="inputbox" type="text" value="" name="address" id="password-signin-1" autocomplete="off" placeholder="{$messages.address}">
+					</p>
+                    <div class="btn-row">
+					<p class="btn-wrap">
+                    	<input type="checkbox" value="1" class="box" name="checkGiftBox" checked="checked">
+                         {$messages.imagree}  <a href="#" class="btn-forgot-pass">{$messages.term}</a> và <a href="#" class="btn-forgot-pass">{$messages.privacy_policy}</a> của  
+Maramara.vn
+                     </p>
+                    </div>
+                     <div class="btn-row">
+					<p class="btn-wrap">
+                    	<input type="submit" value="{$messages.register}" title="{$messages.register}" name="btn-signin" class="button">
+                       <input type="hidden" name="act" value="register"/>
+                       {if isset($isOrder) && $isOrder == 1}<input type="hidden" name="plus" value="loginOrder" />{/if}
+                     </p>
+                    </div></p>
+				</fieldset>
+			</form>
+        </div>
+                    </div> 
+
+</div>
+
+
+                </div>
+
+
+</div>
+
+
+	
+{include file='footer.tpl.html' title='footer'}

@@ -1,0 +1,106 @@
+{include file='header.tpl.html' title='site-header'}
+
+		
+		<!-- BEGIN .section 
+		<div class="section section-mini">
+			<h2 class="site-intro">{if $estore->getDescription()}{$estore->getDescription()}{/if}</h2>
+		 
+		</div>
+		-->
+		
+        <div class="section" style="padding: 0px 30px">
+            {include file='navigation.tpl.html' title='site-header'}
+        </div>
+       <!-- BEGIN .section -->
+		<div class="section">
+			
+			<ul class="columns-content page-content clearfix">
+            
+				               
+				<!-- BEGIN .col-main -->
+				<li class="col-main">
+					{if $objectItem} 
+					<div class="blog-title-single clearfix">
+						<div class="fl">
+							<h2>{$objectItem->getTitle()}<span>{$objectItem->getDateCreated()|date_format:"%d/%m/%Y %H:%M"}</span></h2>
+						</div>						
+					</div>
+					<!-- END .blog-title-single -->
+					
+					<!-- BEGIN .blog-content -->
+					<div class="blog-content clearfix">
+						
+						<p>{$objectItem->getDetails()}</p>
+						
+					<!-- END .blog-content -->
+					</div>
+				{else}
+                Tin tức không tồn tại.
+                {/if}
+				<!-- END .col-main -->
+				</li>
+				
+				<!-- BEGIN .col-sidebar -->
+				<li class="col-sidebar">
+				    <!--
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Chuyên mục Sản phẩm</h4></div>
+						<ul>
+							<li><a href="#">Skin Care</a></li>
+							<li><a href="#">Bath &amp; Body Care</a></li>
+							<li><a href="#">Fragrance</a></li>
+							<li><a href="#">Make-Up</a></li>
+							<li><a href="#">Hair</a></li>
+							<li><a href="#">Moisturisers</a></li>
+						</ul>
+					</div>-->
+					<!--
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Tags</h4></div>
+						<ul class="wp-tag-cloud clearfix">
+							<li><a href="#">Tag #1</a></li>
+							<li><a href="#">Tag #2</a></li>
+							<li><a href="#">Tag #3</a></li>
+							<li><a href="#">Tag #4</a></li>
+							<li><a href="#">Tag #5</a></li>
+							<li><a href="#">Tag #6</a></li>
+						</ul>
+					</div>
+					-->
+                    
+                    {if $articleotherItems}
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Sản Phẩm Mới</h4></div>
+						
+						<ul class="latest-posts-list clearfix">
+							{foreach key=no from=$articleotherItems item=item}
+							<li class="clearfix">
+                                {if $item->getAvatar()}
+								<div class="lpl-img">                                
+									<a href="{$item->getUrl()}" rel="bookmark">
+										<img width="66" height="66" src="/upload/{$storeId}/articles/l_{$item->getProperty('avatar')}" alt="{$item->getTitle()}" />
+									</a>
+								</div>
+                                {/if}
+								<div class="lpl-content">
+									<h6>
+                                        <a href="{$item->getUrl()}" rel="bookmark">{$item->getTitle()}</a> 
+                                        <span>{$item->getDateCreated()|date_format:"%d/%m/%Y %H:%M"}</span>
+                                    </h6>
+								</div>
+							</li>
+                            {/foreach}																					
+						</ul>
+					
+					</div>
+					{/if}
+				<!-- END .col-sidebar -->
+				</li>
+				
+			</ul>
+			
+		<!-- END .section -->
+        
+		</div>
+        
+{include file='footer.tpl.html' title='site-header'}

@@ -1,0 +1,29 @@
+<div class="searchbox">
+<h3>{$messages.find_products}</h3>
+<div class="searchwrap">
+<div class="searchprice">
+<h1>{$messages.filter_price}</h1>
+<form class="fmr" id="frmTimTienNghi" name="frmTimTienNghi" method="post" action="">
+				<ul class="lst">
+										<li class="display"><input type="checkbox"  name="price[]" class="chkAme" value="1"><span class="lstName"> < 300.000</span></li>
+										<li class="display"><input type="checkbox"  name="price[]" class="chkAme" value="2"><span class="lstName">300.000 - 500.000</span></li>
+										<li class="display"><input type="checkbox"  name="price[]" class="chkAme" value="3"><span class="lstName">500.000 - 1.000.000</span></li>
+										<li class="display"><input type="checkbox"  name="price[]" class="chkAme" value="4"><span class="lstName">1.000.000 - 1.500.000</span></li>
+                                        <li class="display"><input type="checkbox"  name="price[]" class="chkAme" value="5"><span class="lstName"> > 1.500.000</span></li>
+                </ul>
+		   </form>
+</div>
+{if $listSizes}
+<div class="searchsize">
+<h1>{$messages.filter_size}</h1>
+<form class="fmr" id="frmTimTienNghi" name="frmTimTienNghi" method="post" action="">
+				<ul class="lst">
+                    {foreach from=$listSizes item=item}
+				        <li class="display"><input type="checkbox" id="size" name="sizes[]" class="chkAme1" value="{$item->getId()}"><span class="lstName">{$item->getName()}</span></li>
+				    {/foreach}
+                </ul>
+		   </form>
+</div>
+{/if}
+</div>
+</div>

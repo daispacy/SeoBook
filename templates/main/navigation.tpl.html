@@ -1,0 +1,15 @@
+
+{if $navigationItems}
+<div class="breadcrumd">
+                    <ul class="breadcrumd">
+						{foreach from=$navigationItems item=navi key=i}
+						{if $navi.current eq 1}
+						<li class="current">{$navi.name}</li>
+						{else}
+						<li><a href="{$navi.url}" title="{$navi.name}">{$navi.name}</a></li>
+						{/if}
+						{/foreach}                         
+                        
+                    </ul>
+</div>
+{/if}

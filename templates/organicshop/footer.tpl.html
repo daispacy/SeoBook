@@ -1,0 +1,158 @@
+
+  <div id="image-tooltip" class="stickytooltip">
+      <div id="resultTool">
+	  {if $act eq 'index'}
+      {foreach from=$listCateProducts item=cate}
+      {assign var=products value=$cate->getAllProducts()}
+      {if $products}
+	  {foreach from=$products item=item key=ii}	  
+	  {assign var=avatar value=$item->getAvatar()}
+        <div id="tooltip-{$item->getId()}" class="atip">
+        	<img src="/upload/{$storeId}/products/l_{$avatar}"/>
+            
+        </div>
+		{/foreach}
+        {/if}                
+		{/foreach}
+        {/if}
+                                
+	  {if $act eq 'products' || $act eq 'search'}
+	  {foreach from=$productItems item=item key=ii}	  
+	  {assign var=avatar value=$item->getAvatar()}
+        <div id="tooltip-{$item->getId()}" class="atip">
+        	<img src="/upload/{$storeId}/products/l_{$avatar}"/>
+            
+        </div>
+		{/foreach}        
+        {/if}
+        
+        {if $act neq 'index'}
+        {if $productSeller}
+		{foreach from=$productSeller item=item key=ii}	  
+        {assign var=avatar value=$item->getAvatar()}
+        <div id="tooltip-s{$item->getId()}" class="atip">
+        	<img src="/upload/{$storeId}/products/l_{$avatar}"/>
+            <span>{$item->getCatName()}</span>
+          	<span class="title">{$item->getName()}</span>
+            {if $item->getMarketPrice()}<span class="price"> Giá: {$item->getMarketPrice()} VND</span>{/if}
+            <span>{$item->getDescription()}</span>
+            
+        </div>
+		{/foreach}
+        {/if}
+        {if $productSpecial}
+        {foreach from=$productSpecial item=item key=ii}	  
+        {assign var=avatar value=$item->getAvatar()}
+        <div id="tooltip-d{$item->getId()}" class="atip">
+        	<img src="/upload/{$storeId}/products/l_{$avatar}"/>
+            <!--
+            <span>{$item->getCatName()}</span>
+          	<span class="title">{$item->getName()}</span>
+            {if $item->getMarketPrice()}<span class="price"> Giá: {$item->getMarketPrice()} VND</span>{/if}
+            <span>{$item->getDescription()}</span>-->
+            
+        </div>
+		{/foreach}
+        {/if} 
+        {/if}
+
+      </div>
+      <div class="stickystatus"></div>
+  </div>
+
+<div id="footer">
+			
+			<ul class="columns-3 clearfix">
+				<li class="col3">
+					
+					<!-- BEGIN .widget -->
+					<div class="widget">
+						<div class="widget-title clearfix">
+							<h6>{$estore->getName()}</h6>
+						</div>
+						
+						<ul>
+                            {if $estore->getAddress()}<li class="contact-addr"> {$estore->getAddress()}</li>{/if}
+							{if $estore->getTel()}<li class="contact-phone"> {$estore->getTel()}</li>{/if}
+                            {if $estore->getCell()} <li class="contact-phone">{$estore->getCell()}</li>{/if}
+							<li class="contact-mail"><a href="mailto:{$estore->getEmail()}">{$estore->getEmail()}</a></li>
+						</ul>
+						
+					<!-- END .widget -->
+					</div>
+					
+				</li>
+                
+				<li class="col3">
+					
+					
+					<div class="widget">
+                    
+						<div class="widget-title clearfix">
+							<h6>Chuyên mục Sản phẩm</h6>
+						</div>
+						
+						<ul>
+							{if  $productCategoryItems}
+                            {foreach from=$productCategoryItems.0 item=itemRoot}
+                            <li><a href="{$itemRoot.url}" title="{$itemRoot.name}">{$itemRoot.name}</a></li>
+                            {/foreach}
+                            {/if}
+						</ul>
+					
+					
+					</div>
+				
+				</li>
+			
+                
+				<li class="col3">
+					
+					<!-- BEGIN .widget -->
+					<div class="widget">
+						<div class="widget-title clearfix">
+							<h6>Facebook</h6>
+						</div>
+						
+						<div class="flickr_badge_wrapper clearfix">
+							<fb:like-box href="{$estore->getProperty('link_fb')}" colorscheme="light" show_faces="false" header="false" stream="false" show_border="false"></fb:like-box>
+							<div style="clear:both;margin:0 0 10px 0;"></div>
+							<p class="button2"><a href="{$estore->getProperty('link_fb')}">Xem tất cả &raquo;</a></p>
+						</div>
+						
+					<!-- END .widget -->
+					</div>
+					
+				</li>
+			</ul>
+		
+		<!-- END #footer -->
+		</div>
+		
+		<div id="footer-bottom" class="clearfix">
+			
+			<div class="fl">
+				{if $menuItems.2}
+                <ul>
+                {foreach from=$menuItems.2.0 key=i item=menu}                 
+                    <li ><a title="{$menu.name}" href="{$menu.url}">{$menu.name}</a></li>								                                        
+                {/foreach}
+                </ul>
+                {/if}
+				
+				
+				<p>Copyright &copy; {$smarty.now|date_format:'%Y'} {$estore->getName()}, All rights reserved.<br>
+					Powered by <a target="_blank" href="http://{$domain}">{$domain}</a></p>
+				
+			</div>
+			
+		
+			
+		</div>
+			
+	<!-- END .wrapper -->
+	</div>
+	
+<!-- END body -->
+</body>
+</html>

@@ -1,0 +1,93 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+             {include file='left-category.tpl.html' title='left-category'}
+            <div class="other-news-left">
+            <h1 class="title">Các bản tin khác</h1>
+            	<div class="other-news-list">
+            		<ul class="news-list">
+                     {foreach key=no from=$otherItems item=item}
+         {assign var=avatar value=$item->getProperty('avatar')}
+         <li>
+                    <div class="thumb">
+                    	<a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/articles/a_{$avatar}"/></a>
+                    </div>
+                    	<p>
+                     	<a href="{$item->getUrl($lang)}">{$item->getTitle($lang)}</a>
+                    	</p>
+                    	<span>{$item->getDateCreated()|date_format:'h:i A | d/m'}</span>
+        </li>
+ 		{/foreach}
+        </ul>
+            	</div>
+            </div>
+            <div class="news-left">
+            <h1 class="title">Xem nhiều nhất</h1>
+            	<div class="news-left-list">
+            		<ul class="news-list">
+                    {foreach key=no from=$listHotNew item=item}
+                    <li>
+                    	<p>
+                     	<a href="{$item->getUrl($lang)}">{$item->getTitle($lang)}</a>
+                    	</p>
+                    	<span>{$item->getDateCreated()|date_format:'h:i A | d/m'}</span>
+                    </li>
+                    {/foreach}
+                    </ul>
+            	</div>
+            </div>
+             {include file='banner-left-div.tpl.html' title='banner-left-div'}
+</div> <!--End Left Columns-->
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">{$messages.categories}</a>
+			</div>
+		{include file='navigation.tpl.html' title='footer'}
+        {if $objectItem}
+        <div class="detail-blog-post">
+							<h3>{$objectItem->getTitle($lang)}</h3>
+							<div class="post-meta">
+								<span class="date">{$objectItem->getDateCreated()|date_format:'h:i A | d/m'}</span>
+                                 <a href="#"><img src="/{$templatePath}/{$userTemplate}/images/fb-share.png" alt="product"></a>
+							</div>
+                             <p>{$objectItem->getDetails($lang)}</p>	
+                            					
+</div>
+{/if}
+
+<div class="other-news-left show-mobile">
+            <h1 class="title">Các bản tin khác</h1>
+            	<div class="other-news-list">
+            		<ul class="news-list">
+                     {foreach key=no from=$otherItems item=item}
+         {assign var=avatar value=$item->getProperty('avatar')}
+         <li>
+                    <div class="thumb">
+                    	<a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/articles/a_{$avatar}"/></a>
+                    </div>
+                    	<p>
+                     	<a href="{$item->getUrl($lang)}">{$item->getTitle($lang)}</a>
+                    	</p>
+                    	<span>{$item->getDateCreated()|date_format:'h:i A | d/m'}</span>
+        </li>
+ 		{/foreach}
+        </ul>
+            	</div>
+            </div>
+
+		</div> <!-- right-->
+		</div>
+	</div>
+
+
+{include file='footer.tpl.html' title='site-footer'}

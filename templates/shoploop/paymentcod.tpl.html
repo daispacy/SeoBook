@@ -1,0 +1,15 @@
+<form id="formOrder" name="formOrder" id="formOrder" method="post" action="/">
+<fieldset>
+<p><strong>Thông tin đơn hàng của bạn:</strong></p>
+<p>Mã số đơn hàng: <span style="font-size:1.5em; font-weight:bold">{$order->getId()}</span></p>
+<p>Số tiền: <span style="font-size:1.5em; font-weight:bold">{$order->getOrderTotal()|number_format:0} VND</span></p>
+<p>&nbsp;</p>
+{$paymentMethod.options.information}
+<p>&nbsp;</p>
+<div class="submitForm">
+							<label class="hidden-mobile"></label>
+                            <input class="red_btn button" type="submit" name="submit" value="Hoàn tất">
+							<div class="clear"></div>
+						</div>
+</fieldset>
+</form>

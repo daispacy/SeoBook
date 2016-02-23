@@ -1,0 +1,386 @@
+/* products-list-page */
+.products-list-page{
+	overflow: hidden;
+	margin-top: 20px;}
+.products-list-page h3 {
+	font-size: 16px;
+	color: #282828;
+	background: url(../images/bg_line_title.png) 0 bottom repeat-x;
+	font-weight: bold;
+	overflow: hidden;}
+.products-list-page h3 span {
+	float: left;
+	padding-bottom: 7px;
+	border-bottom: 3px solid #fc273c;
+	padding: 0 5px;}
+.products-list-block{
+	display:block;
+	overflow:hidden;}
+	
+/* news-list-page */
+.news-list-page{ 
+	overflow:auto; 
+	display:block}
+.news-list-page ul{ 
+	margin:0 0 10px 0;}
+.news-block{
+	border-bottom:1px solid #dddddd; 
+	padding-bottom:20px; 
+	margin-bottom:20px}
+.news-block.last{
+	border-bottom:none; 
+	padding-bottom:0px; 
+	margin-bottom:0px}
+.news-block a{ 
+	font-size:24px; 
+	font-weight:normal	}
+.news-block a:hover{ 
+	color:#fc273c}
+.news-block img{
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	padding:10px 0;}
+.date {
+	font-size: 11px;
+	color: #a8a8a8;
+	padding-bottom:15px;
+	text-transform: none;}
+	
+/* news-detail-page */
+.news-detail-page{ 
+	overflow:auto; 
+	display:block}
+.news-detail-page h2{
+	font-size:24px;
+	font-weight:normal;}
+.other-news{
+	margin-top:25px;}
+.other-news h3 {
+	font-size: 16px;
+	color: #282828;
+	background: url(../images/bg_line_title.png) 0 bottom repeat-x;
+	font-weight: bold;
+	overflow: hidden;}
+.other-news h3 span {
+	float: left;
+	padding-bottom: 7px;
+	border-bottom: 3px solid #fc273c;
+	padding: 0 5px;}	
+.other-news ul{ 
+	display:block; 
+	margin-top:10px;}
+.other-news li { 
+	background:url(../images/bullet-type.png) 0 8px no-repeat;
+	padding-left:15px; 
+	list-style:none}
+.other-news li a:hover{
+	color:#fc273c}
+
+/*contact-page*/
+.content-contact {
+	width:980px;}
+.contact-page{}
+.contact-info{ 
+	float:left; 
+	margin-right:40px; 
+	width:470px}
+.contact-info .address-info{ 
+	margin-bottom:40px}
+.contact-info .address-info h2{ 
+	margin-bottom:8px}
+.contact-info .map h2{ 
+	margin-bottom:10px}
+.contact-form{}
+.contact-form fieldset .login-formInfo{ 
+	overflow:hidden; 
+	padding-top:15px; 
+	font-size:12px; 
+	float:left; 
+	width:100%}
+.login-formInfo label{
+	float:left; width:70px; 
+	font-size:12px; 
+	text-align: left; 
+	margin-right:15px;}
+.login-formInfo .inputbox{
+	height: 28px;
+	background-color: #ebebeb;
+	color: #666;
+	font-size: 13px;
+	line-height: 18px;
+	border: 0;
+	padding: 0;
+	padding-left: 8px;
+	width:377px}
+.login-formInfo .inputbox-security{
+	height: 28px;
+	background-color: #ebebeb;
+	color: #666;
+	font-size: 13px;
+	line-height: 18px;
+	border: 0;
+	padding: 0;
+	padding-left: 8px;
+	width:220px;
+	margin-right:10px;	}
+.login-formInfo textarea{ 
+	width:377px; 
+	background-color: #ebebeb; 
+	border:none}
+.contact-form fieldset .btn{ 
+	margin-left:88px; 
+	margin-top:15px; 
+	float:left;  }
+.btn .button{
+	width:100px; 
+	height:32px;
+	padding-bottom:5px; 
+	background:#fc273c; 
+	border-radius: 3px 3px 3px 3px; 
+	border:0; 
+	color:#FFFFFF;
+	font-size:18px;
+	cursor:pointer;}
+
+/* shoppingcart-page */
+.shoppingcart-page{ 
+	overflow:auto; 
+	display:block}
+.basketInfo{
+	width:100%; 
+	margin: 0 0 10px 0}
+.basketInfo table.basketInfoTbl{ 
+	border:0; 
+	margin-bottom:15px;}
+.basketInfo tfoot td{ 
+	background:url(../images/bg_basket_total.gif) 100% 0 no-repeat; 
+	padding:12px 10px; 
+	min-height:42px; 
+	border:0;}
+.basketInfo th{
+	color:#6b717d; 
+	background:#ecedf1; 
+	border-bottom:1px solid #e5e5e5; 
+	text-align:center; 
+	text-transform:uppercase; 
+	font-weight:normal; 
+	padding:7px; 
+	text-align:left}
+.basketInfo th.price{
+	color:#6b717d; 
+	background:#ecedf1; 
+	border-bottom:1px solid #e5e5e5; 
+	text-align:center; 
+	text-transform:uppercase; 
+	font-weight:normal; 
+	padding:7px 10px 7px 7px ;
+	 text-align: right}
+.basketInfo td{
+	color:#666c6f; 
+	background:#fff; 
+	border:0; 
+	border-bottom:1px solid #e5e5e5;  
+	padding:12px 10px; 
+	vertical-align:top;}
+.basketInfo td.cellPrice,.basketInfo td.cellCost{
+	text-align:right }
+.basketInfo td strong{
+	color:#313131; }
+.basketInfo td img{
+	border:none;}
+.basketInfo td .btnRemove img{
+	border:none;}
+.basketInfo td input{ 
+	border:1px solid #cbcbcb; 
+	font-weight:normal; 
+	padding:2px 4px; 
+	margin:0; 
+	text-align:center; 
+	display:inline;}
+.basketInfo td input.txtQuantity{
+	width:30px; 
+	float:left;}
+.basketInfo td.first{
+	text-align:center;}
+.basketInfo td.first input{
+	width:13px; 
+	height:13px; 
+	padding:0; 
+	margin:0; 
+	border:none;}
+.basketInfo .total{
+	text-align:right; 
+	color:#fc273c; 
+	font-size:18px; 
+	font-weight: normal}
+.basketInfo td.col{ }
+.listBtn2{
+	width:100%;  
+	padding:0; 
+	overflow:hidden; 
+	margin:0 0 15px 0}
+.listBtn2 a{
+	display:block; 
+	float:right;
+	margin:0 5px 0 0; 
+	background:#740085; 
+	color:#fff; 
+	font-size:14px; 
+	border:#740085 solid 1px; 
+	width:150px; 
+	line-height:22px; 
+	height:22px; 
+	text-align:center}
+.listBtn2 a:hover{
+	text-decoration:none}
+.listBtn2 .btnOrder{
+	background:#740085 url(../images/bg_input_basket.gif) 95% 50% no-repeat; 
+	float:right; 
+	color:fff; 
+	font-size:14px; 
+	font-weight:bold}
+.listBtn2 .btnBuy{
+	background:url(../images/bg_input_basket.gif) 95% 50% no-repeat; 
+	float:right; 
+	padding-right:100px; 
+	color:#fff; 
+	font-size:13px; 
+	font-weight:bold; 
+	width:150px; 
+	height:25px}
+.listBtn2 .btnBuy input {
+	color:#fff; 
+	font-weight:bold;}
+.listBtn2 .btn{
+	display:block; 
+	margin:0 5px 0 0; 
+	padding: 4px 10px ; 
+	background:#fc273c; color:#fff; 
+	width:auto; 
+	height:22px; 
+	text-align: left; 
+	font-weight: normal;
+	font-size:14px; 
+	float: right; 
+	border-radius:3px 3px 3px 3px; 
+	border:none; 
+	text-transform:uppercase }
+.listBtn2 .btn:hover {
+	text-decoration:underline;}
+.customer-info{ 
+	float:left;
+	margin-right: 40px;
+	width: 470px;}
+.customer-info p{
+	padding:8px 0 10px 0 ;}
+.customer-info fieldset .login-formInfo{ 
+	overflow:hidden; 
+	font-size:12px; 
+	float:left; 
+	width:100%}
+.login-formInfo label{
+	float:left; 
+	width:107px; 
+	font-size:12px; 
+	text-align: left; 
+	margin-right:15px;}
+.login-formInfo .inputbox{
+	height: 28px;
+	background-color: #ebebeb;
+	color: #666;
+	font-size: 13px;
+	line-height: 18px;
+	border: 0;
+	padding: 0;
+	padding-left: 8px;
+	width:340px}
+.login-formInfo p span{ 
+	margin-left:120px; 
+	font-size:11px;
+	padding-top:3px;
+	display:block;
+	color:#a8a8a8;}
+.contact-form fieldset .btn{ 
+	margin-left:88px; 
+	margin-top:15px; 
+	float:left;  }
+.btn .button{
+	width:100px; 
+	height:32px;
+	padding-bottom:5px; 
+	background:#fc273c; 
+	border-radius: 3px 3px 3px 3px; 
+	border:0; 
+	color:#FFFFFF;
+	font-size:18px;
+	cursor:pointer;}	
+.recipient-info{ }
+.recipient-info p{
+	padding:8px 0 10px 0;}
+
+
+
+/*breadcrumb*/
+.breadCrumb {
+	overflow:hidden; 
+	padding-bottom:8px; 
+	display:block; 
+	border-bottom:1px solid #dddddd; 
+	margin-bottom:15px}
+.breadCrumb ul{ 
+	list-style:none; }
+.breadCrumb li {
+	float:left; 
+	margin-left:10px; }
+.breadCrumb li:first-child {
+	margin-left:0;}
+.breadCrumb li a {
+	float:left; 
+	padding-right:15px; 
+	background:url(../images/icon_arr_breadcrumb.png) right 7px no-repeat; 
+	font-size:11px;}
+.breadCrumb li a:hover {
+	color:#777;}
+.breadCrumb li span {
+	float:left; 
+	font-size:11px; 
+	color:#fc3044;}
+	
+/* paging */
+.paging {
+	height:18px; 
+	padding-bottom:18px; 
+	position:relative; 
+	margin-top:20px;}
+.paging > div {
+	overflow:hidden; 
+	padding-top:18px; 
+	border-bottom:1px solid #eae5e1;}
+.paging ul {
+	overflow:hidden; 
+	position:absolute; 
+	top:2px; background:#fff; 
+	border-radius:5px; 
+	left:40%; 
+	list-style:none}
+.paging li {float:left;}
+.paging li a {
+	float:left; 
+	padding:3px 10px; 
+	text-transform:uppercase; 
+	margin:0 0 0 1px; 
+	font-size:14px; 
+	background:#c1c1c1; 
+	font-weight: normal;}
+.paging li.first a, .paging li.last a {
+	background:#e0e0e0; 
+	padding:9px 12px; 
+	border-radius:50% 0 0 50%;}
+.paging li.last a {
+		border-radius:0 50% 50% 0;}
+.paging li.first a {
+	margin:0;}
+.paging li a:hover, .paging li.active a {
+	background:#424242; 
+	color:#fff;}

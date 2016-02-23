@@ -1,0 +1,126 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+
+{include file='right.tpl.html' title='site-header'}
+    <div class="twelve columns">
+
+                    <div class="formContent">
+{if !isset($plus) && !isset($authUser)}
+<form action="/" method="post" name="formOrderLogin" id="formOrderLogin" class="formOrderLogin">
+<fieldset>
+<div class="box_head">
+						<h3>Đăng nhập thành viên</h3>
+					</div>
+<p class="text"><strong>Xin vui lòng đăng nhập vào tài khoản của bạn trước khi đặt hàng. Nếu chưa có tài khoản, bạn có thể <a href="/register.html">nhấp vào đây</a> đăng ký.</strong></p>
+<p><label for="username">Tên đăng nhập (<span>*</span>)</label>
+<input type="text" value="" name="username" id="username" autofocus="autofocus" /></p>
+<p><label for="password">Mật khẩu (<span>*</span>)</label>
+<input type="password" value="" name="password" id="password" /></p>
+<div class="submitForm">
+							<input type="hidden" name="act" id="act" value="login" />
+							<label class="hidden-mobile"></label>
+                            <input class="red_btn button" type="submit" name="submit" value="Đăng nhập">
+                            <input class="gray_btn button" type="reset" name="Nhập lại" value="Nhập lại" >
+							<div class="clear"></div>
+						</div>
+</fieldset>
+</form>
+<p style="font-weight:bold;">Nếu không muốn đăng ký tài khoản, bạn có thể dùng mẫu sau đây để đặt hàng.</p>
+{/if}
+<form action="/" method="post" name="formOrder" id="formOrder">
+<fieldset>
+<div class="box_head">
+						<h3>Thông tin khách hàng </h3>
+					</div>
+
+<p class="text"><strong>Bạn vui lòng điền thông tin vào mẫu bên dưới. Các ô có đánh dấu * là thông tin bắt buộc.</strong></p>
+{if isset($error)}
+{if $error.invalid || $error.message}
+{assign var=input value=$error.INPUT}
+<p class="error">{$messages.error}:
+<ul class="error">
+{foreach from=$input item=field}
+{if $field.error}<li>{$field.message}</li>{/if}
+{/foreach}
+</ul>
+</p>
+{/if}
+{/if}
+<p><label for="name">Họ tên (<span>*</span>)</label>
+<input type="text" id="name" name="name" value="{if isset($error.INPUT)}{$error.INPUT.name.value}{else}{$order.name}{/if}" /></p>
+<p><label for="email">Email (<span>*</span>)</label>
+<input type="text" id="email" name="email" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{else}{$order.email}{/if}" /></p>
+<p><label for="address">Địa chỉ (<span>*</span>)</label>
+<input type="text" id="address" name="address" value="{if isset($error.INPUT)}{$error.INPUT.address.value}{else}{$order.address}{/if}" class="longtext" /></p>
+<p><label for="province">Tỉnh</label>
+<select id="province" name="province">
+<option value="">------------</option>
+{$provincesList}
+</select></p>
+<p><label for="tel">Điện thoại</label>
+<input type="text" id="tel" name="tel" value="{if isset($error.INPUT)}{$error.INPUT.tel.value}{else}{$order.tel}{/if}" /></p>
+<p><label for="cell">Điện thoại di động (<span>*</span>)</label>
+<input type="text" id="cell" name="cell" value="{if isset($error.INPUT)}{$error.INPUT.cell.value}{else}{$order.cell}{/if}" /></p>
+<div class="box_head">
+						<h3>Thông tin người nhận </h3>
+					</div>
+<p class="text"><strong>Bạn vui lòng điền thông tin vào mẫu bên dưới. Các ô có đánh dấu * là thông tin bắt buộc.
+<!-- Nếu bạn đã đăng nhập, thông tin này sẽ được load tự động.-->
+</strong></p>
+<p>
+{literal}
+<script type="text/javascript">
+function checkSame() {
+	var f = document.formOrder;
+	if(f.chkSame.checked) {
+		f.rname.value = f.name.value;
+		f.raddress.value = f.address.value;
+		f.rtel.value = f.tel.value;
+		f.rcell.value = f.cell.value;
+		f.rprovince.value = f.province.value;
+	} else {
+		f.rname.value = '';
+		f.raddress.value = '';
+		f.rtel.value = '';
+		f.rcell.value = '';
+		f.rprovince.value = '';		
+	}
+}
+</script>
+{/literal}
+<input class="checkbox" type="checkbox" id="chkSame" name="chkSame" value="1" onclick="javascript:checkSame();" />Giống như thông tin khách hàng</p>
+<p><label for="rname">Họ tên (<span>*</span>)</label>
+<input type="text" id="rname" name="rname" value="{if isset($error.INPUT)}{$error.INPUT.rname.value}{else}{$order.rname}{/if}" /></p>
+<p><label for="raddress">Địa chỉ (<span>*</span>)</label>
+<input type="text" id="raddress" name="raddress" value="{if isset($error.INPUT)}{$error.INPUT.raddress.value}{else}{$order.raddress}{/if}" class="longtext" /></p>
+<p><label for="rprovince">Tỉnh (<span>*</span>)</label>
+<select id="rprovince" name="rprovince">
+<option value="">------------</option>
+{$rProvincesList}
+</select></p>
+<p><label for="rtel">Điện thoại</label>
+<input type="text" id="rtel" name="rtel" value="{if isset($error.INPUT)}{$error.INPUT.rtel.value}{else}{$order.rtel}{/if}" /></p>
+<p><label for="rcell">Điện thoại di động</label>
+<input type="text" id="rcell" name="rcell" value="{if isset($error.INPUT)}{$error.INPUT.rcell.value}{else}{$order.rcell}{/if}" /></p>
+<p><label for="rnote">Ghi chú<br /><span style="font-style:italic; font-size:0.9em; color:#000000">Thiệp chúc mừng, ngày giờ giao hàng, cách thức liên lạc,...</span></label>
+<textarea id="rnote" name="rnote" rows="8" cols="32">{if isset($error.INPUT)}{$error.INPUT.rnote.value}{else}{$order.rnote}{/if}</textarea></p>
+
+<div class="submitForm">
+							<input type="hidden" name="act" id="act" value="order" />
+                            <input type="hidden" name="plus" id="plus" value="confirmOrder" />
+							<label class="hidden-mobile"></label>
+                            <input class="red_btn button" type="submit" name="submit" value="Tiếp tục">
+                            <input class="gray_btn button" type="reset" name="Nhập lại" value="Nhập lại" >
+							<div class="clear"></div>
+						</div>
+</fieldset>
+</form>
+</div>
+		</div><!--end sixteen-->
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

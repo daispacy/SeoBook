@@ -1,0 +1,111 @@
+{include file='header.tpl.html' title='site-header'}
+
+		
+		<!-- 
+		<div class="section section-mini">
+			<h2 class="site-intro">{if $estore->getDescription()}{$estore->getDescription()}{/if}</h2>
+		 
+		</div>-->
+		
+		<div class="section" style="padding: 0 30px">
+            {include file='navigation.tpl.html' title='site-header'}
+        </div>
+        
+        
+       <div class="container">
+            <div class="sixteen columns">
+            {if $objectItem}
+			 <div class="ten columns alpha">
+				{assign var=photos value=$objectItem->getProperty('photos')}
+                            {if $photos}
+                            <div class="product_img">
+								<ul id="etalage">
+                            {foreach from=$photos item=photo key=i}
+                            	<li>
+            						<a href="/upload/{$storeId}/products/l_{$photo}">
+            						<img class="etalage_thumb_image" src="/upload/{$storeId}/products/l_{$photo}" alt="{$objectItem->getName()}"/>
+            						<img class="etalage_source_image" src="/upload/{$storeId}/products/l_{$photo}" alt="{$objectItem->getName()}"/>
+            						</a>
+            					</li>
+                            {/foreach}
+                            </ul>
+                            </div>
+                            {/if}
+				<!--end product_img-->
+			</div><!--end ten-->
+    
+
+			<div class="six columns omega">
+				<div class="product_desc">
+
+					<div class="pro_desc_conent">
+						<h6>{$objectItem->getName()}</h6>
+					</div>
+                    <div class="pro_desc_conent">
+						<p>{$objectItem->getDescription()}</p>
+					</div>
+                    {if $objectItem->getMarketPrice()}
+					<div class="pro_desc_conent">
+						<h5></h5>
+					</div>
+                    {/if}
+
+				</div><!--end product_desc-->
+			</div><!--end six-->
+
+    
+			<div class="sixteen columns alpha">
+            <div class="product_pro" style="margin-top:20px;">
+
+				<div class="box_head">
+					<h3>Chi tiết sản phẩm</h3>
+					
+				</div><!--end box_head -->
+				<div class="productdetail">{$objectItem->getDetail()}</div>
+				<!--end pro_relates_content-->
+			</div>
+				
+			</div><!--end ten-->
+            {else}
+            <br />
+            Sản phẩm không tồn tại.
+            {/if}
+
+			<!--end six-->
+
+            {if $otherProductItems}
+			<div class="related_pro">
+
+				<div class="box_head">
+					<h3>Sản phẩm khác</h3>
+					<div class="pagers center">
+						<a class="prev related_prev" href="#prev">Prev</a>
+						<a class="nxt related_nxt" href="#nxt">Next</a>
+					</div>
+				</div><!--end box_head -->
+
+				<div class="pro_relates_content">
+                 <ul class="product_show">
+                
+               
+                {foreach from=$otherProductItems item=otherProduct key=i}
+                <li>
+						<div class="img">							
+							<a href="{$otherProduct->getUrl()}">
+								{if $otherProduct->getAvatar()}<img src="/upload/{$storeId}/products/l_{$otherProduct->getAvatar()}" alt="{$otherProduct->getName()}" />{/if}
+							</a>
+						</div>
+						<h6><a href="{$otherProduct->getUrl()}">{$otherProduct->getName()}</a></h6>
+					</li>
+                {/foreach}
+              
+						
+                </ul>
+				
+				</div><!--end pro_relates_content-->
+			</div><!--end related_pro-->
+             {/if}
+		</div>
+    </div>
+        
+{include file='footer.tpl.html' title='site-header'}

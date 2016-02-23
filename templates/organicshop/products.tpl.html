@@ -1,0 +1,163 @@
+{include file='header.tpl.html' title='site-header'}
+    
+	{literal}
+    <!--
+    <style>
+    .columns-3 li.col3 {        
+        min-height: 280px;
+    }
+    </style>-->
+    <script>
+    function realImgDimension(img) {
+        var i = new Image();
+        i.src = img.src;
+        return {
+            naturalWidth: i.width, 
+            naturalHeight: i.height
+        };
+    }
+    function setHeightLi(){
+        var images = $("#results").find("li").map(function() { 
+                //var realSize = realImgDimension(this);
+                return $(this).height(); 
+            
+            }).get();
+        var maxValueInArray = Math.max.apply(Math, images);
+        console.log(images);
+        console.log(maxValueInArray);
+        $(".columns-3 li.col3").css("height",maxValueInArray);  
+    }
+    $(window).load(function(){
+        
+           setHeightLi();
+        
+        
+    });
+    //var myImage = document.getElementById('myImage');
+           //var myImage = document.getElementsByTagName('img');
+            //myImage.addEventListener('load', function() {
+                //var realSize = realImgDimension(this);
+            	//console.log('My width is: ', realSize.naturalWidth);
+            	//console.log('My height is: ', realSize.naturalHeight);
+            //});
+    </script>
+    {/literal}	
+    
+		<!-- BEGIN .section 
+		<div class="section section-mini">
+			<h2 class="site-intro">{if $estore->getDescription()}{$estore->getDescription()}{/if}</h2>
+		 
+		</div>
+		-->
+		
+        <div class="section" style="padding: 0 30px;">
+            {include file='navigation.tpl.html' title='site-header'}
+        </div>
+       <!-- BEGIN .section -->
+		<div class="section">
+			
+			<ul class="columns-content page-content clearfix">
+            
+				               
+				<!-- BEGIN .col-main -->
+				<li class="col-main">
+					
+					<h2 class="page-title">Danh sách sản phẩm</h2>
+                    {if $productItems} 
+						<ul id="results" class="columns-3 clearfix product-list">
+                            {foreach key=no from=$productItems item=item}
+							<li class="col3">
+									{if $item->getAvatar()}
+                                    {if $item->getSpecial() || $item->getHome() || $item->getSeller()}<div class="{if $item->getSpecial()}deal{elseif $item->getHome()}offer{else}seller{/if}_icon"></div>{/if}
+                                    <a href="{$item->getUrl()}"><img src="/upload/{$storeId}/products/l_{$item->getAvatar()}" alt="{$item->getName()}" class="full-image product-image" data-tooltip="tooltip-{$item->getId()}"/></a>{/if}
+                					<p class="product-title"><a href="{$item->getUrl()}">{$item->getName()}</a></p>
+                                    <!--<p class="product-price">{$item->getCatName()}</p>-->
+                					{if $item->getMarketPrice()}<p class="product-price">{$item->getMarketPrice()}</p>{/if}
+							</li>
+							{/foreach}
+						</ul> 
+				{else}
+                Sản phẩm đang được cập nhật.
+                {/if}
+                <div class="animation_image" style="display:none" align="center">
+                    <img src="/{$templatePath}/{$userTemplate}/images/ajax-loader.gif"/>
+                </div>
+				<!-- END .col-main -->
+				</li>
+				
+				<!-- BEGIN .col-sidebar -->
+				{include file='right.tpl.html' title='site-header'}
+				
+			</ul>
+			
+		<!-- END .section -->
+        
+		</div>        
+        {if isset($rowsPages) && $rowsPages.pages > 1}
+        <input type="hidden" id="pages" value="{$rowsPages.pages}"/>
+        <input type="hidden" id="page" value="1"/>
+        {if $cCategory}<input type="hidden" id="cId" value="{$cCategory ->getId()}"/>{/if}
+        <input type="hidden" id="op" value="{$act}"/>
+        <input type="hidden" id="kw" value="{$kw}"/>
+        {literal}
+        <script>
+            $(document).ready(function() {
+                 //total loaded record group(s)
+                var loading  = false; //to prevents multipal ajax loads
+                var total_groups = $("#pages").val(); //total record group(s)
+                var cId = $("#cId").val(); //total record group(s) 
+                var op = $("#op").val(); //total record group(s)  
+                var kw = $("#kw").val(); //total record group(s)  
+                var dk = 0;                       
+                $(window).scroll(function() { //detect page scroll
+                if (/android|iphone|ipod|series60|symbian|windows ce|blackberry/i.test(navigator.userAgent)){
+                    dk=$("#rightside").offset().top
+                }else{
+                    dk=$("#footer").offset().top;
+                }
+                    var track_load = $("#page").val();
+                    if(($(window).scrollTop() + $(window).height()) >= dk)  //user scrolled to bottom of the page?
+                    {
+                          
+                        track_load ++;
+                        if(track_load <= total_groups && loading==false) //there's more data to load
+                        {
+                            loading = true; //prevent further ajax loading
+                            $('.animation_image').show(); //show loading image
+                           
+                            //load data from the server using a HTTP POST request
+                            $.get('/ajax.php',{page: track_load,op:op,cId:cId,kw:kw}, function(data){
+                                 
+                                var result = data.split('|&');       
+                                $("#page").val(result[0]);             
+                                $("#results").append(result[1]); //append received data into the element
+                                $("#resultTool").append(result[2]);
+                                setHeightLi();
+                                //hide loading image
+                                $('.animation_image').hide(); //hide loading image once data is received
+                               if (/android|iphone|ipod|series60|symbian|windows ce|blackberry/i.test(navigator.userAgent)){			
+                                        if($('#ex1').length) $('#ex1').zoom();
+                                        $('#image-tooltip').html('');
+                                }else{
+                                    stickytooltip("*[data-tooltip]", "image-tooltip");
+                                }
+                                
+                                loading = false;
+                           
+                            }).fail(function(xhr, ajaxOptions, thrownError) { //any errors?
+                               
+                                alert(thrownError); //alert with HTTP error
+                                $('.animation_image').hide(); //hide loading image
+                                loading = false;
+                           
+                            });
+                           
+                        }
+                    }
+                });
+            });
+        </script>
+        {/literal}
+        {/if}
+        
+{include file='footer.tpl.html' title='site-header'}

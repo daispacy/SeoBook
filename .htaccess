@@ -1,0 +1,67 @@
+#-----------------------------------------
+# Mai Minh Hotmeal.vn 24/03/2012
+#-----------------------------------------
+
+<Files .htaccess>
+deny from all
+</Files>
+
+<Files config.php>
+deny from all
+</Files>
+
+#Options -Indexes
+#Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+<IfModule mod_dir.c>
+DirectoryIndex index.php index.html
+</IfModule>
+
+# Main site
+RewriteRule ^index\.html$ index.php?op=estore&act=index [L,NC]
+
+
+
+RewriteRule ^loginfb.html$ index.php?op=estore&act=loginfb [L,NC]
+
+#sitemap
+RewriteRule ^sitemap.html$ index.php?op=estore&act=sitemap [L,NC]
+
+#contact
+RewriteRule ^lien-he\.html$ index.php?op=estore&act=contactform&slug=lien-he.html [L,NC]
+
+# gallery
+RewriteRule ^photogallery\.html$ index.php?op=estore&act=gallery [L,NC]
+
+
+
+
+#category
+RewriteRule ^tin-tuc/$ index.php?op=estore&act=news [L,NC]
+RewriteRule ^tin-tuc/([a-z0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=news&slug=$1&pg=$2 [L,NC]
+RewriteRule ^tin-tuc/([a-z0-9-_]+)-n([0-9-_]+)\.html$ index.php?op=estore&act=newdetail&slug=$1&id=$2 [L,NC]
+
+
+#Search
+RewriteRule ^san-pham/$ index.php?op=estore&act=search [L,NC]
+
+
+#Product
+RewriteRule ^([a-z0-9-_]+)-c([0-9-_]+)\.html$ index.php?op=estore&act=products&slug=$1&cid=$2 [L,NC]
+RewriteRule ^([a-z0-9-_]+)-c([0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=products&slug=$1&cid=$2&pg=$3 [L,NC]
+RewriteRule ^([a-z0-9-_]+)\.html$ index.php?op=estore&act=products [L,NC]
+RewriteRule ^([a-z0-9-_]+)/page-([0-9-_]+)\.html$ index.php?op=estore&act=products&slug=$1&pg=$2 [L,NC]
+RewriteRule ^([a-z0-9-_]+)/([a-z0-9-_]+)-p([0-9-_]+)\.html$ index.php?op=estore&act=product&catslug=$1&slug=$2&id=$3 [L,NC]
+
+#project
+RewriteRule ^du-an/([a-z0-9-_]+)\.html$ index.php?op=estore&act=projectdetail&slug=$1 [L,NC]
+RewriteRule ^du-an/$ index.php?op=estore&act=projects [L,NC]
+
+#Static
+RewriteRule ^([a-z0-9-_]+)\.htm$ index.php?op=estore&act=static&slug=$1 [L,NC]
+
+RewriteRule ^authimg/authimg.gif authimg.php [L,NC]

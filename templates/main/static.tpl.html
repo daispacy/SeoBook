@@ -1,0 +1,28 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+             {include file='left-category.tpl.html' title='left-category'}
+           
+           
+             {include file='banner-left-div.tpl.html' title='banner-left-div'}
+</div> <!--End Left Columns-->
+            <div class="rightcol">
+		{include file='navigation.tpl.html' title='footer'}
+        {if $aboutusItem}
+        <div class="detail-blog-post">
+							<h3>{$aboutusItem->getTitle($lang)}</h3>
+							
+                             <p>{$aboutusItem->getDetails($lang)}</p>	
+                            					
+</div>
+{else}
+{$messages.notdata}
+{/if}
+		</div> <!-- right-->
+		</div>
+	</div>
+
+
+{include file='footer.tpl.html' title='site-header'}

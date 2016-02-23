@@ -1,0 +1,139 @@
+{include file='header.tpl.html' title='site-header'}
+{if isset($adItems) && $adItems}
+{if $adItems.1}
+<div class="slider slide-loader clearfix">
+	<ul class="slides">
+        {foreach from=$adItems.1 item=ad key=i}
+        {assign var=url_logo value=$ad.url_logo}
+        {assign var=url_logo_type value=$ad.url_logo_type}
+        {assign var=logo value=$ad.logo}
+        {assign var=logo_type value=$ad.logo_type}
+        {assign var=width value=$ad.width}
+        {assign var=height value=$ad.height}
+        {assign var=url value=$ad.url}
+        {if $url_logo_type == 'img'}
+		<li>
+			{if $url}<a href="{$url}">{/if}<img style="width:100%"  src="{if isset($url_logo) && $url_logo}{$url_logo}{else}/upload/{$storeId}/resources/l_{$logo}{/if}" />{if $url}</a>{/if}
+            <!--
+			<div class="flex-caption">
+				<p>Endless summer deals</p>
+				<div class="clearboth"></div>
+				<p>Don't miss out!</p>
+			</div>-->
+		</li>
+        {/if}
+		{/foreach}
+	</ul>
+<!-- END .slider -->
+</div>
+{/if}
+{/if}
+		
+		<!-- BEGIN .section -->
+		<div class="section section-mini">
+			<h2 class="site-intro">{if $estore->getDescription()}{$estore->getDescription()}{/if}</h2>
+		<!-- END .section -->
+		</div>
+		
+        {if $listCateProducts}
+        {assign var=i value=0}
+		<!-- BEGIN .section -->   
+        {foreach from=$listCateProducts item=cate}   
+        {assign var=products value=$cate->getAllProducts()}  
+        {if $products}
+		<div class="section-mini2">
+			
+			<div class="tag-title-wrap clearfix">
+				<a href="{$cate->getUrl()}"><h4 class="tag-title">{$cate->getName()}</h4></a>
+			</div>			
+			<ul class="columns-4 clearfix" id="sect{$i}">
+                {foreach key=no from=$products item=pro}
+				<li class="col4">
+					{if $pro->getAvatar()}
+                    {if $pro->getSpecial() || $pro->getHome() || $pro->getSeller()}<div class="{if $pro->getSpecial()}deal{elseif $pro->getHome()}offer{else}seller{/if}_icon"></div>{/if}
+                    <a href="{$pro->getUrl()}"><img src="/upload/{$storeId}/products/l_{$pro->getAvatar()}" alt="{$pro->getName()}" class="full-image product-image" data-tooltip="tooltip-{$pro->getId()}"/></a>
+                    
+                    {/if}
+					<p class="product-title"><a href="{$pro->getUrl()}">{$pro->getName()}</a></p>
+                    <!--<p class="product-price">{$pro->getCatName()}</p>-->
+					{if $pro->getMarketPrice()}<p class="product-price">{$pro->getMarketPrice()}</p>{/if}
+					<!--<p class="product-button clearfix"><a href="cart.html" class="button2">Add to Cart &raquo;</a></p>-->
+				</li>
+				{/foreach}
+			</ul>
+           
+			
+		<!-- END .section -->
+		</div>
+        {assign var=i value=$i+1}
+        {/if}
+        {/foreach}
+        {/if}
+        
+        {if $projectItems}
+        <!-- BEGIN .section -->        
+		<div class="section-mini2">
+			
+			<div class="tag-title-wrap clearfix">
+				<h4 class="tag-title">Dự án</h4>
+			</div>
+			
+			<ul class="columns-4 clearfix">
+                {foreach key=no from=$projectItems item=item}
+				<li class="col4">
+					{if $item->getAvatar()}<a href="{$item->getUrl()}"><img src="/upload/{$storeId}/projects/l_{$item->getAvatar()}" alt="{$item->getTitle()}" class="full-image product-image" /></a>{/if}
+					<p class="product-title"><a href="{$item->getUrl()}">{$item->getTitle()}</a></p>
+					
+					<!--<p class="product-button clearfix"><a href="cart.html" class="button2">Add to Cart &raquo;</a></p>-->
+				</li>
+				{/foreach}
+			</ul>
+            
+			
+		<!-- END .section -->
+		</div>
+        {/if}
+        {literal}
+   
+    <script>
+    function realImgDimension(img) {
+        var i = new Image();
+        i.src = img.src;
+        return {
+            naturalWidth: i.width, 
+            naturalHeight: i.height
+        };
+    }
+    function setHeightLi4(){
+        var i =0;
+       $('.section-mini2').each(function(){
+            var images = $(this).find("li").map(function() { 
+                    //var realSize = realImgDimension(this);
+                    return $(this).height(); 
+                
+                }).get();
+            var maxValueInArray = Math.max.apply(Math, images);
+            console.log(images);
+            console.log(maxValueInArray);
+            console.log(i);
+            $("#sect"+ i +" li.col4").css("height",maxValueInArray);  
+            i++;
+        });
+    }
+    $(window).load(function(){
+        
+           setHeightLi4();
+        
+        
+    });
+    //var myImage = document.getElementById('myImage');
+           //var myImage = document.getElementsByTagName('img');
+            //myImage.addEventListener('load', function() {
+                //var realSize = realImgDimension(this);
+            	//console.log('My width is: ', realSize.naturalWidth);
+            	//console.log('My height is: ', realSize.naturalHeight);
+            //});
+    </script>
+    {/literal}	
+
+{include file='footer.tpl.html' title='site-header'}

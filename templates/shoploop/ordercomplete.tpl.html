@@ -1,0 +1,68 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+{include file='right.tpl.html' title='site-header'}
+    <div class="twelve columns">
+
+                    <div class="formContent">
+<p><strong>Xin chúc mừng, đơn hàng của bạn đã được khởi tạo thành công!</strong></p>
+<form id="formOrder" name="formOrder" method="post" action="/">
+<fieldset>
+<p><strong>Thông tin đơn hàng của bạn:</strong></p>
+<p>Mã số đơn hàng: <span style="font-size:1.5em; font-weight:bold">{$orderId}</span></p>
+<p>Mật khẩu đơn hàng: {$orderPassword}</p>
+<p>Trạng thái đơn hàng: <strong>{$order->getStatusText()}</strong></p>
+<p>&nbsp;</p>
+{if $order->isWaiting()}
+<p>Chúng tôi đang xử lý đơn hàng này. Sau khi xác nhận thành công, quý khách sẽ nhận được thông báo thanh toán.</p>
+{/if}
+{if $order->isUnpaid()}
+<h2>Chọn phương thức thanh toán</h2>
+{assign var=sitePaymentMethods value=$estore->getProperty('payments')}
+<p>Xin quý khách vui lòng chọn một phương thức phù hợp để thanh toán cho đơn hàng.</p>
+ <div class="shoppingBag">
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tbody>
+{if $globalPaymentMethods && $sitePaymentMethods}
+<tr>
+<th width="80px;"><center>Chọn</center></th>
+<th>Phương thức thanh toán</th>
+</tr>
+{foreach from=$globalPaymentMethods item=payment key=i}
+{assign var=paymentId value=$payment->getId()}
+{if isset($sitePaymentMethods.$paymentId) && $sitePaymentMethods.$paymentId.enabled}
+<tr>
+<td><input type="radio" name="pm" value="{$paymentId}"{if $i eq 0} checked="checked"{/if} /></td>
+<td><strong>{$payment->getName()}</strong><br />
+<p>{$payment->getDescription()}</p>
+</td>
+</tr>
+{/if}
+{/foreach}
+{/if}
+</tbody>
+</table>
+</div>
+<br />
+<div class="submitForm">
+							<input type="hidden" name="act" value="payment" />
+							<input type="hidden" name="oId" value="{$orderId}" />
+							<input type="hidden" name="plus" value="" />
+							<label class="hidden-mobile"></label>
+                            <input class="red_btn button" type="submit" name="submit" value="Tiếp tục">
+                            <input class="gray_btn button" type="reset" name="Nhập lại" value="Thanh toán sau" >
+							<div class="clear"></div>
+</div>
+
+</p>
+{/if}
+</fieldset>
+</form>
+</div>
+		</div><!--end sixteen-->
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

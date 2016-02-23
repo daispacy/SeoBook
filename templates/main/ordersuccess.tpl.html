@@ -1,0 +1,70 @@
+{include file='headerindex.tpl.html' title='site-header'}
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+			</div> 
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num})</span>{/if}
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+             <div class="header">
+				<a href="#menu">Danh mục sản phẩm</a>
+			</div>
+            
+		{include file='navigation.tpl.html' title='footer'}
+        
+		</div> <!-- right-->
+		</div>
+	</div><!-- container -->
+
+<div class="container">
+
+
+<div class="content-full">
+                 <div class="path">
+            <ul>
+              <li class="current"> <span>1</span>
+                <p>{$messages.cart}</p>                
+              </li>
+              <li class="current"><span>2</span>
+                <p>{$messages.register_login}</p>
+                
+              </li>
+              <li class="current"><span>3</span>
+                <p>{$messages.infor_paid}</p>
+                </li>
+              <li class="current"><span>4</span>
+                <p>{$messages.confirm_order}</p>
+               </li>
+              <li class="current last"><span>5</span>
+                <p>{$messages.orderstep5}</p>
+                <img src="/{$templatePath}/{$userTemplate}/images/arrow-current.png">
+              </li>
+            </ul>
+          </div>   
+          <div class="sixteen columns">
+                      <div class="top">
+        <h3>Hoàn tất đơn hàng</h3>
+        </div>
+             <div class="login-cart">
+             <h2 style="color:#5f2117;">Xin chức mừng quý khách, đơn hàng đang đợi được duyệt. Xin vui lòng kiểm tra email: {$authCustomer->getEmail()} để xem chi tiết thông tin đơn hàng này. Chúng tôi sẽ liên hệ với quý khách. Xin cám ơn</h2>
+             </div>            
+
+</div>
+
+                    
+
+
+                </div>
+
+
+</div>
+
+
+{include file='footer.tpl.html' title='footer'}

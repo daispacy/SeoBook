@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html dir="ltr" lang="en-US" class="ie6"> <![endif]-->
+<!--[if IE 7]>    <html dir="ltr" lang="en-US" class="ie7"> <![endif]-->
+<!--[if IE 8]>    <html dir="ltr" lang="en-US" class="ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xml:lang="en" lang="en"> <!--<![endif]-->
+
+
+<!-- BEGIN head -->
+<head>
+
+	<!--Meta Tags-->
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+	<meta name="robots" content="index, follow" />
+	<meta name="keywords" content="{if $pageKeywords}{$pageKeywords|strip_tags}{else}{$estore->getKeywords()}{/if}" />
+	<meta name="description" content="{if $pageDescription}{$pageDescription|strip_tags}{else}{$estore->getDescription()}{/if}" />
+	<title>{if $pageTitle}{$pageTitle|strip_tags} - {/if}{$estore->getName()}</title>
+	<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+	
+    <meta name="author" content="">
+	<meta property="og:title" content="{if $pageTitle}{$pageTitle|strip_tags} - {/if}{if $act ne 'restaurant'}{$messages.web_title}{else}{$messages.site_name}{/if}{if $pageFix} - {$pageFix}{/if}" />
+	<meta property="og:type" content="website" />    
+	<meta property="og:url" content="{$url_link}" />
+	<meta property="og:site_name" content="{$site}" />
+	<meta property="og:description" content="{if $pageDescription}{$pageDescription|strip_tags} - {/if}{$messages.web_description}{if $pageFix} - {$pageFix}{/if}" />
+	<meta property="og:image:width" content="230"/>
+	<meta property="og:image:height" content="230"/>
+	  {if $act neq 'static'}
+		<meta property="og:image" content="http://{$domain}{if $estore}/gallery/0/resources/l_{$estore->getProperty('avatar')|regex_replace:'/( )/':'%20'}{elseif $objectItem}/gallery/0/resources/l_{$objectItem->getProperty('avatar')|regex_replace:'/( )/':'%20'}{else}/gallery/0/resources/{$logo}{/if}" /> 
+	{/if}
+
+	<!--Stylesheets-->
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/superfish.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/prettyPhoto.css" type="text/css" media="all" />
+	<link type="text/css" href="/{$templatePath}/{$userTemplate}/css/jquery.ui.datepicker.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/style.css?v=47" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/responsive.css?v=1" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/flexslider.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/colours/green.css" type="text/css"  media="all" />	
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/slimbox2.css" type="text/css"  media="all" />       
+    <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/css/product.css" type="text/css"  media="all" />        
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic,700' rel='stylesheet' type='text/css'>
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/{$templatePath}/{$userTemplate}/images/favicon.ico?v=1" type="image/x-icon" />
+
+	<!--JavaScript-->
+	<script type="text/javascript" src="/{$templatePath}/{$userTemplate}/js/jquery.min.js"></script>
+	<script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/superfish.js'></script>
+	<script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/jquery.prettyPhoto.js'></script>
+	<script type="text/javascript" src="/{$templatePath}/{$userTemplate}/js/jquery.flexslider-min.js"></script>
+    {if $act eq 'product'}    
+        <script type="text/javascript" src="/{$templatePath}/{$userTemplate}/js/jquery.zoom.js"></script>
+    {/if}
+	<script type="text/javascript" src="/{$templatePath}/{$userTemplate}/js/scripts.js?v=12"></script>
+	
+    
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<script type="text/javascript" src="/{$templatePath}/{$userTemplate}/js/selectivizr-min.js"></script>
+	<![endif]-->
+    <div id="fb-root"></div>
+{literal}
+<!--
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=357713597593501";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61953134-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+{/literal}
+<!-- END head -->
+</head>
+
+<!-- BEGIN body -->
+<body>
+	
+	<!-- BEGIN .wrapper -->
+	<div class="wrapper">
+		
+		<!-- BEGIN .topbar -->
+		<div class="topbar clearfix">
+			
+			<!-- BEGIN .social-icons -->
+			<ul class="social-icons">
+			
+				<li><a href="{$estore->getProperty(link_fb)}"><span id="facebook_icon"></span></a></li>
+				<li><a href="{$estore->getProperty(link_gg)}"><span id="googleplus_icon"></span></a></li>
+			
+			<!-- END .social-icons -->
+			</ul>
+			
+			<!-- BEGIN .topbar-right -->
+			<div class="topbar-right clearfix">
+				
+				<ul class="clearfix">
+					<li><a href="/"><img width="100px" height="auto" src="{$estore->getProperty('store_logo')}" /></a></li>					
+				</ul>
+
+			</div>
+            <div class="topbar-right clearfix">
+				
+				<ul class="clearfix">
+					<li><a href="/">{$estore->getName()}</a></li>					
+				</ul>
+
+			</div>
+		<!-- END .topbar -->
+		</div>
+		
+		<!-- BEGIN #site-title 
+		<div id="site-title">
+			<a href="/">
+				<img width="130px" height="auto" src="{$estore->getProperty('store_logo')}" />                            
+			</a>
+  	        <a href="/">				  
+                <h1>{$estore->getName()}</h1>             
+			</a>
+            
+		
+		</div>-->
+		
+		<!-- BEGIN .main-menu-wrapper -->
+		<div id="main-menu-wrapper" class="clearfix">
+			
+			<ul id="main-menu" class="fl">
+                {if $menuItems.2}
+                {foreach from=$menuItems.2.0 key=i item=menu}            
+             {assign var=submenuId value=$menu.id}
+             {assign var=children value=''}
+                    
+                    <li {if isset($menId) && $menId > 0}{if $menId eq $menu.id} class="current_page_item" {/if} {else}{if $i eq 0} class="current_page_item" {/if}{/if}><a title="{$menu.name}" href="{$menu.url}">{$menu.name}</a>
+                    {if $menu.id eq 41}
+                    {if  $productCategoryItems}
+                    <ul>
+                        
+                        {foreach from=$productCategoryItems.0 item=itemRoot}
+                        {assign var=itemRootId value=$itemRoot.id}
+                        {assign var=children value=''}
+                        {if isset($productCategoryItems.$itemRootId)}
+                        {assign var=children value=$productCategoryItems.$itemRootId}
+                        {/if}                        
+                         <li><a href="{$itemRoot.url}" title="{$itemRoot.name}">{$itemRoot.name}</a>
+                            {if $children}
+                            <ul>
+                            {foreach from=$children item=child}
+                            <li><a href="{$child.url}" title="{$child.name}">{$child.name}</a>
+                            {/foreach}
+                            </ul>
+                            {/if}
+                         </li>
+                        
+                         {/foreach}
+                    </ul>
+                    {/if}
+                    {/if}
+                    </li>
+                {/foreach}
+                {/if}
+                <!--
+				<li class="current_page_item"><a href="index.html">Home</a></li>
+				<li><a href="products.html">Products</a>
+					<ul>
+						<li><a href="product-single.html">Cleansers</a></li>
+						<li><a href="product-single.html">Exfoliators &amp; Masks</a></li>
+						<li><a href="product-single.html">Toners</a></li>
+						<li><a href="product-single.html">Moisturisers</a>
+							<ul>
+								<li><a href="product-single.html">Hands</a></li>
+								<li><a href="product-single.html">Face</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="testimonials.html">Testimonials</a></li>
+				<li><a href="typography.html">About</a>
+					<ul>
+						<li><a href="typography.html">Typography</a></li>
+						<li><a href="js-elements.html">JS Elements</a></li>
+					</ul>
+				</li>
+				<li><a href="contact.html">Contact</a></li>	
+                -->
+			</ul>
+			
+			<form method="post" action="/" id="menu-search" class="fr">
+				<input type="hidden" value="search" name="act" />
+                {literal}<input type="text"  value="{/literal}{if isset($kw) && $kw}{$kw}{else}Tìm sản phẩm{/if}{literal}" onFocus="if(this.value == 'Tìm sản phẩm') {this.value=''}" onBlur="if(this.value == ''){this.value ='Tìm sản phẩm'}" name="kw" />{/literal}
+			</form>
+		
+		<!-- END .main-menu-wrapper -->	
+		</div>

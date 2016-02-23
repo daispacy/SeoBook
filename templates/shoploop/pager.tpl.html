@@ -1,0 +1,17 @@
+{if isset($rowsPages.pages) && $rowsPages.pages > 1}
+<div class="pagination">
+
+				{foreach from=$pager item=pageItem}
+                {if $pageItem.current eq 1}
+                {assign var=page value=$pageItem.name}
+                <a class="activePage" href="#">{$pageItem.name}</a>                 
+                {else}
+                <a href="{$pageItem.url}">{$pageItem.name}</a> 
+                {/if}
+                
+                {/foreach}
+                
+                
+			
+</div><!--end pagination-->
+{/if}

@@ -1,0 +1,178 @@
+	<!-- start the footer area-->
+	<footer>
+		<div class="container">
+			<div class="four columns">
+				<div id="info">
+					<h3>Thông tin</h3>
+					<ul>
+						<li><a href="/about.htm" title="Giới thiệu">Giới thiệu</a></li>
+						<li><a href="/news.html" title="Tin tức">Tin tức</a></li>
+                        <li><a href="/contact.html" title="Liên hệ">Liên hệ</a></li>
+					</ul>
+				</div>
+			</div><!--end three-->
+
+			<div class="four columns">
+				<div id="customer_serices">
+					<h3>Dịch vụ</h3>
+					<ul>
+						<li><a href="/terms-of-use.htm" title="Thỏa thuận sử dụng">Thỏa thuận sử dụng</a></li>
+		<li><a href="/how-to-order.htm" title="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+		<li><a href="/how-to-pay.htm" title="Hướng dẫn thanh toán">Hướng dẫn thanh toán</a></li>
+					</ul>
+				</div>
+			</div><!--end three-->
+            <!--
+			<div class="three columns">
+				<div id="extra">
+					<h3>Extra Stuff</h3>
+					<ul>
+						<li><a href="#">Brands</a></li>
+						<li><a href="#">Gift Vouchers</a></li>
+						<li><a href="#">Affiliates</a></li>
+						<li><a href="#">Specials</a></li>
+					</ul>
+				</div>
+			</div><!--end three-->
+
+			<div class="four columns">
+				<div id="my_account">
+					<h3>Tài khoản</h3>
+					<ul>
+						{if isset($authUser) && $authUser}
+                	<li><a href="/account.html" >{$authUser->getFullName()}</a></li>    
+                    <li><a href="/logout.html" >Thoát</a></li>                
+                    {else}
+                    <li class="login"><a href="/login.html" >Đăng nhập</a></li>
+                    <li class="login"><a href="/register.html" >Đăng ký</a></li>
+                    {/if}
+                    <li><a href="/cart.html">Giỏ hàng</a></li>
+					</ul>
+				</div>
+			</div><!--end three-->
+
+			<div class="four columns">
+				<div id="delivery" class="clearfix">
+					<h3>{$estore->getName()}</h3>
+					<ul>
+                        <li class="f_adrress">Địa chỉ: {$estore->getAddress()}</li>
+						<li class="f_call">Điện thoại: {$estore->getTel()}</li>
+						<li class="f_call">Di động: {$estore->getCell()}</li>
+						<li class="f_mail"><a href="mailto:{$estore->getEmail()}">{$estore->getEmail()}</a></li>						
+					</ul>
+				</div>
+			</div><!--end four-->
+
+		</div><!--end container-->
+
+
+	
+
+
+		<div class="container">
+			<div class="sixteen">
+				<p class="copyright">
+					Copyright &copy; {$smarty.now|date_format:'%Y'} {$estore->getName()}, All rights reserved.<br>
+					Powered by <a target="_blank" href="http://{$domain}">{$domain}</a>
+				</p>
+				<ul class="socials">
+					
+					<li><a class="facebook" href="{$estore->getProperty('link_fb')}">face</a></li>
+					<li><a class="googlep" href="{$estore->getProperty('link_gg')}">google+</a></li>
+					
+				</ul>
+			</div><!--end sixteen-->
+		</div><!--end container-->
+
+	</footer>
+	<!--end the footer area -->
+
+
+
+
+
+	<!-- Sidebar Widget
+	================================================== -->
+	<div id="sideWidget">
+		<div class="bgPatterns">
+			<h4>Solid Colors</h4>
+			<a href="#" style="background:#fff">white</a>
+			<a href="#" style="background:#fafafa">light_gray</a>
+			<a href="#" style="background:#f7f7f7">gray</a>
+			<br><br>
+
+			<h4>Body Patterns</h4>
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/white_carbon.png) repeat">white_carbon</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/circles.png) repeat">circles</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/cubes.png) repeat">cubes</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/exclusive_paper.png) repeat">exclusive_paper</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/gplaypattern.png) repeat">gplaypattern</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/large_leather.png) repeat">large_leather</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/lghtmesh.png) repeat">lghtmesh</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/light_wool.png) repeat">light_wool</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/lil_fiber.png) repeat">lil_fiber</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/snow.png) repeat">snow</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/soft_wallpaper.png) repeat">soft_wallpaper</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/weave.png) repeat">weave</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/white_brick_wall.png) repeat">white_brick_wall</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/white_paperboard.png) repeat">white_paperboard</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/white_tiles.png) repeat">white_tiles</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/wall4.png) repeat">wall4</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/furley_bg.png) repeat">furley_bg</a>
+
+			<a href="#" style="background:url(/{$templatePath}/{$userTemplate}/images/bg/extra_clean_paper.png) repeat">extra_clean_paper</a>
+
+		</div>
+		<a class="WidgetLink" href="#open">+</a>
+	</div>
+	<!-- End Sidebar Widget-->
+
+
+
+
+	<!-- JS
+	================================================== -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!-- jQuery.dropKick plug-in -->
+   <!-- <link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/js/dropKick/dropkick.css">
+	<script src="/{$templatePath}/{$userTemplate}/js/dropKick/jquery.dropkick-1.0.0.js"></script>-->
+	<!-- jQuery.nicescroll plug-in -->
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.nicescroll.js"></script>
+	<!-- jQuery.tweet plug-in -->
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.tweet.js"></script>
+	<!-- jQuery.cycle2 plug-in -->
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.cycle2.min.js"></script>
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.cycle2.tile.min.js"></script>
+	<!-- jQuery.jcarousellite plug-in -->
+	<script src="/{$templatePath}/{$userTemplate}/js/jcarousellite_1.0.1.min.js"></script>
+	<!-- jQuery.fancybox plug-in -->
+	<link rel="stylesheet" href="/{$templatePath}/{$userTemplate}/js/fancybox/jquery.fancybox-1.3.4.css">
+	<script src="/{$templatePath}/{$userTemplate}/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<!-- jQuery.etalage plug-in -->
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.etalage.min.js"></script>
+	<!-- jQuery.cookie plug-in -->
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.cookie.js"></script>
+	<!--my custom code-->	
+	<script src="/{$templatePath}/{$userTemplate}/js/main.js"></script>
+	
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

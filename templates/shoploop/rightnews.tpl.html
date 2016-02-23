@@ -1,0 +1,25 @@
+<aside class="five columns">
+            {if $hotNewsItems}											
+		      <div class="met_sidebar_block" style="">
+		          <h2 class="met_sidebar_header"><a href="#">Tin nóng</a></h2>
+				    <ul class="met_clean_list met_popular_posts clearfix">
+                    {foreach from=$hotNewsItems item=item key=i}
+                    {if $i<10}
+                    {assign var=avatar value=$item->getProperty('avatar')}
+		              <li>
+                      {if $avatar}
+		                  <a href="{$item->getUrl()}" class="met_popular_post_image">
+							<img src="/uploads/{$storeId}/articles/a_{$avatar}" alt="{$item->getTitle()}"/>
+						</a>
+                        {/if}
+						<a href="{$item->getUrl()}" class="met_popular_post_title met_color_transition">{$item->getTitle()}</a>
+					</li>
+                    {/if}
+					{/foreach}				
+					</ul>
+				 
+			
+			</div><!-- Popular Posts ENDS -->
+            {/if}
+
+</aside><!--end aside five-->

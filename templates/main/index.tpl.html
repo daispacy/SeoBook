@@ -1,0 +1,363 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+  
+ {if $productHot}          
+<div class="left-product-col">
+		<div class="box_head">
+				<h4>{$messages.product_hot}</h4>
+					<div class="pagers center">
+						<a class="prev featuredPrev1" href="#prev">Prev</a>
+						<a class="nxt featuredNxt2" href="#nxt">Next</a>
+					</div>
+				</div><!--end box_head -->
+
+				<div class="cycle-slideshow" 
+		        data-cycle-fx="scrollHorz"
+		        data-cycle-timeout=0
+		        data-cycle-slides="> ul"
+		        data-cycle-prev="div.pagers a.featuredPrev1"
+		        data-cycle-next="div.pagers a.featuredNxt2"
+		        >
+                {foreach key=no from=$productHot item=item}
+                {if $no%5 == 0}
+                <ul class="product_left">
+                    <li>
+							<div class="img-left">
+                            {if $item->getAvatar()}
+								<a href="#">
+									<img src="/upload/{$storeId}/products/m_{$item->getAvatar()}" alt="product">
+								</a>
+                                {/if}
+							</div>
+                            <div class="product_left_info">
+							<p class="product-title"><a href="{$item->getUrl($lang)}">{$item->getName($lang)}</a></p>
+                            <p class="product-price">
+                            <span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                           	</p>
+                            </div>
+						</li>
+                {elseif $no%5 == 4}
+                	 <li>
+							<div class="img-left">
+								{if $item->getAvatar()}
+								<a href="#">
+									<img src="/upload/{$storeId}/products/m_{$item->getAvatar()}" alt="product">
+								</a>
+                                {/if}
+							</div>
+                            <div class="product_left_info">
+							<p class="product-title"><a href="{$item->getUrl($lang)}">{$item->getName($lang)}</a></p>
+                            <p class="product-price">
+                            <span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                           	</p>
+                            </div>
+						</li>
+                        </ul>
+                {else}
+                 <li>
+							<div class="img-left">
+								{if $item->getAvatar()}
+								<a href="#">
+									<img src="/upload/{$storeId}/products/m_{$item->getAvatar()}" alt="product">
+								</a>
+                                {/if}
+							</div>
+                            <div class="product_left_info">
+							<p class="product-title"><a href="{$item->getUrl($lang)}">{$item->getName($lang)}</a></p>
+                            <p class="product-price">
+                            <span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                           	</p>
+                            </div>
+						</li>
+                {/if}
+                {/foreach}
+					
+				</div>
+			</div>
+            {/if}
+            {include file='banner-left-div.tpl.html' title='banner-left-div'}
+          	{include file='tag-left-div.tpl.html' title='tag-left-div'}
+           <!--End Tags-->
+          	{include file='banner-left.tpl.html' title='banner-left'}
+          </div> <!--End Left Columns-->
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">{$messages.categories}</a>
+				
+			</div>
+				<div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+            {foreach from=$adItems.4 item=ad key=i}
+        {assign var=url_logo value=$ad.url_logo}
+                        {assign var=url_logo_type value=$ad.url_logo_type}
+                        {assign var=logo value=$ad.logo}
+                        {assign var=logo_type value=$ad.logo_type}
+                        {assign var=width value=$ad.width}
+                        {assign var=height value=$ad.height}
+                        {assign var=url value=$ad.url}
+         <a href="{if $url}$url{else}#{/if}"><img src="{if isset($url_logo) && $url_logo}{$url_logo}{else}/upload/{$storeId}/resources/l_{$ad.logo}{/if}" data-thumb="{if isset($url_logo) && $url_logo}{$url_logo}{else}/upload/{$storeId}/resources/l_{$ad.logo}{/if}" alt=""></a>
+         {/foreach}
+            
+            </div>
+            <div id="htmlcaption" class="nivo-html-caption">
+            </div>
+
+        </div> <!-- Banner-->
+		<div class="banner-2 hidden-mobile">
+        {foreach from=$adItems.5 item=ad key=i}
+        {assign var=url_logo value=$ad.url_logo}
+                        {assign var=url_logo_type value=$ad.url_logo_type}
+                        {assign var=logo value=$ad.logo}
+                        {assign var=logo_type value=$ad.logo_type}
+                        {assign var=width value=$ad.width}
+                        {assign var=height value=$ad.height}
+                        {assign var=url value=$ad.url}
+         <a href="{if $url}$url{else}#{/if}"><img src="{if isset($url_logo) && $url_logo}{$url_logo}{else}/upload/{$storeId}/resources/l_{$ad.logo}{/if}" {if $i > 1}class="last"{/if} alt="{$i}"></a>
+         {/foreach}
+       </div>
+		
+        <div class="hot-products">
+			<div class="latest">
+				
+				<div class="box_head">
+					<h3>{$messages.product_good_price}</h3>
+					<div class="pagers center">
+						<a class="prev latest_prev" href="#prev">Prev</a>
+						<a class="nxt latest_nxt" href="#nxt">Next</a>
+					</div>
+				</div><!--end box_head -->
+
+				<div class="cycle-slideshow" 
+		        data-cycle-fx="carousel"
+		        data-cycle-timeout=10000
+                data-cycle-pause-on-hover="true"
+		        data-cycle-slides="li"
+		        data-cycle-prev="div.pagers a.latest_prev"
+		        data-cycle-next="div.pagers a.latest_nxt"
+                data-cycle-carousel-fluid="true"
+		        >
+
+					<ul class="product_show">
+                    {foreach key=no from=$productSale item=item}
+                    {assign var=photos value=$item->getProperty('photos')}
+						<li>
+							<div class="img">
+                            {if $item->getMarketPrice() > 999}
+                            <div class="offer_icon"><p class="price">-{($item->getPrice()-$item->getMarketPrice())/($item->getPrice())*100|number_format:0:",":"."}%</p></div>
+                            {/if}
+                            {if $item->getAvatar()}
+								<a href="{$item->getUrl($lang)}">
+									<img src="/upload/{$storeId}/products/m_{$item->getAvatar()}" 
+                                    width="175" height="215" alt="product"></a>
+                                {/if}
+                                {if count($photos)>1}
+                               <div class="product-slider" style="display:none">	
+										{foreach from=$photos item=photo}
+                                		<a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/products/m_{$photo}" data-thumb="/upload/{$storeId}/products/m_{$photo}" width="175" height="215"  alt="{$item->getName($lang)}" /></a>
+										{/foreach}                						
+            					</div>
+								
+								{/if}
+							</div>
+							
+                            <a class="product-title" href="{$item->getUrl($lang)}">{$item->getName($lang)}</a>
+                            
+                            <p class="product-price">
+                            <span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                            <br>
+                            {if $item->getMarketPrice() > 1000}
+							<span class="old">{$item->getMarketPrice()|number_format:0:",":"."} VND</span>
+                           	{/if}
+                            </p> 
+						</li>
+						{/foreach}
+					
+					
+				</div>
+			</div><!--end latest-->
+		</div><!--end hot product-->
+        <div class="new-products">
+        <div class="top">
+        <h3>{$messages.product_new}</h3>
+        <a href="#" class="more">
+					{$messages.read_more} <img src="/{$templatePath}/{$userTemplate}/images/icons/more.png" alt="product">
+		</a>
+        </div>
+        <ul class="new-products-list hidden-mobile">
+        {foreach key=no from=$productNew item=item}
+                {assign var=photos value=$item->getProperty('photos')}
+						<li {if $no%5==4}class="last"{/if}>
+							<div class="img">
+                            {if $item->getMarketPrice() > 999}
+                            <div class="offer_icon"><p class="price">-{($item->getPrice()-$item->getMarketPrice())/($item->getPrice())*100|number_format:0:",":"."}%</p></div>
+                            {/if}
+                            {if $item->getAvatar()}
+								<a href="{$item->getUrl($lang)}">
+									<img src="/upload/{$storeId}/products/m_{$item->getAvatar()}" 
+                                    width="175" height="215" alt="product"></a>
+                                {/if}
+                                {if count($photos)>1}
+                               <div class="product-slider" style="display:none">	
+										{foreach from=$photos item=photo}
+                                		<a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/products/m_{$photo}" data-thumb="/upload/{$storeId}/products/m_{$photo}" width="175" height="215"  alt="{$item->getName($lang)}" /></a>
+										{/foreach}                						
+            					</div>
+								
+								{/if}
+							</div>
+							<p class="product-title"><a href="{$item->getUrl($lang)}">{$item->getName($lang)}</a></p>
+                            <p class="product-price">
+                            <span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                            <br>
+                            {if $item->getMarketPrice() > 1000}
+							<span class="old">{$item->getMarketPrice()|number_format:0:",":"."} VND</span>
+                           	{/if}
+                            </p> 
+						</li>
+         {/foreach}
+         </ul>
+                    
+        <div class="cycle-slideshow show-mobile new-products-mobile"
+    data-cycle-fx="scrollHorz"
+	data-cycle-timeout=0
+	data-cycle-slides="> li"
+	data-cycle-prev="div.pagers a.featuredPrev"
+	data-cycle-next="div.pagers a.featuredNxt"
+    >
+						{foreach key=no from=$productNew item=item}
+                {assign var=photos value=$item->getProperty('photos')}
+						<li {if $no%5==4}class="last"{/if}>
+							<div class="img">
+                            {if $item->getMarketPrice() > 999}
+                            <div class="offer_icon"><p class="price">-{($item->getPrice()-$item->getMarketPrice())/($item->getPrice())*100|number_format:0:",":"."}%</p></div>
+                            {/if}
+                            {if $item->getAvatar()}
+								<a href="{$item->getUrl($lang)}">
+									<img src="/upload/{$storeId}/products/m_{$item->getAvatar()}" 
+                                    width="175" height="215" alt="product"></a>
+                                {/if}
+                                {if count($photos)>1}
+                               <div class="product-slider" style="display:none">	
+										{foreach from=$photos item=photo}
+                                		<a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/products/m_{$photo}" data-thumb="/upload/{$storeId}/products/m_{$photo}" width="175" height="215"  alt="{$item->getName($lang)}" /></a>
+										{/foreach}                						
+            					</div>
+								
+								{/if}
+							</div>
+							<p class="product-title"><a href="{$item->getUrl($lang)}">{$item->getName($lang)}</a></p>
+                            <p class="product-price">
+                            <span class="current">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                            <br>
+                            {if $item->getMarketPrice() > 1000}
+							<span class="old">{$item->getMarketPrice()|number_format:0:",":"."} VND</span>
+                           	{/if}
+                            </p> 
+						</li>
+         {/foreach}
+         
+</div>
+<div class="pagers center show-mobile">
+						<a class="prev featuredPrev" href="#prev">Prev</a>
+						<a class="nxt featuredNxt" href="#nxt">Next</a>
+					</div>
+        </div>
+        <div class="index-other">
+        <div class="other-left hidden-mobile">
+        <div class="top">
+        <h3>{$messages.hint_shopping}</h3>
+        </div>
+                
+        {if $messages.product_hint_1}
+       	<div class="hint-products">
+        <img src="/{$templatePath}/{$userTemplate}/images/products/product-hint-1.png" alt="product">
+        <ul class="hint-list">
+        {foreach from=$messages.product_hint_1 item=item key=i}
+        <li><a href="javascript:search('{$i}')">{$item}</a></li>
+        {/foreach}
+        </ul>
+        </div>
+        {/if}
+        {if $messages.product_hint_2}
+        <div class="hint-products">
+        <img src="/{$templatePath}/{$userTemplate}/images/products/product-hint-2.png" alt="product">
+        <ul class="hint-list">
+        {foreach from=$messages.product_hint_2 item=item key=i}
+        <li><a href="javascript:search('{$i}')">{$item}</a></li>
+        {/foreach}
+        </ul>
+        </div>
+        {/if}
+        
+        {if $messages.product_hint_3}
+        <div class="hint-products no-border">
+        <img src="/{$templatePath}/{$userTemplate}/images/products/product-hint-3.png" alt="product">
+        <ul class="hint-list">
+        {foreach from=$messages.product_hint_3 item=item key=i}
+        <li><a href="javascript:search('{$i}')">{$item}</a></li>
+        {/foreach}
+        </ul>
+        </div>
+        {/if}
+         {if $messages.product_hint_4}
+        <div class="hint-products no-border">
+        <img src="/{$templatePath}/{$userTemplate}/images/products/product-hint-4.png" alt="product">
+        <ul class="hint-list">
+        {foreach from=$messages.product_hint_4 item=item key=i}
+        <li><a href="javascript:search('{$i}')">{$item}</a></li>
+        {/foreach}
+        </ul>
+        </div>
+        {/if}
+        
+        </div> <!-- End other left-->
+        <div class="other-right">
+        <div class="top">
+        <h3>{$messages.hot_news}</h3>
+        </div>
+        {foreach key=no from=$articleIndex item=item}
+        {assign var=avatar value=$item->getProperty('avatar')}
+        {if $no==0}
+        <div class="top-news">
+        	<a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/articles/l_{$avatar}" alt="{$item->getTitle($lang)}"></a> 
+            <p class="title"><a href="{$item->getUrl($lang)}">{$item->getTitle($lang)}</a></p>
+            <p>{$item->getSapo()}</p>
+    	</div>
+        {elseif $no==1}
+        <div class="other-news">
+        <ul>
+        <li><a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/articles/a_{$avatar}" alt="{$item->getTitle($lang)}"></a>  
+            <p class="title"><a href="{$item->getUrl($lang)}"><strong>{$item->getTitle($lang)}</strong></a></p>
+            <span class="date">{$item->getDateCreated()|date_format:'h:i A | d/m'}</span>
+        </li>
+        {elseif $no==2}
+         <li><a href="{$item->getUrl($lang)}"><img src="/upload/{$storeId}/articles/l_{$avatar}" alt="{$item->getTitle($lang)}"></a> 
+            <p class="title"><a href="{$item->getUrl($lang)}"><strong>{$item->getTitle($lang)}</strong></a></p>
+            <span class="date">{$item->getDateCreated()|date_format:'h:i A | d/m'}</span>
+        </li>
+        </ul>
+        </div>
+        {/if}
+        {/foreach}
+       
+        
+        </div>
+        </div>
+        
+        </div>
+        </div>
+		</div> <!-- container -->
+	
+{include file='footer.tpl.html' title='site-footer'}

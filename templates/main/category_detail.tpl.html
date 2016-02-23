@@ -1,0 +1,407 @@
+{include file='headerindex.tpl.html' title='site-header'}
+
+
+
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+			</div> 
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span>
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">{$messages.categories}</a>
+			</div>
+            
+		{include file='navigation.tpl.html' title='footer'}
+        
+		</div> <!-- right-->
+		</div>
+	</div><!-- container -->
+
+<div class="container">
+
+{if $item}
+<div class="content-full">
+                    <div class="product-detail">
+
+                        <div class="product-detail-inner">
+                            <div class="product-visual">
+                                <div class="photos-2" id="photo-2">
+                                    <div class="spinner" id="spinner" style="display: none;">
+                                        <div class="rect1"></div>
+                                      <div class="rect2"></div>
+                                      <div class="rect3"></div>
+                                      <div class="rect4"></div>
+                                      <div class="rect5"></div>
+                                    </div>
+                                    <div class="list-thumbs-3  hidden-mobile" id="list-pro-thumb">
+
+                                        <div class="list-thumbs-3-inner lstContent">
+                                            <ul>
+                                                {if $item->getColors(1)}
+                                                {assign var=albumPresent value=$item->getColors(1)}
+                                                {assign var=photos value=$albumPresent->getProperty('photos')}
+                                                {foreach from=$photos item=photo key=i}
+                                                <li {if $i==0}class="current" {/if}>
+                                                    <a href="/upload/1/products/l_{$photo}" data-src="/upload/1/products/l_{$photo}">
+                                                        <img width="90" height="110" alt="" src="/upload/1/products/m_{$photo}" />
+                                                    </a>
+                                                </li>
+                                                {/foreach}
+                                                {/if}                                                	
+                                            </ul>
+                                        </div>
+                                        <div class="list-thumbs-3-button">
+                                            <div class="btn-up">
+                                                <a href="#">
+                                                    <img src="/{$templatePath}/{$userTemplate}/images/flex-up.png" width="92" height="12" alt="" />
+                                                </a>
+                                            </div>
+                                            <div class="btn-down">
+                                                <a href="#">
+                                                    <img src="/{$templatePath}/{$userTemplate}/images/flex-down.png" width="92" height="12" alt="" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="photos-visual  hidden-mobile">
+                                        <div class="photos-zoom">
+                                            {if $item->getColors(1)}
+                                                {assign var=albumPresent value=$item->getColors(1)}
+                                                {assign var=photos value=$albumPresent->getProperty('photos')}
+                                            <a class="zoom-product" href="/upload/1/products/l_{$photos.0}" title="{$item->getName($lang)}">
+                                            <img alt="" src="/upload/1/products/l_{$photos.0}" width="410" height="500"/>
+                                            </a>
+                                            {/if} 
+                                        </div>
+                                    </div>
+                                <div class="slider-wrapper theme-default">
+                                    <div id="sliderProduct" class="nivoSlider show-mobile">
+                                        {if $item->getColors(1)}
+                                            {assign var=albumPresent value=$item->getColors(1)}
+                                            {assign var=photos value=$albumPresent->getProperty('photos')}
+                                            {foreach from=$photos item=photo key=i}
+                                          	<img width="320" height="400" alt="" src="/upload/1/products/l_{$photo}" />
+                                            {/foreach}
+                                            {/if}   
+                    
+                                    </div>
+                                    <div id="htmlcaption" class="nivo-html-caption">
+                                    </div>                    
+                                </div>
+                            
+                                </div>
+                                  
+                                </div>
+                                <form class="product-des" action="#">
+                                <h3 class="product-title">{$item->getName($lang)}</h3>
+                                <p class="sku">{$item->getSku()}</p>
+                            <p class="des">
+                                {$item->getDescription($lang)}
+                            </p>    
+                               	<p>
+
+                                </p>
+                                <form id="frmBuy" name="frmBuy" method="post" action="">
+                                <ul class="product-des-more">
+                                    <li class="product-price">                                        
+                                    	<span class="title">{$messages.price}:</span>
+                                        {if $item->getMarketPrice() > 1000}
+                                        <span>{$item->getMarketPrice()|number_format:0:",":"."} VND</span>
+                                        <span class="price-old">{$item->getPrice()|number_format:0:",":"."} VND</span>
+                                        {else}
+                                        <span>{$item->getPrice()|number_format:0:",":"."} VND</span>
+                                        {/if}
+                                    </li>
+                                    {if $item->getColors()}
+                                    <li class="color-list">
+                                    	<span class="title">{$messages.color}:</span>
+                                        
+                                        <ul class="list">
+                                            {foreach from=$item->getColors() item=color key=i}                                            
+                                        	<li {if $i==0} class="active" {/if}><a href="javascript:color({$item->getId()},{$color->getId()});" title="{$item->getName($lang)}"><img src="/upload/1/products/a_{$color->getAvatar()}" width="60" height="75" alt="{$item->getName($lang)}" /></a></li>                                           
+                                            {/foreach}
+                                        </ul>
+                                    </li>
+                                    {/if}
+                                                                        
+                                    <input type="hidden" name="color" id="color" value="{if $albumPresent}{$albumPresent->getId()}{/if}" />                                  
+                                    <li class="product-action">
+                                        {if $item->generalComboSizes()}
+                                        <div class="product-quantity">
+                                            <label for="txt-quatity">{$messages.size}:</label>
+                                           <select id="size" name="size" form="sort">
+                                              {$item->generalComboSizes()}                                              
+                                            </select>
+                                        </div>
+                                        {/if}
+                                       <div class="product-quantity">
+                                            <label for="txt-quatity">{$messages.number}:</label>
+                                            {if $item->getQuantity()>0}
+                                           <select id="quantity" name="quantity" form="sort">
+                                              {for $i=1 to $item->getQuantity()}
+                                              <option value="{$i}">{$i}</option>
+                                              {/for}
+                                            </select>
+                                            {else}
+                                            {$messages.close}
+                                            {/if}
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="product-action">
+                                    <div class="product-quantity">
+                                            <label for="txt-quatity"></label>
+                                        </div>
+                                        <div class="product-quantity">
+                                            <a href="/?act=cart&amp;plus=quickAdd&amp;pId={$item->getId()}"><input class="button btn-product-add" type="button" value="{$messages.get_order}" /></a>
+                                        </div>
+                                         <div class="product-quantity show-mobile">
+                                            <label for="txt-quatity"></label>
+                                        </div>
+                                       <div class="product-quantity">
+                                            <a href="javascript:order({$item->getId()});"><input class="button btn-product-book" type="button" value="{$messages.order}" /></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="product_social">
+                                        <div class="product_like">
+                                            <fb:like href="{$url_link}" layout="button_count" action="like" show_faces="false" share="true"></fb:like>
+                                        </div>
+                                    </div>
+                                    <div class="product_social">
+                                        
+                                        <div class="product_share">
+                                            <span>Chia sẻ:</span>
+                                            <a href="#linkshare" title="">
+                                                <img src="/{$templatePath}/{$userTemplate}/images/fb.png" alt="" />
+                                            </a>
+                                             <a href="#linkshare" title="">
+                                                <img src="/{$templatePath}/{$userTemplate}/images/tw.png" alt="" />
+                                            </a>
+                                             <a href="#linkshare" title="">
+                                                <img src="/{$templatePath}/{$userTemplate}/images/gg.png" alt="" />
+                                            </a>
+                                            <a href="#linkshare" title="">
+                                                <img src="/{$templatePath}/{$userTemplate}/images/pp.png" alt="" />
+                                            </a>
+                                             <a href="#linkshare" title="">
+                                                <img src="/{$templatePath}/{$userTemplate}/images/ss.png" alt="" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                <input type="hidden" name="act" value="cart" />
+								<input type="hidden" name="plus" value="addItem" />
+								<input type="hidden" name="pId" value="{$item->getId()}" />
+                                </form>
+                                 
+                           
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="product-detail-full">
+                            <div class="tabContainer">
+                                <ul class="tabToggle hidden-mobile">
+                                    <li><a class="active"  href="#">{$messages.info_detail_product}</a>
+                                    </li>
+                                    <li><a class="" href="#">{$messages.comment_products}</a>
+                                    </li>
+
+                                </ul>
+                                <div class="tabToggle-mobile   visible-mobile">
+                                    <a class="active " href="#product-tab-detail">{$messages.info_detail_product}</a>
+                                </div>
+                                <div class="tabContent contEditor" id="product-tab-detail">
+                                   {$item->getDetail()} 
+								 </div>
+
+                                <div class="tabToggle-mobile visible-mobile">
+                                    <a class="  " href="#product-tab-comment">{$messages.comment_products}</a>
+                                </div>
+                                <div class="tabContent tab-hidden" id="product-tab-comment">
+                                 {if $listComments}
+                                    <ul class="list-comment">
+                                    {foreach from=$listComments key=i item=comment}
+                                        <li {if $i%1==0}class="odd"{else}class="even"{/if}>
+                                            <div class="comment-inner contEditor">
+                                                {$comment->getDetails()}
+                                            </div>
+                                            <div class="comment-meta">
+                                                <a href="#" class="comment-author">{$comment->getFullName()}</a>
+                                                <span class="comment-date"> ({$comment->getDateCreated()|date_format:'d/m/Y - H:i'}) </span>
+                                            </div>
+                                        </li>
+                                        {/foreach}
+                                        
+                                    </ul>
+                                    {else}
+                                    {$messages.no_comment}
+                                    {/if}
+                                    <!--
+                                    <div class="comment-more">
+                                        <a href="#" class="button button-theme-2 button-comment-more">Xem thêm</a>
+                                    </div>-->
+                                    <div class="comment-add">
+                                        <form class="frmGeneral" action="#comment" method="post" name="form-basket" id="form-basket">
+                                            <h3><span>Gửi nhận xét</span></h3>
+                                            {if $note}<p class="{$infoClass}">{$note}</p>{/if}
+                                            <fieldset class="comment-left">
+                                                <div class="form-row">
+                                                    <label for="comment-text">{$messages.comment}<span class="require">*</span></label>
+                                                    <textarea id="comment-text" name="comment" class="textareabox">{if isset($error.INPUT)}{$error.INPUT.comment.value}{/if}</textarea>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="comment-right">
+                                                <div class="form-row">
+                                                    <label for="comment-name">{$messages.fullname}<span class="require">*</span></label>
+                                                    <input class="inputbox" name="fullname" value="{if isset($error.INPUT)}{$error.INPUT.fullname.value}{/if}" placeholder="" id="comment-name"  />
+                                                </div>
+                                                <div class="form-row">
+                                                    <label for="comment-email">Email</label>
+                                                    <input class="inputbox" name="email" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" placeholder="" id="comment-email"  />
+                                                </div>
+                                                <div class="form-row form-row-code">
+                                                    <label for="comment-code">{$messages.security}<span class="require">*</span></label>
+                                                    
+                                                    <input class="inputbox inputbox-code" value="" name="code" placeholder="" id="comment-code"  />
+                                                    <a class="code-reload" href="#" title="">
+                                                        <img src="images/code-sample.png" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="form-row form-row-action">
+                                                    <input class="button button-comment-submit" value="{$messages.send}"   type="submit" />
+                                                    <input type="hidden" name="id" value="{$item->getId()}" />
+                                                    <input type="hidden" name="lang" value="{$lang}" />
+                                                    <input type="hidden" name="act" value="product" />
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="sidebar sidebar-right">
+                            <div class="left-product-col">
+                            {if $productotherItems}
+		          <div class="box_head">
+				<h4>Sản phẩm khác</h4>
+					<div class="pagers center">
+						<a class="prev featuredPrev" href="#prev">Prev</a>
+						<a class="nxt featuredNxt" href="#nxt">Next</a>
+					</div>
+				</div><!--end box_head -->
+
+				<div class="cycle-slideshow" 
+		        data-cycle-fx="scrollHorz"
+		        data-cycle-timeout=0
+		        data-cycle-slides="> ul"
+		        data-cycle-prev="div.pagers a.featuredPrev"
+		        data-cycle-next="div.pagers a.featuredNxt"
+		        >
+                    {if count($productotherItems)<6}
+					<ul class="product_left">
+                        {foreach from=$productotherItems item=otherItems}
+                        {assign var=avatar value=$otherItems->getAvatar()}
+						<li>
+							<div class="img-left">
+								<a href="{$otherItems->getUrl($lang)}">
+									<img src="/upload/{$storeId}/products/m_{$avatar}" alt="{$otherItems->getName($lang)}" />
+								</a>
+							</div>
+                            <div class="product_left_info">
+							<p class="product-title"><a href="{$otherItems->getUrl($lang)}">{$otherItems->getName($lang)}</a></p>
+                            <p class="product-price">                            
+                            {if $otherItems->getMarketPrice() > 1000}
+							<span class="current">{$otherItems->getMarketPrice()|number_format:0:",":"."} VND</span>							                            
+							{else}
+							<span class="current">{$otherItems->getPrice()|number_format:0:",":"."} VND</span>
+							{/if}
+                           	</p>
+                            </div>
+						</li>
+						{/foreach}
+					</ul>
+                    {else}
+                    {foreach from=$productotherItems item=otherItems key=i}
+                    {assign var=avatar value=$otherItems->getAvatar()}
+                    {if $i==0}
+                    <ul class="product_left">    
+                    {/if}                    
+						<li>
+							<div class="img-left">
+								<a href="{$otherItems->getUrl($lang)}">
+									<img src="/upload/{$storeId}/products/m_{$avatar}" alt="{$otherItems->getName($lang)}" />
+								</a>
+							</div>
+                            <div class="product_left_info">
+							<p class="product-title"><a href="{$otherItems->getUrl($lang)}">{$otherItems->getName($lang)}</a></p>
+                            <p class="product-price">                            
+                            {if $otherItems->getMarketPrice() > 1000}
+							<span class="current">{$otherItems->getMarketPrice()|number_format:0:",":"."} VND</span>							                            
+							{else}
+							<span class="current">{$otherItems->getPrice()|number_format:0:",":"."} VND</span>
+							{/if}
+                           	</p>
+                            </div>
+						</li>
+                        
+                        {if ($i+1) %5 ==0 && $i > 0}
+                        </ul>
+						<ul class="product_left">   
+                        {elseif $i==count($productotherItems)-1}
+                        </ul>
+                        {/if}
+                        
+						{/foreach}
+					                     
+                    {/if}
+				</div>
+			</div>
+            {/if}
+                            </div>
+                        </div>
+
+</div>
+{else}
+{$messages.no_items}
+{/if}
+
+                </div>
+
+
+</div>
+
+{literal}
+<script type="text/javascript">
+    function color(pid,aid){
+        $("#spinner").css("display","");
+		$("#color").val(aid);
+        $.ajax({url:"http://maramara.vn/ajax.php?op=getcolor&pid="+pid+"&aid="+aid,success:function(result1){
+        	
+        	if(result1.length>0){
+        		$("#photo-2").html(result1);     
+                initProductDetail();   
+                				
+        	}    
+            $("#spinner").css("display","none");     	                    
+         }});
+
+
+
+
+    }
+
+</script>
+{/literal}
+	
+{include file='footer.tpl.html' title='footer'}

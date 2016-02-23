@@ -1,0 +1,39 @@
+<h3 class="left-menu"><a href="#" title="">{$messages.categories}</a></h3>
+
+{if isset($productCategoryItems) && $productCategoryItems}
+<ul id="mega-1" class="mega-menu {if $act!=index}hide mega-menu-2{/if}">
+{foreach from=$productCategoryItems.0 item=itemRoot}
+{assign var=itemRootId value=$itemRoot.id}
+{assign var=children value=''}
+		{if isset($productCategoryItems.$itemRootId)}
+			{assign var=children value=$productCategoryItems.$itemRootId}
+		{/if}
+<li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num}){/if}</span></a>
+{if $children}
+<ul>
+<b class="left-arrow"></b>
+{if $itemRoot.avatar}
+<img src="/upload/{$storeId}/products/l_{$itemRoot.avatar}" class="bg"/>
+{/if}
+{foreach from=$children item=childItem}
+{assign var=childrenId value=$childItem.id}
+{assign var=children2 value=''}
+		{if isset($productCategoryItems.$childrenId)}
+			{assign var=children2 value=$productCategoryItems.$childrenId}
+		{/if}
+<li><a href="{$childItem.url}">{$childItem.name}</a>
+<ul>
+{if $children2}
+{foreach from=$children2 item=childItem2}
+<li><a href="{$childItem2.url}">{$childItem2.name}</a></li>
+{/foreach}
+{/if}
+</ul>
+</li>
+{/foreach}
+</ul>
+{/if}
+</li>
+{/foreach}
+</ul>
+{/if}

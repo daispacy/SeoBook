@@ -1,0 +1,56 @@
+{include file='header.tpl.html' title='site-header'}
+
+<div id="content" class="clearfix">
+            <div class="main">
+			<!-- left menu -->
+                {include file='left.tpl.html' title='site-header'}
+			<!-- end left menu-->
+                
+			<article class="content">
+                    <section class="main-content">
+						 <div class="sitemap">
+			<h2>Menu Main</h2>
+				<ul>
+			
+			 <li><a class="" href="/" title="trang chủ">Trang chủ</a></li>
+					<li><a href="/gioi-thieu.htm" title="giới thiệu chung">Giới thiệu chung</a></li>
+					<li><a href="/huong-dan-mua-hang.htm" title="hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+					<li><a href="/bao-hanh.htm" title="bảo hành">Bảo hành</a></li>
+					<li><a href="/khuyen-mai.htm" title="khuyến mãi">Khuyến mãi</a></li>
+					<li><a href="/lien-he.html" title="liên hệ">Liên hệ</a></li>
+					<li><a href="/sitemap.html" title="sitemap">Sitemap</a></li>
+			
+			</ul>
+			{if $listItems}
+			<h2>Danh sách tin tức</h2>
+			<ul>
+			
+			{foreach from=$listItems item=menuNew}
+				<li><a href="{$menuNew->getUrl()}" title="{$menuNew->getTitle()}"><span>{$menuNew->getTitle()}</span></a></li>
+			{/foreach}
+			
+			</ul>
+			{/if}
+        </div>
+		{if isset($productCategoryItems) && $productCategoryItems.0}
+		<div class="sitemap last">
+
+		<h2>Danh mục sản phẩm</h2>
+				<ul>
+			
+			{foreach from = $productCategoryItems.0 key=i item=itemRoot}
+			  <li><a href="{$itemRoot.url}" title="{$itemRoot.name}"><span>{$itemRoot.name}</span></a></li>
+			 {/foreach}
+			 
+			</ul>
+        </div>
+		{/if}
+							
+						
+					</section>
+			</article>
+        </div>
+</div>
+
+
+{include file='footer.tpl.html' title='site-header'}

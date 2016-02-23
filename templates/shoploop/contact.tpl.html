@@ -1,0 +1,132 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+<!--
+    <div class="sixteen columns">
+
+			<div class="eleven columns alpha">
+				<div id="googleMap">
+					<iframe width="100%" height="372px" border="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.eg/maps?f=q&amp;source=s_q&amp;hl=ar&amp;geocode=&amp;q=Tahrir,+%D9%82%D8%B5%D8%B1+%D8%A7%D9%84%D8%AF%D9%88%D8%A8%D8%A7%D8%B1%D8%A9,+%D9%82%D8%B5%D8%B1+%D8%A7%D9%84%D9%86%D9%8A%D9%84,+Al-Qahira&amp;aq=0&amp;oq=tahr&amp;sll=30.044133,31.235161&amp;sspn=0.200606,0.363579&amp;ie=UTF8&amp;hq=&amp;hnear=%D9%85%D9%8A%D8%AF%D8%A7%D9%86+%D8%A7%D9%84%D8%AA%D8%AD%D8%B1%D9%8A%D8%B1&amp;t=m&amp;z=14&amp;ll=30.0451,31.235428&amp;output=embed"></iframe>
+				</div>
+			</div>
+
+			<div class="five columns omega">
+				<div class="blocked_info">
+					<div>
+						<h4>Block Info One</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu risus lorem, ut placerat nisl.
+						</p>
+					</div>
+
+					<div>
+						<h4>Block Info Two</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu risus lorem, ut placerat nisl.
+						</p>
+					</div>
+
+					<div>
+						<h4>Block Info Three</h4>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu risus lorem, ut placerat nisl.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div><!--end sixteen-->
+
+		<div class="sixteen columns">
+
+			<div class="eleven columns alpha">
+				<div id="contact_form">
+					<div class="box_head">
+						<h3>Thông tin liên hệ</h3>
+					</div><!--end box_head -->
+                    {if isset($error) && $error}
+                        {if $error.invalid || $error.message}
+                        {assign var=input value=$error.INPUT}
+                        <strong style="color: #BE484D;">
+                        {foreach from=$input item=field}
+                        {if $field.error}{$field.message}<br/>{/if}
+                        {/foreach}
+                        </strong>
+                        {/if}
+                        {elseif isset($note) && $note}
+                        <strong style="color:green;">{$note}</strong>
+                        {/if}
+					<form id="formOrderLogin" class="contact-form row" name="formOrderLogin" method="post"> 
+
+						<div class="five columns alpha">
+							<input type="text" name="fullname" value="{if isset($error.INPUT)}{$error.INPUT.fullname.value}{/if}" required="required" placeholder="Họ và tên *">
+
+							<input type="email" name="email" value="{if isset($error.INPUT)}{$error.INPUT.email.value}{/if}" required="required" placeholder="E-Mail *">
+
+							<input class="input_tool_tip" type="text" required="required" name="tel" value="{if isset($error.INPUT)}{$error.INPUT.tel.value}{/if}" placeholder="Điện thoại *">
+
+							<input type="text" name="code" value="" required="required"  placeholder="Mã xác nhận *"/>
+                            
+                            <img height="30" id="codeSecurity" alt="AuthImg" src="{if isset($FOLDER)}/{$FOLDER}{/if}/authimg.php"/>
+						</div><!--end five-->
+
+						<div class="six columns omega">
+							<textarea name="comment" placeholder="Nội dung *">{if isset($error.INPUT)}{$error.INPUT.comment.value}{/if}</textarea>
+						</div><!--end six-->
+
+						<div class="submitForm">
+							<p>Nội dung có ( * ) là bắt buộc.</p>
+                            <input type="hidden" name="act" value="contact"/>
+							<input class="red_btn" type="submit" name="submit" value="Gửi">
+							<div class="clear"></div>
+						</div><!--end submitForm-->
+
+					</form><!--end form-->
+
+				</div><!--end contact_form-->
+			</div><!--end eleven-->
+
+
+			<div class="five columns omega">
+				<div id="contact_info">
+					<ul>
+                        {if $estore->getAddress()}
+						<li class="contact_address">
+							<h6>Địa chỉ</h6>
+							<p>{$estore->getAddress()}</p>
+						</li>
+                        {/if}
+                        {if $estore->getEmail()}
+						<li class="contact_email">
+							<h6>E-MAIL</h6>
+							<p>{$estore->getEmail()}</p>
+						</li>
+                        {/if}
+                        {if $estore->getCell()}
+						<li class="contact_phone">
+							<h6>Di động</h6>
+							<p>{$estore->getCell()}</p>
+						</li>
+                        {/if}
+                        {if $estore->getTel()}
+						<li class="contact_fax">
+							<h6>Điện thoại</h6>
+							<p>{$estore->getTel()}</p>
+						</li>
+                        {/if}
+					</ul>
+				</div><!--end contact_info-->
+			</div><!--end five-->
+
+		</div><!--end sixteen-->
+
+		
+   
+
+
+
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

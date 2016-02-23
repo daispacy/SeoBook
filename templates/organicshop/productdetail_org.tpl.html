@@ -1,0 +1,79 @@
+{include file='header.tpl.html' title='site-header'}
+{literal}
+<style>
+.zoom {
+			display:inline-block;
+			position: relative;
+		}
+		
+		/* magnifying glass icon */
+		.zoom:after {
+			content:'';
+			display:block; 
+			width:33px; 
+			height:33px; 
+			position:absolute; 
+			top:0;
+			right:0;
+			background:url(icon.png);
+		}
+
+		.zoom img {
+			display: block;
+		}
+
+		.zoom img::selection { background-color: transparent; }
+</style>
+{/literal}
+		
+	
+		
+		<div class="section" style="padding: 0 30px;">
+            {include file='navigation.tpl.html' title='site-header'}
+        </div>
+        
+       <!-- BEGIN .section -->
+		<div class="section">
+			
+			<ul class="columns-content page-content clearfix">
+				
+                
+				<!-- BEGIN .col-main -->
+				<li class="col-main">
+					{if $objectItem}
+					
+                    <div class="blog-title-single clearfix">
+						<div class="fl">
+							<h2>{$objectItem->getName()}<span>{$objectItem->getCatName()}</span></h2>
+						</div>
+						
+					</div>
+                    
+                    <div class="blog-content clearfix">
+                        {assign var=photos value=$objectItem->getProperty('photos')}
+                        {if $photos}
+						<div class="block-img1 zoom" id="ex1"><img src="/upload/{$storeId}/products/l_{$photos.0}" alt="" class="prev-image" /></div>
+                        {/if}
+                        {if $objectItem->getMarketPrice()}<h2><span>Giá: </span> {$objectItem->getMarketPrice()} VND</h2>{/if}
+						<p>{$objectItem->getDetail()}</p>
+						
+					<!-- END .blog-content -->
+					</div>
+                    Để biết thêm chi tiết vui lòng <a href="/lien-he.html">Liên hệ với chúng tôi</a>.
+						
+				        {else}
+                        Sản phẩm không tồn tại.
+                        {/if}
+				<!-- END .col-main -->
+				</li>
+				
+				<!-- BEGIN .col-sidebar -->
+				{include file='right.tpl.html' title='site-header'}
+				
+			</ul>
+			
+		<!-- END .section -->
+        
+		</div>
+        
+{include file='footer.tpl.html' title='site-header'}

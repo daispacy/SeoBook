@@ -1,0 +1,235 @@
+<!-- start the footer area-->
+	<footer>
+    <div class="footer-container">
+		<div class="container">
+            {if $listMenus_5}
+            {foreach from=$listMenus_5 key=i item=menu}
+            {assign var=submenu value=$menu->getChildren()}
+			<div class="four columns hidden-mobile">
+				<div id="info">
+					<h3>{$menu->getName($lang)}</h3>
+                    {if $submenu}
+					<ul>
+                    {foreach from=$submenu item=subMenu}
+						<li><a href="{$subMenu->getUrl($lang)}" title="{$subMenu->getName($lang)}">{$subMenu->getName($lang)}</a></li>
+						
+                    {/foreach}
+					</ul>
+                    {/if}
+				</div>
+			</div><!--end three-->
+            {/foreach}
+            {/if}
+            {if $listMenus_6}			
+			<div class="four columns show-mobile">
+				<div id="extra">
+					<ul>
+                        {foreach from=$listMenus_6 key=i item=menu}
+                    	<li><a href="{$menu->getUrl($lang)}" title="{$menu->getName($lang)}">{$menu->getName($lang)}</a></li>                    
+                        {/foreach}
+					</ul>
+				</div>
+			</div>
+            {/if}
+			<div class="four columns">
+				<div id="my_account">
+					<h3>{$messages.get_mail_promotion}</h3>
+                    <p>{$messages.note_get_mail_promotion}</p>
+					<form id="frmEmail" name="frmEmail" method="post" action="">
+                            	<span id="emailBlock">
+                                	<input type="text" id="txtEmail" name="txtEmail" onfocus="if(this.value=='Email')this.value='';" onblur="if(this.value=='')this.value='Địa chỉ mail';" value="Email" />
+                                    <input type="submit" id="btnEmail" name="btnEmail" value="" />
+                                </span>
+                    </form>
+				</div>
+			</div><!--end three-->
+
+			<div class="four columns">
+            <div class="socials-col">
+            <h3>{$messages.connect_us}</h3>
+            <div id="fb-root"></div>
+            	{if $estore->getProperty('link_fb')}<fb:like-box href="{$estore->getProperty('link_fb')}" colorscheme="light" show_faces="false" header="false" stream="false" show_border="false"></fb:like-box>{/if}
+				<ul class="socials">
+					{if $estore->getProperty('link_tw')}<li><a class="twitter" href="{$estore->getProperty('link_tw')}">twitter</a></li>{/if}
+					{if $estore->getProperty('link_fb')}<li><a target="_blank" class="facebook" href="{$estore->getProperty('link_fb')}">face</a></li>{/if}
+					{if $estore->getProperty('link_gg')}<li><a target="_blank" class="googlep" href="{$estore->getProperty('link_gg')}">google+</a></li>{/if}
+					{if $estore->getProperty('link_sk')}<li><a class="skype" href="{$estore->getProperty('link_sk')}">skype</a></li>{/if}
+				</ul>
+			</div>
+			</div><!--end four-->
+
+		</div><!--end container-->
+		</div>
+
+		<div class="paymentbrand hidden-mobile">
+			<div class="container">
+				<img src="/{$templatePath}/{$userTemplate}/images/icons/payment-brand.png" alt="">
+				</div>
+			</div>
+		</div><!--end tweets-->
+
+
+		<div class="container">
+			<div class="sixteen">
+				<p class="copyright hidden-mobile">
+					<strong>{$estore->getName($lang)}</strong><br>
+{$estore->getAddress($lang)}</br>
+Phone: {$estore->getTel()} - {$estore->getCell()} - Email: {$estore->getEmail()}<br>
+
+				</p>
+				<p class="information">
+Copyright © 2014 <img src="/{$templatePath}/{$userTemplate}/images/ft.svg" alt="" width="138" height="21"/> . All rights reserved.  By <a href="http://derasoft.com">DeraCMS</a></br>
+				<img src="/{$templatePath}/{$userTemplate}/images/icons/bo-cong-thuong.png" alt=""/>
+				</p>
+			</div><!--end sixteen-->
+		</div><!--end container-->
+
+	</footer>
+	<!--end the footer area -->
+
+<div id="xsl_tbox">
+<a href="#">
+<img src="/{$templatePath}/{$userTemplate}/images/livechat.png"></a>
+</div>
+<div class="footer-to-top" style="display: block;"><a href="#" title="top">top</a></div>
+
+
+
+	<!-- JS
+	================================================== -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="/{$templatePath}/{$userTemplate}/js/dropKick/jquery.dropkick-1.0.0.js"></script>
+	{if $act=="index"}
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.cycle2.min.js"></script>
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.cycle2.tile.min.js"></script>
+    <script src="/{$templatePath}/{$userTemplate}/js/jquery.cycle2.carousel.js"></script>
+    {/if}
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.cookie.js"></script>
+	<script src="/{$templatePath}/{$userTemplate}/js/jquery.nivo.slider.js"></script>
+    <script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/jquery.hoverIntent.minified.js'></script>
+	<script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/jquery.dcverticalmegamenu.1.3.js'></script>
+    <script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/jquery.flexslider.js'></script>
+    <script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/jquery.flexslider-min.js'></script>
+     <script type='text/javascript' src='/{$templatePath}/{$userTemplate}/js/detail.js'></script>
+	<script type="text/javascript" src="/{$templatePath}/{$userTemplate}/js/jquery.mmenu.min.all.js"></script>
+   
+	<script src="/{$templatePath}/{$userTemplate}/js/main.js?v=115"></script>
+    {if $act eq 'products' || $act eq 'search'}
+	{literal}
+    <script type="text/javascript">
+    $(document).ready(function(){
+       $("#sort").change(function(){
+            var sort = $(this).val();  
+            var cid = $("#cid").val();        
+            var lang= $("#lang").val();  
+            var slug= $("#slug").val(); 
+            var price="";
+            var size="";
+            
+            $( ".chkAme" ).each(function(){
+                if($(this).is(':checked')){
+                    price+=$(this).val()+",";
+                }
+            }); 
+            
+            price= price.substring(0,price.length-1);     
+            $( ".chkAme1" ).each(function(){
+                if($(this).is(':checked')){
+                    size+=$(this).val()+",";
+                }
+            }); 
+            size= size.substring(0,size.length-1);
+                                        
+            $.ajax({url:"http://maramara.vn/ajax.php?op=filter_products&sort="+sort+"&price="+price+"&size="+size+"&cid="+cid+"&lang="+lang+"&slug="+slug,success:function(result1){
+            	if(result1.length>1){
+            	    var temp = result1.split('|');
+            	   $('#list_products').html(temp[1]);
+                   $("#totalproducts").html(temp[0]);
+                   $("#paginate").html(temp[2]);
+                   productavatar();
+            	}
+            	      	                    
+             }});
+       });
+        
+    });
+    
+    $( ".chkAme" ).on( "click", function() {  
+        var sort = $("#sort").val();  
+        var cid = $("#cid").val();        
+        var lang= $("#lang").val();  
+        var slug= $("#slug").val();  
+        var price="";
+        var size="";
+        $( ".chkAme" ).each(function(){
+                if($(this).is(':checked')){
+                    price+=$(this).val()+",";
+                }
+            }); 
+            
+            price= price.substring(0,price.length-1);     
+            $( ".chkAme1" ).each(function(){
+                if($(this).is(':checked')){
+                    size+=$(this).val()+",";
+                }
+            }); 
+            size= size.substring(0,size.length-1);
+                                        
+            $.ajax({url:"http://maramara.vn/ajax.php?op=filter_products&sort="+sort+"&price="+price+"&size="+size+"&cid="+cid+"&lang="+lang+"&slug="+slug,success:function(result1){
+            	if(result1.length>10){
+            	   var temp = result1.split('|');
+            	   $('#list_products').html(temp[1]);
+                   $("#totalproducts").html(temp[0]);
+                   $("#paginate").html(temp[2]);
+                   productavatar();
+            	}
+            	      	                    
+             }});                      
+    }); 
+    
+    $( ".chkAme1" ).on( "click", function() {
+        
+        var sort = $("#sort").val();  
+        var cid = $("#cid").val();        
+        var lang= $("#lang").val(); 
+        var slug= $("#slug").val();   
+        var price="";
+        var size="";
+                
+        $( ".chkAme" ).each(function(){
+                if($(this).is(':checked')){
+                    price+=$(this).val()+",";
+                }
+            }); 
+            
+            price= price.substring(0,price.length-1);     
+            $( ".chkAme1" ).each(function(){
+                if($(this).is(':checked')){
+                    size+=$(this).val()+",";
+                }
+            }); 
+            size= size.substring(0,size.length-1);
+                                        
+            $.ajax({url:"http://maramara.vn/ajax.php?op=filter_products&sort="+sort+"&price="+price+"&size="+size+"&cid="+cid+"&lang="+lang+"&slug="+slug,success:function(result1){
+            	if(result1.length>1){
+            	    var temp = result1.split('|');
+            	   $('#list_products').html(temp[1]);
+                   $("#totalproducts").html(temp[0]);
+                   $("#paginate").html(temp[2]);
+                   productavatar();
+            	}
+            	      	                    
+             }});
+                                   
+    });
+    </script>
+    {/literal}
+    {/if}
+<!-- End Document
+================================================== -->
+<input type="hidden" id="ssid" value="{$sessId}"/>
+<input type="hidden" id="sid" value="{$storeId}"/>
+</body>
+</html>

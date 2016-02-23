@@ -1,0 +1,50 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+    <div class="eleven columns">
+    
+    {if isset($objectItems) && $objectItems}
+            {foreach from=$objectItems item=item key=i}
+			<article>
+            
+               
+				<div class="blogDesc clearfix">
+                    {if $item->getAvatar()}
+					<div class="blogLeft clearfix">
+                        <a href="{$item->getUrl()}"><img style="width: 100%;" src="/uploads/{$storeId}/products/a_{$item->getAvatar()}" title="{$item->getName()}" alt="{$item->getName()}" /></a>						
+					</div><!--end blog left-->
+                    {/if}
+					<div class="blogRight">
+						<h5>
+							<a href="{$item->getUrl()}">{$item->getName()}</a>
+						</h5>
+                        <p>Giá: <a href="{$item->getUrl()}">{$item->getPrice()|number_format:0:",":"."} VND</a></p>
+						<p>
+							{$item->getDescription()}
+						</p>
+                        <p style="float: right;">
+                            <a title="Chọn hàng" href="javascript:window.location.href='/?act=cart&amp;plus=quickAdd&amp;pId={$item->getId()}'"><img src="/{$templatePath}/{$userTemplate}/images/icons/cart_icon.png" alt="Chọn hàng"/></a>
+                        </p>
+					</div><!--end blogText-->
+				</div><!--end blogDesc-->
+
+			</article><!--end article-->
+            {/foreach}
+			
+            {include file='pager.tpl.html' title='site-header'}
+		
+         
+    {else}
+        Sản phẩm đang được cập nhật.
+    {/if}	
+		</div><!--end eleven-->
+   
+
+{include file='right.tpl.html' title='site-header'}
+
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

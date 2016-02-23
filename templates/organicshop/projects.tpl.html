@@ -1,0 +1,49 @@
+{include file='header.tpl.html' title='site-header'}
+
+		
+		<!-- 
+		<div class="section section-mini">
+			<h2 class="site-intro">{if $estore->getDescription()}{$estore->getDescription()}{/if}</h2>
+		 
+		</div>-->
+		
+		<div class="section" style="padding: 0 30px;">
+            {include file='navigation.tpl.html' title='site-header'}
+        </div>
+        
+       <!-- BEGIN .section -->
+		<div class="section">
+			
+			<ul class="columns-content page-content clearfix">
+				
+                
+				<!-- BEGIN .col-main -->
+				<li class="col-main">
+					{if $projects}
+					<h2 class="page-title">Danh sách dự án</h2>
+
+						<ul class="columns-3 clearfix product-list">
+                            {foreach key=no from=$projects item=item}
+							<li class="col3">
+									{if $item->getAvatar()}<a href="{$item->getUrl()}"><img src="/upload/{$storeId}/projects/l_{$item->getAvatar()}" alt="{$item->getTitle()}" class="full-image product-image" /></a>{/if}
+                					<p class="product-title"><a href="{$item->getUrl()}">{$item->getTitle()}</a></p>
+                				
+							</li>
+							{/foreach}
+						</ul>
+				        {else}
+                Dự án đang được cập nhật.
+                {/if}
+				<!-- END .col-main -->
+				</li>
+				
+				<!-- BEGIN .col-sidebar -->
+				{include file='right.tpl.html' title='site-header'}
+				
+			</ul>
+			
+		<!-- END .section -->
+        
+		</div>
+        
+{include file='footer.tpl.html' title='site-header'}

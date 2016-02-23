@@ -1,0 +1,67 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+
+
+
+		<div class="sixteen columns">
+        
+			<div class="box_head">
+						<h3>Giỏ hàng</h3>
+					</div>
+                    <div class="shoppingBag">
+<form action="/" method="post" name="formCart" id="formCart">
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<tr>
+<th>Xóa</th>
+<th>Tên sản phẩm</th>
+<th>Hình ảnh</th>
+<th>Số lượng</th>
+<th>Đơn giá (VND)</th>
+<th>Thành tiền (VND)</th>
+</tr>
+{assign var=i value=0}
+{assign var=grandTotal value=0}
+{foreach from=$cartItems item=cartItem}
+{assign var=product value=$cartItem->getProduct()}
+{if $product}
+{assign var=i value=$i+1}
+{assign var=subTotal value=$product->getPrice()*$cartItem->getQuantity()}
+{assign var=grandTotal value=$grandTotal+$subTotal}
+<tr{if $i % 2 eq 0} class="bgType"{/if}>
+<td><input name="dIds[]" type="checkbox" value="{$cartItem->getId()}" class="box3" /></td>
+<td style="text-align:left"><a href="{$product->getUrl()}" title="{$product->getName()}">{$product->getName()}</a></td>
+<td><a href="{$product->getUrl()}" title="{$product->getName()}"><img src="/uploads/{$storeId}/products/a_{$product->getAvatar()}" alt="Avatar" /></a></td>
+<td>
+<input type="hidden" name="cIds[]" value="{$cartItem->getId()}" />
+<input type="text" name="quantity[]" value="{$cartItem->getQuantity()}" class="inputquanity" /></td>
+<td style="text-align:right">{$product->getPrice()|number_format:0:",":"."}</td>
+<td style="text-align:right">{$subTotal|number_format:0:",":"."}</td>
+</tr>
+{/if}
+{/foreach}
+</table>
+<div class="total">
+<p><strong>Tổng cộng: {$grandTotal|number_format:0:",":"."} VND</strong></p>
+<input type="hidden" name="act" value="cart" />
+<input type="hidden" name="plus" value="updateCart" />
+<input type="hidden" name="cId" value="" />
+
+<div class="submitForm">
+							<input type="hidden" name="act" value="cart" />
+<input type="hidden" name="plus" value="updateCart" />
+<input type="hidden" name="cId" value="" />
+							<input class="red_btn" type="submit" name="submit" value="Cập nhật giỏ hàng">
+                            <input class="gray_btn" type="button" name="Nhập lại" value="Chọn thêm hàng" onclick="location.href ='/products.html'">
+                            <input class="red_btn "type="button" name="Đặt hàng" value="Đặt hàng" onclick="location.href ='/order.html'">
+							<div class="clear"></div>
+						</div>
+</div>
+</form>
+</div>
+		</div><!--end sixteen-->
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

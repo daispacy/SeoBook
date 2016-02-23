@@ -1,0 +1,127 @@
+{include file='header.tpl.html' title='site-header'}
+
+<div id="content" class="clearfix">
+            <div class="main">
+			
+                
+			<article class="content-contact">
+                    <section class="main-content">
+                   {include file='navigation.tpl.html' title='site-header'}
+                    <div class="shoppingcart-page">
+				 {if isset($carts) && $carts && $carts->getTotalCart()>0}
+
+				 <form action="" method="post" name="formChangePW" id="main-contact-form">
+    				<div class="shoppingcart-page">
+    					<div class="customer-info">
+                        	<h2>Thông tin khách hàng</h2>
+                           <p>Bạn vui lòng điền thông tin vào mẫu bên dưới. Các ô có đánh dấu * là thông tin bắt buộc.</p>
+                            
+                                <fieldset>
+                                    <div class="login-formInfo">
+                                            <label>Họ &amp; tên*</label>
+                                            <p><input type="text" id="name" required="required" name="name" class="inputbox"></p>
+                                     </div>
+                                     <div class="login-formInfo">
+                                            <label>Email*</label>
+                                            <p>
+                                            <input type="email" id="email" name="email" required="required" class="inputbox">
+                                            <span>(Rất quan trọng vì chúng tôi sẽ gửi thông tin đơn hàng vào email này)</span>
+                                            </p>
+                                     </div>
+                                         <div class="login-formInfo">
+                                            <label>Địa chỉ*</label>
+                                            <p><input type="text" id="address" name="address" required="required" class="inputbox"></p>
+                                     </div>
+                                   		  <div class="login-formInfo">
+                                            <label>Điện thoại</label>
+                                            <p><input type="text" id="cell" name="cell" class="inputbox"></p>
+                                     </div>
+                                         <div class="login-formInfo">
+                                            <label>Điện thoại di động*</label>
+                                            <p><input type="text" id="tel" name="tel" required="required" class="inputbox">
+                                            <span>(Rất quan trọng vì đây chính là mật khẩu của đơn hàng)</span>
+                                            </p>
+                                     </div>  
+                                    
+                                 </fieldset>
+                           	
+                        </div>
+                        <div class="recipient-info">
+                       	 <h2>Thông tin người nhận</h2>
+						 <p>Bạn vui lòng điền thông tin vào mẫu bên dưới. Các ô có đánh dấu * là thông tin bắt buộc.</p>
+                          
+                           
+                                <fieldset>
+								 <div class="login-formInfo">
+                         <p>
+                         <input class="checkbox" type="checkbox" id="chkSame" name="chkSame" onclick="javascript:checkSame();">
+                         Giống như thông tin khách hàng</p>
+						{literal}
+                            <script type="text/javascript">
+                            function checkSame() {
+                            	var f = document.getElementById('main-contact-form');
+                            	if(f.chkSame.checked) {
+                            		f.rname.value = f.name.value;
+                            		f.raddress.value = f.address.value;
+                            		f.rtel.value = f.tel.value;
+                            		f.rcell.value = f.cell.value;
+                            		f.remail.value = f.email.value;
+                            	} else {
+                            		f.rname.value = '';
+                            		f.raddress.value = '';
+                            		f.rtel.value = '';
+                            		f.rcell.value = '';
+                            		f.remail.value = '';	
+                            	}
+                            }
+                            </script>
+                            {/literal}
+						</div>
+                                    <div class="login-formInfo">
+                                            <label>Họ &amp; tên*</label>
+                                            <p><input type="text" required="required" id="rname" name="rname" class="inputbox"></p>
+                                     </div>
+                                     <div class="login-formInfo">
+                                            <label>Email*</label>
+                                            <p>
+                                            <input type="text" id="remail" name="remail" required="required" class="inputbox">
+                                            <span>(Rất quan trọng vì chúng tôi sẽ gửi thông tin đơn hàng vào email này)</span>
+                                            </p>
+                                     </div>
+                                         <div class="login-formInfo">
+                                            <label>Địa chỉ*</label>
+                                            <p><input type="text" id="raddress" name="raddress" required="required" class="inputbox"></p>
+                                     </div>
+                                   		  <div class="login-formInfo">
+                                            <label>Điện thoại</label>
+                                            <p><input type="text" id="rcell" name="rcell" class="inputbox"></p>
+                                     </div>
+                                         <div class="login-formInfo">
+                                            <label>Điện thoại di động*</label>
+                                            <p><input type="text" id="rtel" name="rtel" required="required" class="inputbox">
+                                            <span>(Rất quan trọng vì đây chính là mật khẩu của đơn hàng)</span>
+                                            </p>
+                                     </div>  
+                                    
+                                 </fieldset>
+                           	
+                        </div>
+                    </div>  
+					 <div class="btn">
+									 <input type="hidden" name="act" id="act" value="order" />
+									<input type="hidden" name="plus" id="plus" value="submitOrder" />
+                                     <input class="button" type="submit" value="Gửi đi">
+                                     <input class="button" type="reset" value="Nhập Lại">
+                                     </div>
+					 </form>
+					{else}
+						Giỏ hàng đang trống.
+					{/if}
+                    </div>  
+                    </section>
+                </article>
+        </div>
+</div>
+
+
+{include file='footer.tpl.html' title='site-header'}

@@ -1,0 +1,80 @@
+<li class="col-sidebar" id="rightside">
+				    <!--
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Chuyên mục Sản phẩm</h4></div>
+						<ul>
+							<li><a href="#">Skin Care</a></li>
+							<li><a href="#">Bath &amp; Body Care</a></li>
+							<li><a href="#">Fragrance</a></li>
+							<li><a href="#">Make-Up</a></li>
+							<li><a href="#">Hair</a></li>
+							<li><a href="#">Moisturisers</a></li>
+						</ul>
+					</div>-->
+					<!--
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Tags</h4></div>
+						<ul class="wp-tag-cloud clearfix">
+							<li><a href="#">Tag #1</a></li>
+							<li><a href="#">Tag #2</a></li>
+							<li><a href="#">Tag #3</a></li>
+							<li><a href="#">Tag #4</a></li>
+							<li><a href="#">Tag #5</a></li>
+							<li><a href="#">Tag #6</a></li>
+						</ul>
+					</div>
+					-->
+                    {if $productSpecial}
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Sản Phẩm khuyến mãi</h4></div>
+						
+						<ul class="latest-posts-list clearfix">
+							{foreach key=no from=$productSpecial item=item}
+							<li class="clearfix">
+                                {if $item->getAvatar()}
+								<div class="lpl-img">                                
+									<a href="{$item->getUrl()}" rel="bookmark">
+										<img width="66" height="66" src="/upload/{$storeId}/products/l_{$item->getAvatar()}" alt="{$item->getName()}" data-tooltip="tooltip-d{$item->getId()}"/>
+									</a>
+								</div>
+                                {/if}
+								<div class="lpl-content">
+									<h6>
+                                        <a href="{$item->getUrl()}" rel="bookmark">{$item->getName()}</a> 
+                                        {if $item->getMarketPrice()}<span>{$item->getMarketPrice()}</span>{/if}
+                                    </h6>
+								</div>
+							</li>
+                            {/foreach}																					
+						</ul>
+					
+					</div>
+					{/if}
+                    {if $productSeller}
+					<div class="widget">
+						<div class="widget-title clearfix"><h4 class="tag-title">Sản Phẩm Mới / ưa chuộng</h4></div>
+						
+						<ul class="latest-posts-list clearfix">
+							{foreach key=no from=$productSeller item=item}
+							<li class="clearfix">
+                                {if $item->getAvatar()}
+								<div class="lpl-img">                                
+									<a href="{$item->getUrl()}" rel="bookmark">
+										<img width="66" height="66" src="/upload/{$storeId}/products/l_{$item->getAvatar()}" alt="{$item->getName()}" data-tooltip="tooltip-s{$item->getId()}"/>
+									</a>
+								</div>
+                                {/if}
+								<div class="lpl-content">
+									<h6>
+                                        <a href="{$item->getUrl()}" rel="bookmark">{$item->getName()}</a> 
+                                        {if $item->getMarketPrice()}<span>{$item->getMarketPrice()}</span>{/if}
+                                    </h6>
+								</div>
+							</li>
+                            {/foreach}																					
+						</ul>
+					
+					</div>
+					{/if}
+				<!-- END .col-sidebar -->
+				</li>

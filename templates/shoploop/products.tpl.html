@@ -1,0 +1,40 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+
+<div class="container">
+	{include file='right.tpl.html' title='site-header'}
+    <div class="twelve columns">
+    <div class="latest category">
+				
+    {if isset($objectItems) && $objectItems}
+    		 <ul class="product_show">
+            {foreach from=$objectItems item=item key=i}
+			 <li {if $i%3==2}class="last"{/if}>
+							<div class="img">
+								<div class="hover_over">
+									<a class="link" href="{$item->getUrl()}">Chi tiết</a>
+									<a class="cart" href="javascript:window.location.href='/?act=cart&amp;plus=quickAdd&amp;pId={$item->getId()}'">Chọn hàng</a>
+								</div>
+                                {if $item->getAvatar()}
+								<a href="{$item->getUrl()}">
+									<img src="/uploads/{$storeId}/products/m_{$item->getAvatar()}" alt="{$item->getName()}">
+								</a>
+                                {/if}
+							</div>
+							<h6><a href="{$item->getUrl()}">{$item->getName()}</a></h6>
+							<h5>{$item->getPrice()|number_format:0:",":"."} VND</h5>
+	                       </li>
+                           {/foreach}
+             </ul>
+             {include file='pager.tpl.html' title='site-header'}
+            {else}
+        Sản phẩm đang được cập nhật.
+    {/if}
+           </div>
+		</div><!--end eleven-->
+  
+
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

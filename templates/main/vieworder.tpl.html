@@ -1,0 +1,184 @@
+{include file='headerindex.tpl.html' title='site-header'}
+	<div class="container">
+		<div class="sixteen columns">
+			<div class="leftcol">
+            {include file='left-category.tpl.html' title='left-category'}
+			</div> 
+            <div class="rightcol">
+            <nav id="menu">
+				<ul>
+                {foreach from=$productCategoryItems.0 item=itemRoot}
+                <li><a href="{$itemRoot.url}">{$itemRoot.name} {if $itemRoot.num}<span>({$itemRoot.num})</span>{/if}
+                </a></li>
+                {/foreach}
+				</ul>
+			</nav>
+            <div class="header">
+				<a href="#menu">Danh mục sản phẩm</a>
+			</div>
+            
+		{include file='navigation.tpl.html' title='footer'}
+        
+		</div> <!-- right-->
+		</div>
+	</div><!-- container -->
+
+<div class="container">
+
+
+<div class="content-full">
+                    
+          <div class="col1 columns">
+                    <div class="col1 columns">
+                    <div class="top">
+        <h3>Thông tin khách hàng</h3>
+        
+        </div>
+        <div class="login-cart">
+        <table style="width:100%; height:auto; line-height:36px; font-size:14px; color:#434343;">
+ 												 <tr>
+    												<td width="110px">Email:</td>
+    												<td>{$order->getEmail()}</td>
+  												</tr>
+  												<tr>
+    												<td>{$messages.name}:</td>
+    												<td>{$order->getName()}</td>
+  												</tr>
+                                                <tr>
+    												<td>{$messages.tel}:</td>
+    												<td>{$order->getTel()}</td>
+  												</tr>
+                                                <tr>
+    												<td>{$messages.province}:</td>
+    												<td>{$order->getOrderProvince()}</td>
+  												</tr>                                                
+                                                 <tr>
+    												<td>{$messages.address}:</td>
+    												<td>{$order->getAddress()}</td>
+  												</tr>
+		</table>
+        </div>
+                    </div> 
+                    <div class="col1 columns">
+                    <div class="top">
+        <h3>{$messages.info_revice}</h3>
+        
+        </div>
+        <div class="login-cart">
+       
+					<table style="width:100%; height:auto; line-height:36px; font-size:14px; color:#434343;">
+ 												 <tr>
+    												<td width="110px">{$messages.fullname}:</td>
+    												<td>{$order->getRName()}</td>
+  												</tr>
+  												<tr>
+    												<td>{$messages.tel}:</td>
+    												<td>{$order->getRTel()}</td>
+  												</tr>
+                                                <tr>
+    												<td>{$messages.province}:</td>
+    												<td>{$order->getOrderRProvince()}</td>
+  												</tr>
+                                                                                              
+                                                 <tr>
+    												<td>{$messages.address}:</td>
+    												<td>{$order->getRAddress()}</td>
+  												</tr>
+		</table>
+                    <p class="form-row" style="border-top:1px solid #ccc;color:#5f2117; font-weight:bold;">
+                   {$messages.rdate}
+					</p>
+                    <table style="width:100%; height:auto; line-height:36px; font-size:14px; color:#434343;">
+ 												 <tr>
+    												<td width="110px">Ngày nhận:</td>
+    												<td>{$order->getRDate()}</td>
+  												</tr>
+  												<tr>
+    												<td>{$messages.rtime}:</td>
+    												<td>{$order->getProperty('rday')}</td>
+  												</tr>
+                                                <tr>
+    												<td>{$messages.message_send}:</td>
+    												<td>{$order->getRNote()}</td>
+  												</tr>
+		</table>
+            <p></p>
+        </div>
+                    </div>    
+
+</div>
+<div class="col2 columns">
+<div class="col2 columns">
+                    <div class="top">
+        <h3>Hình thức thanh toán</h3>
+        </div>
+        <div class="login-cart">
+            <table style="width:100%; height:auto; line-height:36px; font-size:14px; color:#434343;">
+ 												 <tr>
+    												<td>{$paymentMethod->getName()}</td>
+  												</tr>
+  												
+		</table>
+        </div>
+                    </div>
+                    
+     </div>
+                    <div class="col3 columns">
+                     <div class="col3 columns">
+                    <div class="top">
+        <h3>Đơn hàng</h3>
+        </div>
+        {if $cartItems}
+        <div class="login-cart">        
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tblContent">
+            <tbody>
+            {assign var=i value=0}
+                {assign var=grandTotal value=0}
+                {foreach from=$cartItems item=cartItem}
+                {assign var=product value=$cartItem->getProduct()}
+                {if $product}
+                {assign var=i value=$i+1}
+                {assign var=subTotal value=$product->getFinalPrice()*$cartItem->getQuantity()}
+                {assign var=grandTotal value=$grandTotal+$subTotal}
+                        <tr>
+              <td style="text-align:left">  <div class="thumb">
+                    	<img src="/upload/{$storeId}/products/a_{$product->getAvatar()}"/>
+                    </div>
+                    	<p>{$product->getName()}
+                    	</p>
+                    	<span>{$product->getSku()} <br> {$messages.size}: {$product->getSize($cartItem->getProperty('size'))}</span>
+               </td>
+              <td style="text-align:center; color:#5d1e14">
+              	   {$product->getFinalPrice()|number_format:0:",":"."} VND
+              </td>
+               
+            </tr>
+            {/if}
+                        
+                {/foreach}
+            
+                        <tr style="background:#ecedf1">
+                        <td colspan="1">
+              	<span class="total_txt">{$messages.total}:</span>
+    		  </td>
+              <td colspan="1">
+              	<span class="total">{$grandTotal|number_format:0:",":"."} VND</span>
+    		  </td>
+            </tr>
+          </tbody></table>
+          
+        </div>
+        {/if}
+        
+                    </div>
+
+        </div>
+
+
+                </div>
+
+
+</div>
+
+
+{include file='footer.tpl.html' title='footer'}

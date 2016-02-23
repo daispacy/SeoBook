@@ -1,0 +1,48 @@
+{include file='header.tpl.html' title='site-header'}
+
+{include file='navigation.tpl.html' title='site-header'}
+<div style="height:40px;"></div>
+<div class="container">
+
+
+
+		<div class="sixteen columns">
+        
+			<div class="box_head">
+						<h3>Đăng nhập</h3>
+					</div>
+                    <div class="formContent">
+<form action="/" method="post" name="formRegister" id="formRegister">
+<h3>Vui lòng nhập vào thông tin tài khoản để đăng nhập.</h3>
+<fieldset>
+{if isset($error)}<p class="{$infoClass}">{$error}</p>{/if}
+<p><label for="username">Tên đăng nhập (<span>*</span>)</label>
+<input type="text" value="" name="username" id="username" autofocus="autofocus" /></p>
+<p><label for="password">Mật khẩu (<span>*</span>)</label>
+<input type="password" value="" name="password" id="password" /></p>
+{if isset($store_auth_img)}
+<p><label for="fullname">Mã xác nhận (<span>*</span>)</label>
+<input type="text" value="" name="code" id="code" /></p>
+<p><label></label><img height="30" id="codeSecurity" alt="AuthImg" src="{if isset($FOLDER)}/{$FOLDER}{/if}/authimg.php"/></p>
+{/if}
+
+</p>
+<div class="submitForm">
+							<input type="hidden" name="act" value="login"/>
+							<input class="red_btn" type="submit" name="submit" value="Đăng nhập">
+                            <input class="gray_btn" type="button" name="Quên mật khẩu" onclick="location.href ='/forgotpassword.html'" value="Quên mật khẩu" >
+							<div class="clear"></div>
+						</div>
+</fieldset>
+</form>
+</div>
+		</div><!--end sixteen-->
+
+		
+   
+
+
+
+</div>
+
+{include file='footer.tpl.html' title='site-header'}

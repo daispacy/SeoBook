@@ -1,0 +1,12 @@
+{if $navigationItems}
+<div id="pageName">
+	<div class="name_tag">        
+		<p>	
+            {foreach from=$navigationItems item=navigation name=foo}
+            {if $navigation.current}{$navigation.name}{else}<a href="{if $navigation.url}{$navigation.url}{else}#{/if}" title="{$navigation.name}">{$navigation.name}</a> &raquo;{/if} 
+            {/foreach}	            
+            
+		</p>		
+	</div>
+</div>
+{/if}
