@@ -14,17 +14,15 @@ deny from all
 #Options +FollowSymLinks
 
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
+#RewriteEngine On
+#RewriteBase /
 
-<IfModule mod_dir.c>
-DirectoryIndex index.php index.html
-</IfModule>
+#<IfModule mod_dir.c>
+#DirectoryIndex index.php
+#</IfModule>
 
 # Main site
-RewriteRule ^index\.html$ index.php?op=estore&act=index [L,NC]
-
-
+#RewriteRule ^index\.html$ index.php?op=estore&act=index [L,NC]
 
 RewriteRule ^loginfb.html$ index.php?op=estore&act=loginfb [L,NC]
 
